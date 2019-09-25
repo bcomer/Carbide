@@ -15,6 +15,9 @@ $CarbideNG-theme: mat-light-theme($CarbideNG-primary, $CarbideNG-accent, $Carbid
 
 @include angular-material-theme($CarbideNG-theme);
 
+$dark-gunmetal: #222428;
+$platinum: #e5e4e2;
+
 html, body { 
     height: 100%; 
 }
