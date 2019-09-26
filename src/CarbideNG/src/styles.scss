@@ -13,10 +13,19 @@ $CarbideNG-warn: mat-palette($cbd-persianred, 500, 300, 900);
 
 $CarbideNG-theme: mat-light-theme($CarbideNG-primary, $CarbideNG-accent, $CarbideNG-warn);
 
-@include angular-material-theme($CarbideNG-theme);
-
 $dark-gunmetal: #222428;
 $platinum: #e5e4e2;
+
+$background: map-get($CarbideNG-theme , background );
+$background: map-merge($background, (background: $platinum));
+$CarbideNG-theme: map-merge($CarbideNG-theme, (background: $background));
+
+$foreground: map-get($CarbideNG-theme , foreground );
+$foreground: map-merge($foreground , (text: $dark-gunmetal));
+$CarbideNG-theme: map-merge($CarbideNG-theme, (foreground: $foreground));
+
+@include angular-material-theme($CarbideNG-theme);
+
 
 html, body { 
     height: 100%; 
