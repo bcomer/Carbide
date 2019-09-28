@@ -1,7 +1,7 @@
 :host {
   height: 100%;
   display: grid;
-  grid-template-columns: 250px 350px 1fr;
+  grid-template-columns: 250px 404.5px 1fr;
   grid-template-rows: 64px 1fr;
   grid-template-areas:
     "header header header"
@@ -9,17 +9,23 @@
 
   header {
     grid-area: header;
+    z-index: 2;
   }
 
-  .folders {
-    grid-area: folders;
+  cbd-project-list {
+    grid-area: folders; 
+    z-index: 1;
   }
 
   .calculations {
     grid-area: calculations;
+    background-color: whitesmoke;
+    z-index: -1 !important;
   }
 
   .work-space {
     grid-area: work-space;
+    background-color: white;
+    z-index: -1 !important;
   }
 }
