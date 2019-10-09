@@ -16,10 +16,12 @@ const initialState: State = {
 
 const appReducer = createReducer(
     initialState,
-    on(AppActions.setCurrentProject, setCurrentProjectState),
     on(AppActions.clearCurrentProject, clearCurrentProject),
+    on(AppActions.setCurrentProject, setCurrentProjectState),    
     on(AppActions.loadProjectsSuccess, setProjectLoadedSuccessState),
-    on(AppActions.loadProjectsFail, setProjectLoadedFailState)
+    on(AppActions.loadProjectsFail, setProjectLoadedFailState),
+    on(AppActions.createProjectSuccess, setCreateProjectSuccessState),
+    on(AppActions.createProjectFail, setCreateProjectFailState)
 );
 
 export function reducer(state: State | undefined, action) {
@@ -52,7 +54,6 @@ function setProjectLoadedSuccessState(state: State, action): State {
     }
 
     return {
-        ...state,
         currentProjectId: currentProjectId,
         projects: projects,
         error: null
@@ -61,9 +62,27 @@ function setProjectLoadedSuccessState(state: State, action): State {
 
 function setProjectLoadedFailState(state: State, action): State {    
     return {
-        ...state,
         currentProjectId: null,
         projects: [],
         error: action.error
     };
 };
+
+function setCreateProjectSuccessState(state: State, action): State {
+    let projects = [...state.projects];
+    projects.push(action.project);
+
+    return {
+        projects: projects,
+        currentProjectId: action.project.id,
+        error: null
+    }
+}
+
+function setCreateProjectFailState(state: State, action): State {
+
+    return {
+        ...state,
+        error: action.error
+    }
+}

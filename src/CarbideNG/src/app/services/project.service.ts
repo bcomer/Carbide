@@ -21,30 +21,3 @@ export class ProjectService {
     return of();
   }
 }
-
-const PROJECT_DATA = {
-  Projects: [
-    {
-      ProjectOne: {
-        Calculations: ['CalcOne', 'CalcFour', 'CalcFive'],
-        Projects: [
-          {
-            SubprojectOne: {
-              Calculations: ['CalcTwo', 'CalcThree']
-            }
-          },
-          {
-            SubprojectTwo: {
-              Calculations: ['CalcTwo', 'CalcThree']
-            }
-          }
-        ]
-
-      },
-      ProjectTwo: {
-        Calculations: ['CalcA', 'CalcB'],
-        Projects: null
-      }
-    }
-  ]
-}

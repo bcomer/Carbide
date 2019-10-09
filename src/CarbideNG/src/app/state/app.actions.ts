@@ -21,6 +21,21 @@ export const loadProjectsSuccess = createAction(
 );
 
 export const loadProjectsFail = createAction(
-    '[Project] Load Projects Success',
+    '[Project] Load Projects Fail',
+    props<{error: string}>()
+);
+
+export const createProject = createAction(
+    '[Project] Create Project',
+    props<{project: Project}>()
+);
+
+export const createProjectSuccess = createAction(
+    '[Project] Create Project Success',
+    props<{project: Project}>() 
+);
+
+export const createProjectFail = createAction(
+    '[Project] Create Project Fail',
     props<{error: string}>()
 );
