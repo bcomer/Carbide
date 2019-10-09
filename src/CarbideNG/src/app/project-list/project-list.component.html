@@ -1,8 +1,14 @@
 <div class="project-list-header">
-    <button mat-icon-button color="accent" class="add-calculation">
+    <button mat-icon-button color="accent" class="add-calculation" (click)="onAddCalculationClick()">
         <mat-icon>add</mat-icon>
     </button>
-    <button mat-icon-button color="accent" class="add-project">
+    <button mat-icon-button color="accent" class="add-project" (click)="onAddProjectClick()">
         <mat-icon>create_new_folder</mat-icon>
     </button>
+</div>
+
+<div class="project-list-content">
+    <div *ngFor="let project of (Projects$ | async)" class="project-list-item">
+        <span>{{project.name}}</span>
+    </div>
 </div>

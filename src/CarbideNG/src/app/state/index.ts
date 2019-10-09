@@ -1,6 +1,5 @@
 import * as fromApp from './app.reducers';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { get } from 'http';
 
 export interface State {
     app: fromApp.State

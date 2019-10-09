@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import * as fromApp from '../state'
+import * as AppActions from '../state/app.actions';
+import { Store, select } from '@ngrx/store';
+import { Observable, from } from 'rxjs';
+import { Project } from '../models/project';
 
 @Component({
   selector: 'cbd-project-list',
@@ -7,9 +12,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectListComponent implements OnInit {
 
-  constructor() { }
+  public Projects$: Observable<Array<Project>>;
+
+  constructor(private readonly store: Store<fromApp.State>) { }
 
   ngOnInit() {
+    this.Projects$ = this.store.pipe(select(fromApp.getProjects));
   }
 
+
+  onAddCalculationClick(): void {
+
+  }
+
+  onAddProjectClick(): void {
+    this.store.dispatch(AppActions.createProject({project: new Project('123', 'dope ass project', 'Brandon Comer', Date.now().toString())}));
+  }
 }
