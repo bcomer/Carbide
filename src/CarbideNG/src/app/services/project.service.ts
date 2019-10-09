@@ -13,7 +13,11 @@ export class ProjectService {
     return of(new Array<Project>());
   }
 
-  save(entity: Project): Observable<Project> {
+  create(entity: Project): Observable<Project> {
+    return of(entity);
+  }
+
+  update(entity: Project): Observable<Project> {
     return of(entity);
   }
 
