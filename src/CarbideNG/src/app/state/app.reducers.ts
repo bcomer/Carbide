@@ -16,38 +16,54 @@ const initialState: State = {
 
 const appReducer = createReducer(
     initialState,
-    on(AppActions.setCurrentProject, (state, action) => ({
-        ...state,
-        currentProjectId: action.id
-    })),
-    on(AppActions.clearCurrentProject, state => ({
-        ...state,
-        currentProjectId: null
-    })),
-    on(AppActions.loadProjectsSuccess, (state, action) => {
-        let projects: Array<Project> = [];
-        let currentProjectId: string = null;
-
-        if (action.projects.length > 0) {
-            projects = action.projects;
-            currentProjectId = projects[0].id;
-        }   
-
-        return ({
-            ...state,
-            currentProjectId: currentProjectId,
-            projects: projects,
-            error: null
-        })
-    }),
-    on(AppActions.loadProjectsFail, (state, action) => ({
-        ...state,
-        currentProjectId: null,
-        projects: [],
-        error: action.error
-    }))
+    on(AppActions.setCurrentProject, setCurrentProjectState),
+    on(AppActions.clearCurrentProject, clearCurrentProject),
+    on(AppActions.loadProjectsSuccess, setProjectLoadedSuccessState),
+    on(AppActions.loadProjectsFail, setProjectLoadedFailState)
 );
 
 export function reducer(state: State | undefined, action) {
     return appReducer(state, action);
+};
+
+function clearCurrentProject(state: State): State {
+
+    return {
+        ...state,
+        currentProjectId: null
+    }
 }
+
+function setCurrentProjectState(state: State, action): State {
+    
+    return {
+        ...state,
+        currentProjectId: action.id
+    }
+}
+
+function setProjectLoadedSuccessState(state: State, action): State {
+    let projects: Array<Project> = [];
+    let currentProjectId: string = null;
+
+    if (action.projects.length > 0) {
+        projects = action.projects;
+        currentProjectId = projects[0].id;
+    }
+
+    return {
+        ...state,
+        currentProjectId: currentProjectId,
+        projects: projects,
+        error: null
+    };
+};
+
+function setProjectLoadedFailState(state: State, action): State {    
+    return {
+        ...state,
+        currentProjectId: null,
+        projects: [],
+        error: action.error
+    };
+};
