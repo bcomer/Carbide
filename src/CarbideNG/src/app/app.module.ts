@@ -13,11 +13,15 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { environment } from 'src/environments/environment.prod';
+import { ProjectListItemComponent } from './project-list-item/project-list-item.component';
+import { SubProjectListItemComponent } from './sub-project-list-item/sub-project-list-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectListComponent
+    ProjectListComponent,
+    ProjectListItemComponent,
+    SubProjectListItemComponent
   ],
   imports: [
     BrowserModule,

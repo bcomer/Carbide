@@ -7,8 +7,6 @@
     </button>
 </div>
 
-<div class="project-list-content">
-    <div *ngFor="let project of (Projects$ | async)" class="project-list-item">
-        <span>{{project.name}}</span>
-    </div>
-</div>
+<mat-action-list>
+    <cbd-project-list-item [Project]="project" *ngFor="let project of (Projects$ | async)"></cbd-project-list-item>
+</mat-action-list>
