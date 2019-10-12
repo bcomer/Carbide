@@ -1,10 +1,6 @@
-:host {
-    .project-list-header {
-        display: flex;
-        justify-content: flex-end;
+:host {   
 
-        .add-project {
-            margin-right: 10px;
-        }
+    .no-projects-message {
+        margin: 12px;
     }
 }

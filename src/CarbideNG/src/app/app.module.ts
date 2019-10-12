@@ -15,13 +15,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { environment } from 'src/environments/environment.prod';
 import { ProjectListItemComponent } from './project-list-item/project-list-item.component';
 import { SubProjectListItemComponent } from './sub-project-list-item/sub-project-list-item.component';
+import { ProjectListHeaderComponent } from './project-list-header/project-list-header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectListComponent,
     ProjectListItemComponent,
-    SubProjectListItemComponent
+    SubProjectListItemComponent,
+    ProjectListHeaderComponent
   ],
   imports: [
     BrowserModule,

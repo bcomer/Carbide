@@ -1,12 +1,7 @@
-<div class="project-list-header">
-    <button mat-icon-button color="accent" class="add-calculation" (click)="onAddCalculationClick()">
-        <mat-icon>add</mat-icon>
-    </button>
-    <button mat-icon-button color="accent" class="add-project" (click)="onAddProjectClick()">
-        <mat-icon>create_new_folder</mat-icon>
-    </button>
-</div>
+<cbd-project-list-header></cbd-project-list-header>
 
-<mat-action-list>
+<mat-action-list *ngIf="(Projects$ | async).length > 0">
     <cbd-project-list-item [Project]="project" *ngFor="let project of (Projects$ | async)"></cbd-project-list-item>
 </mat-action-list>
+
+<span class="no-projects-message" *ngIf="(Projects$ | async).length == 0">Create a project to begin...</span>

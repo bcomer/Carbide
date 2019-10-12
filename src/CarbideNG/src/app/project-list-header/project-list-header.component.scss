@@ -1,0 +1,10 @@
+:host {
+    .project-list-header {
+        display: flex;
+        justify-content: flex-end;
+
+        .toggle-project-list {
+            margin-right: 10px;
+        }
+    }
+}
