@@ -5,18 +5,21 @@ import * as AppActions from './app.actions';
 export interface State {
     currentProjectId: string | null,
     projects: Array<Project>,
+    showProjectList: boolean,
     error: string | null
 }
 
 const initialState: State = {
     currentProjectId: null,
     projects: [],
+    showProjectList: true,
     error: null
 }
 
 const appReducer = createReducer(
     initialState,
-    on(AppActions.clearCurrentProject, clearCurrentProject),
+    on(AppActions.toggleProjectList, setToggleProjectListState),
+    on(AppActions.clearCurrentProject, setClearCurrentProjectState),
     on(AppActions.setCurrentProject, setCurrentProjectState),    
     on(AppActions.loadProjectsSuccess, setProjectLoadedSuccessState),
     on(AppActions.loadProjectsFail, setProjectLoadedFailState),
@@ -28,7 +31,7 @@ export function reducer(state: State | undefined, action) {
     return appReducer(state, action);
 };
 
-function clearCurrentProject(state: State): State {
+function setClearCurrentProjectState(state: State): State {
 
     return {
         ...state,
@@ -54,6 +57,7 @@ function setProjectLoadedSuccessState(state: State, action): State {
     }
 
     return {
+        ...state,
         currentProjectId: currentProjectId,
         projects: projects,
         error: null
@@ -62,6 +66,7 @@ function setProjectLoadedSuccessState(state: State, action): State {
 
 function setProjectLoadedFailState(state: State, action): State {    
     return {
+        ...state,
         currentProjectId: null,
         projects: [],
         error: action.error
@@ -73,6 +78,7 @@ function setCreateProjectSuccessState(state: State, action): State {
     projects.push(action.project);
 
     return {
+        ...state,
         projects: projects,
         currentProjectId: action.project.id,
         error: null
@@ -84,5 +90,12 @@ function setCreateProjectFailState(state: State, action): State {
     return {
         ...state,
         error: action.error
+    }
+}
+
+function setToggleProjectListState(state: State): State {
+    return {
+        ...state,
+        showProjectList: !state.showProjectList
     }
 }
