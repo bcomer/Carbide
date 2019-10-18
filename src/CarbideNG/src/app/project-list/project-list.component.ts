@@ -20,16 +20,5 @@ export class ProjectListComponent implements OnInit {
     this.Projects$ = this.store.pipe(select(fromApp.getProjects));
   }
 
-  onAddCalculationClick(): void {
-  }
-
-  onAddProjectClick(): void {
-    let subProject: Project = new Project('abcde-3rews-ae43s-8sdkj', 'sub project one', 'Brandon Comer', Date.now().toString());
-    let subProjects: Array<Project> = new Array<Project>();
-
-    subProjects.push(subProject);
-
-    let project: Project = new Project('124kj-alsde-s8dfl-asd90', 'dope ass project', 'Brandon Comer', Date.now().toString(), null, subProjects);
-    this.store.dispatch(AppActions.createProject({project: project}));
-  }
+  
 }
