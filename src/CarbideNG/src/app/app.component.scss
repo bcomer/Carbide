@@ -1,7 +1,7 @@
 :host {
   height: 100%;
   display: grid;
-  grid-template-columns: 250px 404.5px 1fr;
+  grid-template-columns: auto 404.5px 1fr;
   grid-template-rows: 64px 1fr;
   grid-template-areas:
     "header header header"
@@ -15,6 +15,16 @@
   cbd-project-list {
     grid-area: folders; 
     z-index: 1;
+    width: 60px;
+    transition: width 0.5s;
+
+    &.expanded {
+      width: 250px;
+    }
+
+    // &.collasped {
+
+    // }
   }
 
   .calculations {
@@ -28,4 +38,6 @@
     background-color: white;
     z-index: -1 !important;
   }
+
+  
 }

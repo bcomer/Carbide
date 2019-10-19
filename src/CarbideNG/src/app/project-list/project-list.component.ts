@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import * as fromApp from '../state'
-import * as AppActions from '../state/app.actions';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Project } from '../models/project';

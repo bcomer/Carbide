@@ -3,7 +3,7 @@
         <span>carbideNG</span>
     </mat-toolbar>
 </header>
-<cbd-project-list></cbd-project-list>
+<cbd-project-list [ngClass]="{'expanded': isExpanded$ | async}"></cbd-project-list>
 <div class="calculations">
     calculations
 </div>
