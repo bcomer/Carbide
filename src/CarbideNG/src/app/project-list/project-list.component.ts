@@ -13,11 +13,13 @@ import { Project } from '../models/project';
 export class ProjectListComponent implements OnInit {
 
   public Projects$: Observable<Array<Project>>;
+  public isExpanded$: Observable<boolean>;
 
   constructor(private readonly store: Store<fromApp.State>) { }
 
   ngOnInit() {
     this.Projects$ = this.store.pipe(select(fromApp.getProjects));
+    this.isExpanded$ = this.store.pipe(select(fromApp.getShowProjectList));
   }
 
   

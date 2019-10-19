@@ -1,7 +1,7 @@
-<cbd-project-list-header></cbd-project-list-header>
+<cbd-project-list-header [isExpanded]="isExpanded$ | async"></cbd-project-list-header>
 
-<mat-action-list *ngIf="(Projects$ | async).length > 0">
+<mat-action-list *ngIf="((Projects$ | async).length > 0) && (isExpanded$ | async)">
     <cbd-project-list-item [Project]="project" *ngFor="let project of (Projects$ | async)"></cbd-project-list-item>
 </mat-action-list>
 
-<span class="no-projects-message" *ngIf="(Projects$ | async).length == 0">Create a project to begin...</span>
+<span class="no-projects-message" *ngIf="((Projects$ | async).length == 0) && (isExpanded$ | async)">Create a project to begin...</span>
