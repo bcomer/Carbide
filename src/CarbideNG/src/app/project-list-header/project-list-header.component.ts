@@ -18,18 +18,18 @@ export class ProjectListHeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  onAddCalculationClick(): void {
-  }
+  // onAddCalculationClick(): void {
+  // }
 
-  onAddProjectClick(): void {
-    let subProject: Project = new Project('abcde-3rews-ae43s-8sdkj', 'sub project one', 'Brandon Comer', Date.now().toString());
-    let subProjects: Array<Project> = new Array<Project>();
+  // onAddProjectClick(): void {
+  //   let subProject: Project = new Project('abcde-3rews-ae43s-8sdkj', 'sub project one', 'Brandon Comer', Date.now().toString());
+  //   let subProjects: Array<Project> = new Array<Project>();
 
-    subProjects.push(subProject);
+  //   subProjects.push(subProject);
 
-    let project: Project = new Project('124kj-alsde-s8dfl-asd90', 'dope ass project', 'Brandon Comer', Date.now().toString(), null, subProjects);
-    this.store.dispatch(AppActions.createProject({project: project}));
-  }
+  //   let project: Project = new Project('124kj-alsde-s8dfl-asd90', 'dope ass project', 'Brandon Comer', Date.now().toString(), null, subProjects);
+  //   this.store.dispatch(AppActions.createProject({project: project}));
+  // }
 
   onProjectListToggle(): void {
     this.store.dispatch(AppActions.toggleProjectList());

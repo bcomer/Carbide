@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+
+@mixin project-list-header-component-theme($theme) { 
+  $foreground: map-get($theme, foreground);
+  $border-color: mat-color($foreground, divider);
+  
+  cbd-project-list-header {
+    border-bottom: 1px solid $border-color;
+  }  
+}

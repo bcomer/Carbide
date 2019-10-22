@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+
+@mixin app-component-theme($theme) { 
+  $foreground: map-get($theme, foreground);
+  $border-color: mat-color($foreground, divider);
+  
+  cbd-root {
+
+    cbd-project-list {
+        border-right: 1px solid $border-color;
+    }
+    
+    .calculations {
+        border-right: 1px solid $border-color;
+    }
+  }  
+}
