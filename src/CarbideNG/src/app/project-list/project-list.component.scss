@@ -1,6 +1,9 @@
 :host {
   .no-projects-message {
-    margin: 12px;
+    margin: 18px;
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 300;
   }
 
   .projects-collapsed-menu-title {
