@@ -4,6 +4,16 @@
     <cbd-project-list-item [Project]="project" *ngFor="let project of (Projects$ | async)"></cbd-project-list-item>
 </mat-action-list>
 
-<span class="no-projects-message" *ngIf="((Projects$ | async).length == 0) && (isExpanded$ | async)">Create a project to begin...</span>
+<span class="no-projects-message" *ngIf="((Projects$ | async).length == 0) && (isExpanded$ | async)">Create a project to
+    begin...</span>
 
-<span class="projects-collapsed-menu-title" [ngClass]="{'visible': !(isExpanded$ | async)}" *ngIf="!(isExpanded$ | async)">Projects</span>
+<span class="projects-collapsed-menu-title" [ngClass]="{'visible': !(isExpanded$ | async)}"
+    *ngIf="!(isExpanded$ | async)">Projects</span>
+
+<span class="spacer"></span>
+
+<button class="add-project-button" mat-fab color="primary" *ngIf="isExpanded$ | async" (click)="onAddProjectClick()">
+    <mat-icon>add</mat-icon>
+</button>
+
+<span class="bottom-spacer"></span>
