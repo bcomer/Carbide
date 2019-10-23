@@ -5,3 +5,5 @@
 </mat-action-list>
 
 <span class="no-projects-message" *ngIf="((Projects$ | async).length == 0) && (isExpanded$ | async)">Create a project to begin...</span>
+
+<span class="projects-collapsed-menu-title" [ngClass]="{'visible': !(isExpanded$ | async)}" *ngIf="!(isExpanded$ | async)">Projects</span>
