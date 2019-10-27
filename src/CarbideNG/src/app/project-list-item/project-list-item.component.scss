@@ -1,0 +1,17 @@
+:host {
+  mat-list-item {
+    .project-list-item-wrapper {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+
+      .spacer {
+        flex-grow: 1;
+      }
+
+      mat-icon {
+        justify-self: flex-end;
+      }
+    }
+  }
+}

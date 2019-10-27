@@ -28,7 +28,7 @@ export class ProjectListComponent implements OnInit {
 
     subProjects.push(subProject);
 
-    let project: Project = new Project('124kj-alsde-s8dfl-asd90', 'dope ass project', 'Brandon Comer', Date.now().toString(), null, subProjects);
+    let project: Project = new Project('124kj-alsde-s8dfl-asd90', 'my first project', 'Brandon Comer', Date.now().toString(), null, subProjects);
     this.store.dispatch(AppActions.createProject({project: project}));
   }  
 }

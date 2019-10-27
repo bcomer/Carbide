@@ -1,7 +1,11 @@
 <mat-list-item (click)="onProjectClick()">
-    <span>{{Project?.name}}</span>
-    <mat-icon [@chevronRotate]="Expanded ? 'expanded': 'collapsed'">expand_more</mat-icon>
+    <div class="project-list-item-wrapper">
+        <span>{{Project?.name}}</span>
+        <span class="spacer"></span>
+        <mat-icon [@chevronRotate]="Expanded ? 'expanded': 'collapsed'">expand_more</mat-icon>
+    </div>
 </mat-list-item>
 <mat-action-list *ngIf="Expanded">
-    <cbd-sub-project-list-item [Project]="subProject" *ngFor="let subProject of Project.subProjects"></cbd-sub-project-list-item>
+    <cbd-sub-project-list-item [Project]="subProject" *ngFor="let subProject of Project.subProjects">
+    </cbd-sub-project-list-item>
 </mat-action-list>

@@ -1,0 +1,17 @@
+:host {
+  
+  mat-list-item {
+    border-left: 4px solid #c4a660;
+    box-sizing: border-box;
+
+    &:hover {
+      background-color: #c4a66036;
+    }
+
+    mat-icon {
+      color: #c4a660;
+      margin-left: -8px;
+      margin-right: 8px;
+    }
+  }
+}
