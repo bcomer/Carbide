@@ -1,0 +1,22 @@
+@import '~@angular/material/theming';
+
+@mixin sub-project-list-item-component-theme($theme) { 
+  $primary: map-get($theme, primary);
+  $primary-color: mat-color($primary, default);
+  $hover-color: mat-color($primary, 50);
+  
+  cbd-sub-project-list-item {
+
+    mat-list-item {
+        border-left: 4px solid $primary-color;
+    
+        &:hover {
+          background-color: $hover-color !important;
+        }
+    
+        mat-icon {
+          color: $primary-color;
+        }
+      }
+  }  
+}

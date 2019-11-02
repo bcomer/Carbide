@@ -21,10 +21,12 @@ $CarbideNG-theme: map-merge($CarbideNG-theme, (foreground: $foreground));
 
 @import './app/app.component.theme.scss';
 @import './app/project-list-header/project-list-header.component.theme.scss';
+@import './app/sub-project-list-item/sub-project-list-item.component.theme.scss';
 
 @mixin custom-components-theme() {
     @include app-component-theme($CarbideNG-theme);
     @include project-list-header-component-theme($CarbideNG-theme);
+    @include sub-project-list-item-component-theme($CarbideNG-theme);
 }
 
 
