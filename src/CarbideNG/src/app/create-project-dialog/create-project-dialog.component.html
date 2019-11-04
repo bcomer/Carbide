@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Create Project</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <mat-label>Project Name</mat-label>
+    <input class="project-name-input" [formControl]="name" matInput placeholder="Enter project name" cdkFocusInitial>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button color="primary" [disabled]="isDisabled()" mat-button (click)="onCreateClick()">Create</button>
+</div>

@@ -16,6 +16,8 @@ import { environment } from 'src/environments/environment.prod';
 import { ProjectListItemComponent } from './project-list-item/project-list-item.component';
 import { SubProjectListItemComponent } from './sub-project-list-item/sub-project-list-item.component';
 import { ProjectListHeaderComponent } from './project-list-header/project-list-header.component';
+import { CreateProjectDialogComponent } from './create-project-dialog/create-project-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,15 @@ import { ProjectListHeaderComponent } from './project-list-header/project-list-h
     ProjectListComponent,
     ProjectListItemComponent,
     SubProjectListItemComponent,
-    ProjectListHeaderComponent
+    ProjectListHeaderComponent,
+    CreateProjectDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
     StoreModule.forRoot({ app: AppReducers.reducer }),
     StoreDevtoolsModule.instrument({
@@ -39,6 +44,7 @@ import { ProjectListHeaderComponent } from './project-list-header/project-list-h
     EffectsModule.forRoot([AppEffects])
   ],
   providers: [],
+  entryComponents: [CreateProjectDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

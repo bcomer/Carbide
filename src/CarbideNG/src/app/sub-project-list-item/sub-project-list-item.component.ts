@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Project } from '../models/project';
+import * as fromApp from '../state';
+import { Store } from '@ngrx/store';
+import * as appActions from '../state/app.actions';
 
 @Component({
   selector: 'cbd-sub-project-list-item',
@@ -9,12 +12,12 @@ import { Project } from '../models/project';
 export class SubProjectListItemComponent implements OnInit {
   @Input() Project: Project;
 
-  constructor() { }
+  constructor(private readonly store: Store<fromApp.State>) { }
 
   ngOnInit() {
   }
 
   onProjectClick(): void {
-    alert(this.Project.name);
+    this.store.dispatch(appActions.setCurrentProject({ id: this.Project.id }));
   }
 }

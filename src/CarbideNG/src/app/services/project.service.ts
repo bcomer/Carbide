@@ -14,6 +14,8 @@ export class ProjectService {
   }
 
   create(entity: Project): Observable<Project> {
+    entity.id =  `12345-${entity.name}`;
+
     return of(entity);
   }
 
