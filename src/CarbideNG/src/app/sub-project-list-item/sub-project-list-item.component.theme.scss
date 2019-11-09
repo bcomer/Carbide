@@ -8,15 +8,22 @@
   cbd-sub-project-list-item {
 
     mat-list-item {
-        border-left: 4px solid $primary-color;
+        &.active {
+          border-left: 4px solid $primary-color;
+        }
+
+        mat-icon {
+          color: $primary-color;
+          visibility: hidden;
+        }
     
         &:hover {
           background-color: $hover-color !important;
-        }
-    
-        mat-icon {
-          color: $primary-color;
-        }
+
+          mat-icon {
+            visibility: visible;
+          }
+        }           
       }
   }  
 }

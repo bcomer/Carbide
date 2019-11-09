@@ -1,4 +1,4 @@
-<mat-list-item (click)="onProjectClick()">
+<mat-list-item (click)="onProjectClick()" [ngClass]="{active: isActive}">
     <mat-icon>drag_indicator</mat-icon>
     <span>{{Project?.name}}</span>
 </mat-list-item>

@@ -10,14 +10,29 @@ import * as appActions from '../state/app.actions';
   styleUrls: ['./sub-project-list-item.component.scss']
 })
 export class SubProjectListItemComponent implements OnInit {
-  @Input() Project: Project;
+  @Input() Project: Project;  
+  isActive: boolean;
 
   constructor(private readonly store: Store<fromApp.State>) { }
 
-  ngOnInit() {
+  ngOnInit() {    
+    this.store.select(fromApp.getCurrentProject).subscribe(project => {
+
+      if (project) {
+        this.isActive = this.Project.id == project.id;
+      }        
+      else {
+        this.isActive = false;
+      }    
+    });
   }
 
-  onProjectClick(): void {
-    this.store.dispatch(appActions.setCurrentProject({ id: this.Project.id }));
+  onProjectClick(): void {    
+    if (this.isActive) {
+      this.store.dispatch(appActions.clearCurrentProject());      
+    }
+    else {
+      this.store.dispatch(appActions.setCurrentProject({ id: this.Project.id }));
+    }
   }
 }

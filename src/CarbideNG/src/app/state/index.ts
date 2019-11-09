@@ -9,7 +9,8 @@ const getAppState = createFeatureSelector<fromApp.State>('app');
 
 export const getCurrentProject = createSelector(
     getAppState,
-    state => state.projects.length == 0 ? null 
+    state => state.currentProjectId == null ? null : state.projects.length == 0 
+        ? null 
         : state.projects.find(project => project.id == state.currentProjectId) 
             ? state.projects.find(project => project.id == state.currentProjectId)
             : state.projects.find(project => project.subProjects.findIndex(x => x.id == state.currentProjectId) >= 0).subProjects.find(x => x.id == state.currentProjectId)
