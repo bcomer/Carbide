@@ -1,11 +1,22 @@
 :host {
   
-  mat-list-item {
-    box-sizing: border-box;
+  mat-list-item {   
+    
+    .active-indicator {
+      display: block;
+      width: 4px;
+      height: 100%;
+      opacity: 0;
+    }
+
+    &.active {
+      .active-indicator {
+        opacity: 1;
+      }
+    }
     
     mat-icon {
-      margin-left: -8px;
-      margin-right: 8px;
+      margin: 0 8px;
     }
-  }
+  }  
 }

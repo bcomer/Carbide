@@ -1,10 +1,9 @@
-
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 
 @include mat-core();
 
-@import './themes/pallets/persian-red.pallet.scss';
-@import './themes/pallets/vegas-gold.pallet.scss';
+@import "./themes/pallets/persian-red.pallet.scss";
+@import "./themes/pallets/vegas-gold.pallet.scss";
 
 $CarbideNG-gold: mat-palette($cbd-vegasgold, 500, 200, 800);
 $CarbideNG-warn: mat-palette($cbd-persianred, 500, 300, 900);
@@ -13,30 +12,47 @@ $CarbideNG-theme: mat-light-theme($CarbideNG-gold, $CarbideNG-gold, $CarbideNG-w
 
 $dark-gunmetal: #222428;
 
-$foreground: map-get($CarbideNG-theme , foreground );
-$foreground: map-merge($foreground , (text: $dark-gunmetal));
-$CarbideNG-theme: map-merge($CarbideNG-theme, (foreground: $foreground));
+$foreground: map-get($CarbideNG-theme, foreground);
+$foreground: map-merge(
+  $foreground,
+  (
+    text: $dark-gunmetal
+  )
+);
+$CarbideNG-theme: map-merge(
+  $CarbideNG-theme,
+  (
+    foreground: $foreground
+  )
+);
 
 @include angular-material-theme($CarbideNG-theme);
 
-@import './app/app.component.theme.scss';
-@import './app/project-list-header/project-list-header.component.theme.scss';
-@import './app/sub-project-list-item/sub-project-list-item.component.theme.scss';
+@import "./app/app.component.theme.scss";
+@import "./app/project-list-header/project-list-header.component.theme.scss";
+@import "./app/sub-project-list-item/sub-project-list-item.component.theme.scss";
 
 @mixin custom-components-theme() {
-    @include app-component-theme($CarbideNG-theme);
-    @include project-list-header-component-theme($CarbideNG-theme);
-    @include sub-project-list-item-component-theme($CarbideNG-theme);
+  @include app-component-theme($CarbideNG-theme);
+  @include project-list-header-component-theme($CarbideNG-theme);
+  @include sub-project-list-item-component-theme($CarbideNG-theme);
 }
 
-
-html, body { 
-    height: 100%; 
+html,
+body {
+  height: 100%;
 }
 
-body { 
-    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
-    font-size: 10px;
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 10px;
 
-    @include custom-components-theme();
+  @include custom-components-theme();
+}
+
+cbd-sub-project-list-item {
+  .mat-list-item-content {
+    padding: 0 !important;
+  }
 }

@@ -1,29 +1,31 @@
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 
-@mixin sub-project-list-item-component-theme($theme) { 
+@mixin sub-project-list-item-component-theme($theme) {
   $primary: map-get($theme, primary);
   $primary-color: mat-color($primary, default);
   $hover-color: mat-color($primary, 50);
-  
-  cbd-sub-project-list-item {
 
-    mat-list-item {
-        &.active {
-          border-left: 4px solid $primary-color;
+  cbd-sub-project-list-item {
+    mat-list-item {    
+
+      &.active {
+        .active-indicator {
+          background-color: $primary-color;
         }
+      }
+
+      mat-icon {
+        color: $primary-color;
+        visibility: hidden;
+      }
+
+      &:hover {
+        background-color: $hover-color !important;
 
         mat-icon {
-          color: $primary-color;
-          visibility: hidden;
+          visibility: visible;
         }
-    
-        &:hover {
-          background-color: $hover-color !important;
-
-          mat-icon {
-            visibility: visible;
-          }
-        }           
       }
-  }  
+    }
+  }
 }
