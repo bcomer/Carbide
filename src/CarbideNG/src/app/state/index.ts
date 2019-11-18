@@ -21,6 +21,11 @@ export const getProjects = createSelector(
     state => state.projects
 );
 
+export const getCalculations = createSelector(
+    getAppState,
+    state => state.calculations
+);
+
 export const getShowProjectList = createSelector(
     getAppState,
     state => state.showProjectList

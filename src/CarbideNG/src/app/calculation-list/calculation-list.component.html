@@ -1,0 +1,3 @@
+<mat-action-list *ngIf="((Calculations$ | async).length > 0)">
+    <cbd-calculation-list-item [Calculation]="calculation" *ngFor="let calculation of (Calculations$ | async)"></cbd-calculation-list-item>
+</mat-action-list>

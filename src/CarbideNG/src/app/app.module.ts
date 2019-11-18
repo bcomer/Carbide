@@ -18,6 +18,8 @@ import { SubProjectListItemComponent } from './sub-project-list-item/sub-project
 import { ProjectListHeaderComponent } from './project-list-header/project-list-header.component';
 import { CreateProjectDialogComponent } from './create-project-dialog/create-project-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CalculationListComponent } from './calculation-list/calculation-list.component';
+import { CalculationListItemComponent } from './calculation-list-item/calculation-list-item.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProjectListItemComponent,
     SubProjectListItemComponent,
     ProjectListHeaderComponent,
-    CreateProjectDialogComponent
+    CreateProjectDialogComponent,
+    CalculationListComponent,
+    CalculationListItemComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { mergeMap, catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ProjectService } from '../services/project.service';
+import { CalculationService } from '../services/calculation.service'
 import * as AppActions from './app.actions';
 
 @Injectable()
@@ -10,6 +11,7 @@ export class AppEffects {
 
     constructor(
         private readonly projectSvc: ProjectService,
+        private readonly calculationSvc: CalculationService,
         private actions$: Actions
     ) { }
 
@@ -32,4 +34,26 @@ export class AppEffects {
             )
         )
     ));
+
+    loadCalculations$ = createEffect(() => this.actions$.pipe(
+        ofType(AppActions.loadCalculations),
+        mergeMap(() =>
+            this.calculationSvc.getAll().pipe(
+                map(calculations => AppActions.loadCalculationsSuccess({ calculations: calculations })),
+                catchError(error => of(AppActions.loadProjectsFail({ error: error.message })))
+            )
+        )
+    ));
+
+    createCalculation$ = createEffect(() => this.actions$.pipe(
+        ofType(AppActions.createCalculation),
+        mergeMap(action =>
+            this.calculationSvc.create(action.calculation).pipe(
+                map(calculation => AppActions.createCalculationSuccess({ calculation: calculation })),
+                catchError(error => of (AppActions.createCalculationFail({error: error.message})))
+            )
+        )
+    ));
+
+   
 }
