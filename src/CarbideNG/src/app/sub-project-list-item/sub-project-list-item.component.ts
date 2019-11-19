@@ -1,22 +1,29 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Project } from '../models/project';
 import * as fromApp from '../state';
 import { Store } from '@ngrx/store';
 import * as appActions from '../state/app.actions';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'cbd-sub-project-list-item',
   templateUrl: './sub-project-list-item.component.html',
   styleUrls: ['./sub-project-list-item.component.scss']
 })
-export class SubProjectListItemComponent implements OnInit {
+export class SubProjectListItemComponent implements OnInit, OnDestroy {
   @Input() Project: Project;  
   isActive: boolean;
 
+  private subs = new SubSink();
+
   constructor(private readonly store: Store<fromApp.State>) { }
 
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
+
   ngOnInit() {    
-    this.store.select(fromApp.getCurrentProject).subscribe(project => {
+    this.subs.sink = this.store.select(fromApp.getCurrentProject).subscribe(project => {
 
       if (project) {
         this.isActive = this.Project.id == project.id;
