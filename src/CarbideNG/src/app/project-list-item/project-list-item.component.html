@@ -2,6 +2,12 @@
     <div class="project-list-item-wrapper">
         <span>{{Project?.name}}</span>
         <span class="spacer"></span>
+        <button mat-icon-button color="primary">
+            <mat-icon>add_box_outline</mat-icon>
+        </button>
+        <button mat-icon-button color="primary">
+            <mat-icon>delete_outline</mat-icon>
+        </button>
         <mat-icon [@chevronRotate]="Expanded ? 'expanded': 'collapsed'">expand_more</mat-icon>
     </div>
 </mat-list-item>

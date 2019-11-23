@@ -3,7 +3,7 @@
     .project-list-item-wrapper {
       display: flex;
       width: 100%;
-      justify-content: center;
+      align-items: center;
 
       .spacer {
         flex-grow: 1;
@@ -11,6 +11,16 @@
 
       mat-icon {
         justify-self: flex-end;
+      }
+    }
+    
+    button {
+      display: none;
+    }
+
+    &:hover {
+      button {
+        display: initial;
       }
     }
   }

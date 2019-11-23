@@ -34,9 +34,9 @@ export class ProjectListItemComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subs.sink = this.store.pipe(select(fromApp.getCurrentProject)).subscribe(project => {
-      if (project.id == this.Project.id
+      if (project && (project.id == this.Project.id
         || this.Project.subProjects.length > 0
-        && this.Project.subProjects.findIndex(x => x.id == project.id) >= 0) {
+        && this.Project.subProjects.findIndex(x => x.id == project.id) >= 0)) {
         this.Expanded = true;
       }
       else {
