@@ -20,6 +20,8 @@ import { CreateProjectDialogComponent } from './create-project-dialog/create-pro
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalculationListComponent } from './calculation-list/calculation-list.component';
 import { CalculationListItemComponent } from './calculation-list-item/calculation-list-item.component';
+import { CalculationListHeaderComponent } from './calculation-list-header/calculation-list-header.component';
+import { CreateCalculationDialogComponent } from './create-calculation-dialog/create-calculation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { CalculationListItemComponent } from './calculation-list-item/calculatio
     ProjectListHeaderComponent,
     CreateProjectDialogComponent,
     CalculationListComponent,
-    CalculationListItemComponent
+    CalculationListItemComponent,
+    CalculationListHeaderComponent,
+    CreateCalculationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -45,10 +49,13 @@ import { CalculationListItemComponent } from './calculation-list-item/calculatio
       maxAge: 25,
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([AppEffects])
+    EffectsModule.forRoot([AppEffects]),
   ],
   providers: [],
-  entryComponents: [CreateProjectDialogComponent],
+  entryComponents: [
+    CreateProjectDialogComponent, 
+    CreateCalculationDialogComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

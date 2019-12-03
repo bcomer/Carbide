@@ -18,7 +18,7 @@ const initialState: State = {
     showProjectList: true,
     error: null,
     currentCalculationId: null,
-    calculations: [{name:"Calculation 1", id: "1"}]
+    calculations: []
 
 }
 
