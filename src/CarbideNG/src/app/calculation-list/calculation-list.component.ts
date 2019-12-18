@@ -51,11 +51,11 @@ export class CalculationListComponent implements OnInit {
 
   onAddCalculationClick(): void {      
     let parentId = this.project ? this.project.parentId ? this.project.parentId : this.project.id : null;
-    let project: Project;
+    let calculation: Calculation = new Calculation(null, parentId);
 
     const dialogRef = this.dialog.open(CreateCalculationDialogComponent, {
       width: '400px',
-      data: project
+      data: calculation
     });
 
     this.subs.sink = dialogRef.afterClosed().subscribe(result => {
