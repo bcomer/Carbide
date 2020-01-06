@@ -5,6 +5,8 @@ import * as fromApp from '../state'
 import * as AppActions from '../state/app.actions';
 import { Store, select } from '@ngrx/store';
 import { SubSink } from 'subsink';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateProjectDialogComponent } from '../create-project-dialog/create-project-dialog.component';
 
 @Component({
   selector: 'cbd-project-list-item',
@@ -23,10 +25,13 @@ import { SubSink } from 'subsink';
 export class ProjectListItemComponent implements OnInit, OnDestroy {
   @Input() Project: Project;
   public Expanded: boolean;
-
+  public project: Project;
   private subs = new SubSink();
 
-  constructor(private readonly store: Store<fromApp.State>) { }
+  constructor(
+    private readonly store: Store<fromApp.State>,
+    public dialog: MatDialog
+    ) { }
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();
@@ -43,11 +48,31 @@ export class ProjectListItemComponent implements OnInit, OnDestroy {
         this.Expanded = false;
       }
     });
+
+    this.subs.sink = this.store.pipe(select(fromApp.getCurrentProject)).subscribe(project => {
+      this.project = project;
+    });
   }
 
   onProjectClick(): void {
     this.Expanded = !this.Expanded;
 
     this.store.dispatch(AppActions.setCurrentProject({ id: this.Project.id }));
+  }
+
+  onAddProjectClick(): void {      
+    let parentId = this.project ? this.project.parentId ? this.project.parentId : this.project.id : null;
+    let project: Project = new Project(null, parentId, null, 'user-brandon', Date.now().toString());
+
+    const dialogRef = this.dialog.open(CreateProjectDialogComponent, {
+      width: '400px',
+      data: project
+    });
+
+    this.subs.sink = dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.store.dispatch(AppActions.createProject({ project: result }));
+      }
+    });
   }
 }
