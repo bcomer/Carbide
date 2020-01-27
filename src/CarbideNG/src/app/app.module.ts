@@ -13,10 +13,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { environment } from 'src/environments/environment.prod';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProjectListComponent } from './project-list/project-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent    
+    AppComponent,
+    ProjectListComponent    
   ],
   imports: [
     BrowserModule,

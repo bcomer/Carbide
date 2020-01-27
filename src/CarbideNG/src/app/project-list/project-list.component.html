@@ -1,0 +1,23 @@
+<div id="project-list-controls">
+    <button mat-icon-button>
+        <mat-icon>chevron_right</mat-icon>
+    </button>
+    <span>Projects</span>
+    <button mat-icon-button (click)="showProjectNameInput()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<div id="project-list-items">
+    <mat-form-field id="new-project-field" *ngIf="showInput" appearance="fill">
+        <mat-label>Project Name</mat-label>
+        <input matInput [(ngModel)]="newProjectName">
+        <div matSuffix id="button-wrapper">
+            <button mat-button mat-icon-button (click)="hideProjectNameInput()">
+                <mat-icon>close</mat-icon>
+            </button>
+            <button [disabled]="!newProjectName" mat-button mat-icon-button (click)="saveNewProject()">
+                <mat-icon>check</mat-icon>
+            </button>
+        </div>
+    </mat-form-field>
+</div>

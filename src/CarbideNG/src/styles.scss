@@ -40,9 +40,7 @@ body {
 }
 
 body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-size: 10px;
-
   @include custom-components-theme();
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;  
 }
