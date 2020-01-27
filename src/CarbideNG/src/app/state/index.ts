@@ -26,11 +26,6 @@ export const getCalculations = createSelector(
     state => state.calculations
 );
 
-export const getShowProjectList = createSelector(
-    getAppState,
-    state => state.showProjectList
-);
-
 export const getError = createSelector(
     getAppState,
     state => state.error

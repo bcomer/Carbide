@@ -3,12 +3,12 @@
 @include mat-core();
 
 @import "./themes/pallets/persian-red.pallet.scss";
-@import "./themes/pallets/vegas-gold.pallet.scss";
+@import "./themes/pallets/lapis-lazuli.pallet.scss";
 
-$CarbideNG-gold: mat-palette($cbd-vegasgold, 500, 200, 800);
+$CarbideNG-blue: mat-palette($cbd-lapislazuli, 500, 200, 800);
 $CarbideNG-warn: mat-palette($cbd-persianred, 500, 300, 900);
 
-$CarbideNG-theme: mat-light-theme($CarbideNG-gold, $CarbideNG-gold, $CarbideNG-warn);
+$CarbideNG-theme: mat-light-theme($CarbideNG-blue, $CarbideNG-blue, $CarbideNG-warn);
 
 $dark-gunmetal: #222428;
 
@@ -29,13 +29,9 @@ $CarbideNG-theme: map-merge(
 @include angular-material-theme($CarbideNG-theme);
 
 @import "./app/app.component.theme.scss";
-@import "./app/project-list-header/project-list-header.component.theme.scss";
-@import "./app/sub-project-list-item/sub-project-list-item.component.theme.scss";
 
 @mixin custom-components-theme() {
   @include app-component-theme($CarbideNG-theme);
-  @include project-list-header-component-theme($CarbideNG-theme);
-  @include sub-project-list-item-component-theme($CarbideNG-theme);
 }
 
 html,
@@ -49,10 +45,4 @@ body {
   font-size: 10px;
 
   @include custom-components-theme();
-}
-
-cbd-sub-project-list-item {
-  .mat-list-item-content {
-    padding: 0 !important;
-  }
 }

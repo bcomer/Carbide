@@ -2,10 +2,6 @@ import { createAction, props } from '@ngrx/store';
 import { Project } from '../models/project';
 import { Calculation } from '../models/calculation';
 
-export const toggleProjectList = createAction(
-    '[Application] Toggle Project List'
-);
-
 export const setCurrentProject = createAction(
     '[Project] Set Current Project',
     props<{id: string}>()

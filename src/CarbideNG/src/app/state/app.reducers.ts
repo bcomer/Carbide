@@ -6,7 +6,6 @@ import { Calculation } from '../models/calculation';
 export interface State {
     currentProjectId: string | null,
     projects: Array<Project>,
-    showProjectList: boolean,
     error: string | null
     currentCalculationId: string | null,
     calculations: Array<Calculation>
@@ -15,16 +14,13 @@ export interface State {
 const initialState: State = {
     currentProjectId: null,
     projects: [],
-    showProjectList: true,
     error: null,
     currentCalculationId: null,
     calculations: []
-
 }
 
 const appReducer = createReducer(
     initialState,
-    on(AppActions.toggleProjectList, setToggleProjectListState),
     on(AppActions.clearCurrentProject, setClearCurrentProjectState),
     on(AppActions.setCurrentProject, setCurrentProjectState),    
     on(AppActions.loadProjectsSuccess, setProjectLoadedSuccessState),
@@ -115,13 +111,6 @@ function setCreateProjectFailState(state: State, action): State {
     return {
         ...state,
         error: action.error
-    }
-}
-
-function setToggleProjectListState(state: State): State {
-    return {
-        ...state,
-        showProjectList: !state.showProjectList
     }
 }
 

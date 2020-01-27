@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import * as fromApp from './state/index';
-import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'cbd-root',
@@ -9,11 +6,9 @@ import { Store, select } from '@ngrx/store';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public isExpanded$: Observable<boolean>;
 
-  constructor(private readonly store: Store<fromApp.State>) {}
+  constructor() {}
 
   ngOnInit() {
-    this.isExpanded$ = this.store.pipe(select(fromApp.getShowProjectList));
   }
 }
