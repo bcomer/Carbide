@@ -11,9 +11,11 @@ import { AppEffects } from './state/app.effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment.local';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProjectListComponent } from './project-list/project-list.component';
+
+import { AngularFireModule } from '@angular/fire';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { ProjectListComponent } from './project-list/project-list.component';
     ProjectListComponent    
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
