@@ -7,7 +7,9 @@ export class Calculation {
         public name?: string,
         public type?: string,
         public fields?: CalculationField[],
-        public result?: number
+        public result?: number,
+        public createdBy?: string,
+        public createdOn?: string
     ) { }
 }
 
