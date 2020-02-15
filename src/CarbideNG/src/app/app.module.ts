@@ -17,15 +17,19 @@ import { ProjectListComponent } from './project-list/project-list.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { ShellComponent } from './shell/shell.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectListComponent    
+    ProjectListComponent,
+    ShellComponent    
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthGuardModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

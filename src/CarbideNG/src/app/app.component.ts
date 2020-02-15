@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 
   projects: Observable<any[]>;
   constructor(private firestore: AngularFirestore) {
-    this.projects = firestore.collection('projects').valueChanges();
+    // this.projects = firestore.collection('projects').valueChanges();
   }
 
   ngOnInit() {
