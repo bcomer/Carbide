@@ -15,8 +15,8 @@ const initialState: UserState = {
 
 const userReducer = createReducer(
     initialState,
-    on(signInSuccess, (state, action) => ({ ...state, user: action.user, error: null })),
-    on(signInFail, (state, action) => ({ ...state, user: null, error: action.error }))
+    on(signInSuccess, (state, action) => ({ ...state, user: action.user, signedIn: true, error: null })),
+    on(signInFail, (state, action) => ({ ...state, user: null, signedIn: false, error: action.error }))
 );
 
 export function reducer(state: UserState | undefined, action: Action): UserState {
