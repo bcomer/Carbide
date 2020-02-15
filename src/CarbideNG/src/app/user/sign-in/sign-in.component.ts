@@ -5,6 +5,8 @@ import { Store, select } from '@ngrx/store';
 import { signIn } from '../state/user.actions';
 import { Router } from '@angular/router';
 import { getIsUserSignedIn } from '../state';
+import { FormControl, Validators } from '@angular/forms';
+import { SubmittedFormControlErrorStateMatcher } from 'src/app/error-state-matchers/submitted-form-control-error-state-matcher';
 
 @Component({
   selector: 'cbd-sign-in',
@@ -12,6 +14,11 @@ import { getIsUserSignedIn } from '../state';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
+
+  emailControl = new FormControl("", [Validators.required, Validators.email]);
+  passwordControl = new FormControl("", [Validators.required]);
+  public passwordErrorStateMatcher = new SubmittedFormControlErrorStateMatcher();
+  public submittedErrorStateMatcher = new SubmittedFormControlErrorStateMatcher();
 
   constructor(private readonly userStore: Store<UserState>, private readonly router: Router) { }
 

@@ -1,0 +1,19 @@
+:host {
+    height: 100%;    
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
+  form {
+    margin-top: 16px;
+    width: 400px;
+
+    mat-form-field {
+      width: 100%;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+}
