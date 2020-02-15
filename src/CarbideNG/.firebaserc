@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "carbide-e7c9f": {
+      "hosting": {
+        "CarbideNG": [
+          "carbide-e7c9f"
+        ]
+      }
+    }
+  }
+}
