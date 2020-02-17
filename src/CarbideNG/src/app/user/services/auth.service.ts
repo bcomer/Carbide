@@ -6,8 +6,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable()
 export class AuthService {
-    public User$: Observable<firebase.auth.UserCredential>;
-
     private readonly key: string = 'users';
 
     constructor(
@@ -16,10 +14,7 @@ export class AuthService {
     ) { }
 
     public signIn(userCredentials: UserCredentials): Observable<firebase.auth.UserCredential> {
-
-        this.User$ = from(this.afAuthSvc.signInWithEmailAndPassword(userCredentials.userName, userCredentials.password));
-
-        return this.User$;
+        return from(this.afAuthSvc.signInWithEmailAndPassword(userCredentials.userName, userCredentials.password));
     }
 
     public getLoggedInUser(): Observable<firebase.User> {

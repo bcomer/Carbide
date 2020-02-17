@@ -8,14 +8,10 @@ export interface State extends fromRoot.State {
 
 const getUserFeatureState = createFeatureSelector<fromUser.UserState>('users');
 
-export const getUser = createSelector(
-    getUserFeatureState,
-    state => state.firebasUser
-);
 
 export const getAppUser = createSelector(
     getUserFeatureState,
-    state => state.appUser
+    state => state.user
 );
 
 export const getIsUserSignedIn = createSelector(

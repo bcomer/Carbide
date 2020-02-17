@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserState } from '../user/state/user.reducer';
 import { Store } from '@ngrx/store';
-import { loadUser } from '../user/state/user.actions';
+import { getSignedInUser } from '../user/state/user.actions';
 
 @Component({
   selector: 'cbd-shell',
@@ -13,7 +13,8 @@ export class ShellComponent implements OnInit {
   constructor(private readonly userStore: Store<UserState>) { }
 
   ngOnInit() {
-    this.userStore.dispatch(loadUser());
+    // initilize app state
+    this.userStore.dispatch(getSignedInUser());
   }
 
 }

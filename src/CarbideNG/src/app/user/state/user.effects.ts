@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { mergeMap, map, catchError, tap, switchMap } from 'rxjs/operators';
 import { Action } from '@ngrx/store';
 import { AuthService } from '../services/auth.service';
-import { signIn, signInSuccess, signInFail, loadUser, loadUserFail, loadUserSuccess } from './user.actions';
+import { signIn, signInSuccess, signInFail, getSignedInUser } from './user.actions';
 
 
 @Injectable()
@@ -16,19 +16,20 @@ export class UserEffects {
         ofType(signIn),
         mergeMap(action =>
             this.authSvc.signIn(action.user).pipe(
-                map(user => (signInSuccess({ user: user }))),
+                switchMap(user => this.authSvc.getAppUser(user.user.uid)),
+                map(appUser => (signInSuccess({ user: appUser }))),
                 catchError(err => of(signInFail({ error: err.message })))
             )
         )
     ));
 
     loadUser$: Observable<Action> = createEffect(() => this.actions$.pipe(
-        ofType(loadUser),
-        mergeMap(action =>
+        ofType(getSignedInUser),
+        mergeMap(_ =>
             this.authSvc.getLoggedInUser().pipe(
                 switchMap(user => this.authSvc.getAppUser(user.uid)),
-                map(appUser => (loadUserSuccess({ user: appUser }))),
-                catchError(err => of(loadUserFail({ error: err.message })))
+                map(appUser => (signInSuccess({ user: appUser }))),
+                catchError(err => of(signInFail({ error: err.message })))
             )
         )
     ));

@@ -8,7 +8,7 @@ export const signIn = createAction(
 
 export const signInSuccess = createAction(
     '[User] Sign In Success',
-    props<{user: firebase.auth.UserCredential}>()
+    props<{user: UserCredentials}>()
 );
 
 export const signInFail = createAction(
@@ -16,16 +16,6 @@ export const signInFail = createAction(
     props<{error: string}>()
 );
 
-export const loadUser = createAction(
-    '[User] Load User'
-);
-
-export const loadUserSuccess = createAction(
-    '[User] Load User  Success',
-    props<{user: UserCredentials}>()
-);
-
-export const loadUserFail = createAction(
-    '[User] Load User Fail',
-    props<{error: string}>()
+export const getSignedInUser = createAction(
+    '[User] Get Signed In User'
 );
