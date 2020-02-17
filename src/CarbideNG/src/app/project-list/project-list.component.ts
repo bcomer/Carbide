@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Project } from '../models/project';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -16,7 +16,7 @@ export class ProjectListComponent implements OnInit {
   newProjectName: string;
   showInput: boolean = false;
 
-  constructor(private readonly store: Store<State>) { }
+  constructor(private readonly store: Store<State>, private readonly cdRef: ChangeDetectorRef) { }
 
   hideProjectNameInput(): void {
     this.showInput = false;
@@ -31,11 +31,12 @@ export class ProjectListComponent implements OnInit {
 
       this.store.dispatch(createProject({ project: newProject}));
 
-      this.showInput = false;
+      this.showInput = false;      
     }    
   }
 
   showProjectNameInput(): void {
     this.showInput = true;
+    this.cdRef.detectChanges();
   }
 }
