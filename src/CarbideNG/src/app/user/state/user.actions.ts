@@ -15,3 +15,17 @@ export const signInFail = createAction(
     '[User] Sign In Fail',
     props<{error: string}>()
 );
+
+export const loadUser = createAction(
+    '[User] Load User'
+);
+
+export const loadUserSuccess = createAction(
+    '[User] Load User  Success',
+    props<{user: UserCredentials}>()
+);
+
+export const loadUserFail = createAction(
+    '[User] Load User Fail',
+    props<{error: string}>()
+);

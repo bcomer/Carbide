@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserState } from '../user/state/user.reducer';
+import { Store } from '@ngrx/store';
+import { loadUser } from '../user/state/user.actions';
 
 @Component({
   selector: 'cbd-shell',
@@ -7,9 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShellComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly userStore: Store<UserState>) { }
 
   ngOnInit() {
+    this.userStore.dispatch(loadUser());
   }
 
 }

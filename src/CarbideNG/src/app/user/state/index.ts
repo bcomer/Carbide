@@ -10,7 +10,12 @@ const getUserFeatureState = createFeatureSelector<fromUser.UserState>('users');
 
 export const getUser = createSelector(
     getUserFeatureState,
-    state => state.user
+    state => state.firebasUser
+);
+
+export const getAppUser = createSelector(
+    getUserFeatureState,
+    state => state.appUser
 );
 
 export const getIsUserSignedIn = createSelector(

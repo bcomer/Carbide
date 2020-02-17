@@ -20,6 +20,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ShellComponent } from './shell/shell.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    UserModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
