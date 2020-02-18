@@ -35,6 +35,8 @@ export class ProjectService {
 
   create(entity: Project, companyId: string, userId: string): Observable<Project> {
     delete entity.id;
+    delete entity.calculations;
+    delete entity.subProjects;
 
     entity.companyId = companyId;
     entity.createdOn = Date.now().toString();

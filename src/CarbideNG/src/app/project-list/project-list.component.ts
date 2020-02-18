@@ -16,7 +16,10 @@ export class ProjectListComponent implements OnInit {
   newProjectName: string;
   showInput: boolean = false;
 
-  constructor(private readonly store: Store<State>, private readonly cdRef: ChangeDetectorRef) { }
+  constructor(
+    private readonly store: Store<State>,
+    private readonly cdRef: ChangeDetectorRef
+  ) { }
 
   hideProjectNameInput(): void {
     this.showInput = false;
@@ -26,13 +29,11 @@ export class ProjectListComponent implements OnInit {
   }
 
   saveNewProject(): void {
-    if (this.newProjectName) {
-      let newProject: Project = new Project("123", null, this.newProjectName, "Brandon Comer", new Date().getTime().toString());
+    let newProject: Project = new Project(null, null, 'Test Project');
 
-      this.store.dispatch(createProject({ project: newProject}));
+    this.store.dispatch(createProject({ project: newProject }));
 
-      this.showInput = false;      
-    }    
+    this.showInput = false;
   }
 
   showProjectNameInput(): void {
