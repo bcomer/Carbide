@@ -7,6 +7,7 @@ export class Project {
         public name?: string,
         public createdBy?: string,
         public createdOn?: string,
+        public companyId?: string,
         public calculations?: Array<Calculation>,
         public subProjects?: Array<Project>        
     ) {}

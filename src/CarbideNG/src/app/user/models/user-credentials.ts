@@ -1,6 +1,7 @@
 export class UserCredentials {
     constructor(
-        public userName?: string,
+        public id?: string,
+        public email?: string,
         public password?: string,
         public firstName?: string,
         public lastName?: string,

@@ -1,29 +1,53 @@
 import { Injectable } from '@angular/core';
-import { of, Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { Project } from '../models/project';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
 
-  constructor() { }
+  private readonly key: string = 'projects';
 
-  getAll(): Observable<Array<Project>> {
-    return of(new Array<Project>());
+  constructor(
+    private readonly fireStore: AngularFirestore
+  ) { }
+
+  getAll(companyId: string): Observable<Array<Project>> {
+    return this.fireStore
+      .collection<Project>(this.key, ref => ref.where('companyId', '==', companyId))
+      .snapshotChanges()
+      .pipe(
+        map(actions => {
+          return actions.map(action => {
+            const id = action.payload.doc.id;
+            let project = action.payload.doc.data() as Project;
+
+            project.id = id;
+
+            return project;
+          });
+        })
+      );
   }
 
-  create(entity: Project): Observable<Project> {
-    entity.id =  `12345-${entity.name}`;
+  create(entity: Project, companyId: string, userId: string): Observable<Project> {
+    delete entity.id;
 
-    return of(entity);
+    entity.companyId = companyId;
+    entity.createdOn = Date.now().toString();
+    entity.createdBy = userId;
+
+    return from(this.fireStore.collection<Project>(this.key).add({...entity}));
   }
 
-  update(entity: Project): Observable<Project> {
-    return of(entity);
+  update(entity: Project): Observable<void> {
+    return from(this.fireStore.doc<Project>(`${this.key}/${entity.id}`).update({...entity}));
   }
 
-  delete(id: string): Observable<Project> {
-    return of();
+  delete(id: string): Observable<void> {
+    return from(this.fireStore.doc<Project>(`${this.key}/${id}`).delete());
   }
 }
