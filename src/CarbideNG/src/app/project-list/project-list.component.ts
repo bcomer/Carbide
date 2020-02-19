@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { State } from '../state/app.reducers';
 import { createProject } from '../state/app.actions';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateProjectDialogComponent } from '../create-project-dialog/create-project-dialog.component';
 
 @Component({
   selector: 'cbd-project-list',
@@ -17,6 +19,7 @@ export class ProjectListComponent implements OnInit {
   showInput: boolean = false;
 
   constructor(
+    public dialog: MatDialog,
     private readonly store: Store<State>,
     private readonly cdRef: ChangeDetectorRef
   ) { }
@@ -37,7 +40,12 @@ export class ProjectListComponent implements OnInit {
   }
 
   showProjectNameInput(): void {
-    this.showInput = true;
-    this.cdRef.detectChanges();
+    const dialogRef = this.dialog.open(CreateProjectDialogComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 }

@@ -21,12 +21,14 @@ import { ShellComponent } from './shell/shell.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { UserModule } from './user/user.module';
+import { CreateProjectDialogComponent } from './create-project-dialog/create-project-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectListComponent,
-    ShellComponent    
+    ShellComponent,
+    CreateProjectDialogComponent    
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -49,6 +51,7 @@ import { UserModule } from './user/user.module';
     EffectsModule.forRoot([AppEffects]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CreateProjectDialogComponent]
 })
 export class AppModule { }
