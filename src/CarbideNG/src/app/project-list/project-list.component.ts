@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
 import { Project } from '../models/project';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -12,7 +12,7 @@ import { createProject } from '../state/app.actions';
 })
 export class ProjectListComponent implements OnInit {
 
-  projects: Observable<Project[]>;
+  @Input() projects: Observable<Project[]>;
   newProjectName: string;
   showInput: boolean = false;
 
