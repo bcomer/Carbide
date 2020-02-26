@@ -7,19 +7,6 @@
         <mat-icon>add</mat-icon>
     </button>
 </div>
-<div id="project-list-items">
-    <!-- <mat-form-field id="new-project-field" *ngIf="showInput" appearance="fill">
-        <mat-label>Project Name</mat-label>
-        <input matInput [(ngModel)]="newProjectName">
-        <div matSuffix id="button-wrapper">
-            <button mat-button mat-icon-button (click)="hideProjectNameInput()">
-                <mat-icon>close</mat-icon>
-            </button>
-            <button mat-button mat-icon-button (click)="saveNewProject()">
-                <mat-icon>check</mat-icon>
-            </button>
-        </div>
-    </mat-form-field> -->
-
+<div id="project-list-items">  
     <span *ngFor="let project of projects">{{project.name}}</span>
 </div>

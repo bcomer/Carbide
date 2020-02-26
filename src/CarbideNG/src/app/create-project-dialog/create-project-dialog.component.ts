@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
+import { ProjectService } from '../services/project.service';
+import { State } from '../state/app.reducers';
+import { Store } from '@ngrx/store';
+import { createProject } from '../state/app.actions';
+import { Project } from '../models/project';
 
 @Component({
   selector: 'cbd-create-project-dialog',
@@ -8,17 +13,24 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./create-project-dialog.component.scss']
 })
 export class CreateProjectDialogComponent {
-  name: string;
   nameControl = new FormControl('');
 
-  constructor(public dialogRef: MatDialogRef<CreateProjectDialogComponent>) { }
+  constructor(
+    public dialogRef: MatDialogRef<CreateProjectDialogComponent>,
+    private readonly store: Store<State>
+  ) { }
 
   onCancelClick(): void {
     this.dialogRef.close();
   }
 
   onSaveClick(): void {
-    this.name = this.nameControl.value;
+    if (!this.nameControl.value) return;
+
+    let project: Project = new Project(null, null, this.nameControl.value);
+
+    this.store.dispatch(createProject({project: project}));
+
     this.dialogRef.close();
   }
 }

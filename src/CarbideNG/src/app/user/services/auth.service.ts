@@ -17,7 +17,7 @@ export class AuthService {
     ) { }
 
     public signIn(userCredentials: UserCredentials): Observable<firebase.auth.UserCredential> {
-        return from(this.afAuthSvc.signInWithEmailAndPassword(userCredentials.email, userCredentials.password));
+        return from(this.afAuthSvc.auth.signInWithEmailAndPassword(userCredentials.email, userCredentials.password));
     }
 
     public getLoggedInUser(): Observable<firebase.User> {

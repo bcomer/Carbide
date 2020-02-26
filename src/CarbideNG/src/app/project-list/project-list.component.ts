@@ -40,12 +40,8 @@ export class ProjectListComponent implements OnInit {
   }
 
   showProjectNameInput(): void {
-    const dialogRef = this.dialog.open(CreateProjectDialogComponent, {
+    this.dialog.open(CreateProjectDialogComponent, {
       width: '400px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    });
+    });    
   }
 }
