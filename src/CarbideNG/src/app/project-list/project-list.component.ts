@@ -15,8 +15,7 @@ import { CreateProjectDialogComponent } from '../create-project-dialog/create-pr
 export class ProjectListComponent implements OnInit {
 
   @Input() projects: Observable<Project[]>;
-  newProjectName: string;
-  showInput: boolean = false;
+  showList: boolean = false;
 
   constructor(
     public dialog: MatDialog,
@@ -24,24 +23,16 @@ export class ProjectListComponent implements OnInit {
     private readonly cdRef: ChangeDetectorRef
   ) { }
 
-  hideProjectNameInput(): void {
-    this.showInput = false;
-  }
-
   ngOnInit() {
-  }
+  }  
 
-  saveNewProject(): void {
-    let newProject: Project = new Project(null, null, 'Test Project');
-
-    this.store.dispatch(createProject({ project: newProject }));
-
-    this.showInput = false;
-  }
-
-  showProjectNameInput(): void {
+  openNewProjectDialog(): void {
     this.dialog.open(CreateProjectDialogComponent, {
       width: '400px'
     });    
+  }
+
+  toggleProjectList(): void {
+    this.showList = !this.showList;
   }
 }

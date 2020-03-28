@@ -8,19 +8,17 @@
     grid-template-rows: 40px;
     align-items: center;
     font-size: 1.6rem;
+
+    mat-icon {
+      transition: transform 0.3s;
+    }
   }
 
   #project-list-items {
-    display: grid;
+    display: grid;    
+  }
 
-    #new-project-field {
-      width: 100%;
-
-      #button-wrapper {
-        display: grid;
-        grid-template-columns: 40px 40px;
-        grid-template-rows: 40px;
-      }
-    }
+  .rotate-90 {
+    transform: rotate(90deg);
   }
 }
