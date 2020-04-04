@@ -37,10 +37,11 @@ $CarbideNG-theme: map-merge(
 html,
 body {
   height: 100%;
+  font-size: 10px;
 }
 
 body {
   @include custom-components-theme();
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;  
+  font-family: Roboto, "Helvetica Neue", sans-serif;    
 }

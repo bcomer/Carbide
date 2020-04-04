@@ -22,13 +22,15 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { UserModule } from './user/user.module';
 import { CreateProjectDialogComponent } from './create-project-dialog/create-project-dialog.component';
+import { ProjectComponent } from './project/project.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectListComponent,
     ShellComponent,
-    CreateProjectDialogComponent    
+    CreateProjectDialogComponent,
+    ProjectComponent    
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

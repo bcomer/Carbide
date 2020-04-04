@@ -17,7 +17,25 @@ export class ProjectService {
 
   getAll(companyId: string): Observable<Array<Project>> {
     return this.fireStore
-      .collection<Project>(this.key, ref => ref.where('companyId', '==', companyId))
+      .collection<Project>(this.key, ref => ref.where('companyId', '==', companyId).where('parentId', '==', null))
+      .snapshotChanges()
+      .pipe(
+        map(actions => {
+          return actions.map(action => {
+            const id = action.payload.doc.id;
+            let project = action.payload.doc.data() as Project;
+
+            project.id = id;
+
+            return project;
+          });
+        })
+      );
+  }
+
+  getSubProjects(project: Project): Observable<Array<Project>> {
+    return this.fireStore
+      .collection<Project>(this.key, ref => ref.where('companyId', '==', project.companyId).where('parentId', '==', project.id))
       .snapshotChanges()
       .pipe(
         map(actions => {

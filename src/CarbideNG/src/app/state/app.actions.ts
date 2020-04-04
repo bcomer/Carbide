@@ -15,7 +15,6 @@ export const loadProjects = createAction(
     '[Project] Load Projects'
 );
 
-
 export const loadProjectsSuccess = createAction(
     '[Project] Load Projects Success',
     props<{projects: Array<Project>}>()
@@ -23,6 +22,21 @@ export const loadProjectsSuccess = createAction(
 
 export const loadProjectsFail = createAction(
     '[Project] Load Projects Fail',
+    props<{error: string}>()
+);
+
+export const loadSubProjects = createAction(
+    '[Projects] Load Sub Projects',
+    props<{project: Project}>()
+);
+
+export const loadSubProjectsSuccess = createAction(
+    '[Project] Load Sub Projects Success',
+    props<{projects: Array<Project>}>()
+);
+
+export const loadSubProjectsFail = createAction(
+    '[Project] Load Sub Projects Fail',
     props<{error: string}>()
 );
 

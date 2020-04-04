@@ -1,0 +1,25 @@
+:host {
+    width: 320px;  
+  
+    #project-list-controls {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 40px auto 40px;
+      grid-template-rows: 40px;
+      align-items: center;
+      font-size: 1.6rem;
+  
+      mat-icon {
+        transition: transform 0.3s;
+      }
+    }
+  
+    #project-list-items {
+      display: grid;    
+    }
+  
+    .rotate-90 {
+      transform: rotate(90deg);
+    }
+  }
+  

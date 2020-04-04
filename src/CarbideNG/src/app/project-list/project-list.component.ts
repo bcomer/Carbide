@@ -3,7 +3,6 @@ import { Project } from '../models/project';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { State } from '../state/app.reducers';
-import { createProject } from '../state/app.actions';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateProjectDialogComponent } from '../create-project-dialog/create-project-dialog.component';
 
@@ -14,7 +13,7 @@ import { CreateProjectDialogComponent } from '../create-project-dialog/create-pr
 })
 export class ProjectListComponent implements OnInit {
 
-  @Input() projects: Observable<Project[]>;
+  @Input() projects: Project[];
   showList: boolean = false;
 
   constructor(
@@ -23,8 +22,7 @@ export class ProjectListComponent implements OnInit {
     private readonly cdRef: ChangeDetectorRef
   ) { }
 
-  ngOnInit() {
-  }  
+  ngOnInit() {}  
 
   openNewProjectDialog(): void {
     this.dialog.open(CreateProjectDialogComponent, {
@@ -34,5 +32,7 @@ export class ProjectListComponent implements OnInit {
 
   toggleProjectList(): void {
     this.showList = !this.showList;
+
+    console.log(this.projects);
   }
 }

@@ -2,11 +2,11 @@
     <button mat-icon-button (click)="toggleProjectList()">
         <mat-icon [ngClass]="{'rotate-90': showList}">chevron_right</mat-icon>
     </button>
-    <span>Projects</span>
-    <button mat-icon-button (click)="openNewProjectDialog()">
-        <mat-icon>add</mat-icon>
-    </button>
+    <span>{{project?.name}}</span>
+    <button mat-icon-button (click)="openContextMenu()">
+        <mat-icon>more_vert</mat-icon>
+    </button>    
 </div>
 <div *ngIf="showList" id="project-list-items">  
-    <cbd-project [project]="project" *ngFor="let project of projects"></cbd-project>
+    <span *ngFor="let sub of project.subProjects">{{sub?.name}}</span>
 </div>
