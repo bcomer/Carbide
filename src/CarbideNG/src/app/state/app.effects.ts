@@ -18,9 +18,9 @@ export class AppEffects {
         private readonly store$: Store<State>
     ) { }
 
-    updateProject$ = createEffect(() => this.actions$.pipe(
-        //i'm stuck - i was wanting to update a project when a calculation is created
-        ));
+    // updateProject$ = createEffect(() => this.actions$.pipe(
+    //     //i'm stuck - i was wanting to update a project when a calculation is created
+    //     ));
     
     loadProjects$ = createEffect(() => this.actions$.pipe(
         ofType(AppActions.loadProjects),
