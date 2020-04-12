@@ -26,6 +26,7 @@ import { ProjectComponent } from './project/project.component';
 import { CalculationComponent } from './calculation/calculation.component';
 import { CalculationListComponent } from './calculation-list/calculation-list.component';
 import { CreateCalculationDialogComponent } from './create-calculation-dialog/create-calculation-dialog.component';
+import { CalculationDetailsComponent } from './calculation-details/calculation-details.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CreateCalculationDialogComponent } from './create-calculation-dialog/cr
     ProjectComponent,
     CalculationComponent,
     CalculationListComponent,
-    CreateCalculationDialogComponent    
+    CreateCalculationDialogComponent,
+    CalculationDetailsComponent    
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
