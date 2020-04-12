@@ -19,8 +19,7 @@ export class CalculationListComponent implements OnInit {
   private subs: SubSink;
   calculations: Calculation[];
   currentProject: Project;
- 
-  
+  currentProjectId: string;
 
   constructor(
     public dialog: MatDialog,
@@ -34,6 +33,7 @@ export class CalculationListComponent implements OnInit {
       if(project) {
         this.currentProject = project;
         this.calculations = project.calculations;
+        this.currentProjectId = project.id;
       }
     })
   }
@@ -45,8 +45,9 @@ export class CalculationListComponent implements OnInit {
 
   openNewCalculationDialog(): void {
     this.dialog.open(CreateCalculationDialogComponent, {
-      width: '400px'
-    });    
+      width: '400px',
+      data: { currentProject: this.currentProject }
+    });  
   }
  
  

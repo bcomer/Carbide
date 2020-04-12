@@ -60,6 +60,6 @@ import { CreateCalculationDialogComponent } from './create-calculation-dialog/cr
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [CreateProjectDialogComponent]
+  entryComponents: [CreateProjectDialogComponent, CreateCalculationDialogComponent]
 })
 export class AppModule { }

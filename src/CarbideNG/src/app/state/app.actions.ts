@@ -55,6 +55,21 @@ export const createProjectFail = createAction(
     props<{error: string}>()
 );
 
+export const updateProject = createAction(
+    '[Project] Update Project',
+    props<{project: Project}>()
+);
+
+export const updateProjectSuccess = createAction(
+    '[Project] Update Project',
+    props<{project: Project}>()
+);
+
+export const updateProjectFail = createAction(
+    '[Project] Update Project',
+    props<{error: string}>()
+);
+
 //calculation actions
 
 export const setCurrentCalculation = createAction(

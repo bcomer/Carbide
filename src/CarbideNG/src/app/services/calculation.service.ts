@@ -16,7 +16,8 @@ export class CalculationService {
 
   create(entity: Calculation): Observable<Calculation> {
     entity.id =  `calculation-${entity.name}`;
-
+    entity.createdOn = Date.now().toString();
+    entity.createdBy = "JEREMY";
     return of(entity);
   }
 

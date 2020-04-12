@@ -1,1 +1,11 @@
-<p>create-calculation-dialog works!</p>
+<h1 mat-dialog-title>Create New Calculation</h1>
+<div mat-dialog-content>
+    <mat-form-field appearance="fill">
+        <mat-label>Calculation Name</mat-label>
+        <input matInput type="text" [formControl]="nameControl">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onCancelClick()">Cancel</button>
+    <button mat-button (click)="onSaveClick()" cdkFocusInitial>Save</button>
+</div>
