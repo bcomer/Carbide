@@ -32,7 +32,7 @@ export class SignInComponent implements OnInit {
   }
 
   signIn(): void {
-    let userCredentials: UserCredentials = new UserCredentials(null, 'blcomer79@gmail.com', 'M@rlo1978');
+    let userCredentials: UserCredentials = new UserCredentials(null, 'blcomer79@gmail.com', 'Br@ndon1979');
 
     this.userStore.dispatch(signIn({ user: userCredentials }));
   }
