@@ -23,6 +23,9 @@ import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { UserModule } from './user/user.module';
 import { CreateProjectDialogComponent } from './create-project-dialog/create-project-dialog.component';
 import { ProjectComponent } from './project/project.component';
+import { CalculationComponent } from './calculation/calculation.component';
+import { CalculationListComponent } from './calculation-list/calculation-list.component';
+import { CreateCalculationDialogComponent } from './create-calculation-dialog/create-calculation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { ProjectComponent } from './project/project.component';
     ProjectListComponent,
     ShellComponent,
     CreateProjectDialogComponent,
-    ProjectComponent    
+    ProjectComponent,
+    CalculationComponent,
+    CalculationListComponent,
+    CreateCalculationDialogComponent    
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

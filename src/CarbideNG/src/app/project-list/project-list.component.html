@@ -8,5 +8,7 @@
     </button>
 </div>
 <div *ngIf="showList" id="project-list-items">  
-    <cbd-project [project]="project" *ngFor="let project of projects"></cbd-project>
+    <cbd-project [project]="project" 
+    *ngFor="let project of projects" 
+    (click)="setSelectedProject(project.id)" ></cbd-project>
 </div>

@@ -1,0 +1,12 @@
+<div>
+    <span>Calculations</span>
+    <button mat-icon-button (click)="openNewCalculationDialog()">
+            <mat-icon>add</mat-icon>
+        </button>
+</div>
+<div *ngIf="showList" id="calculation-list-items">  
+    <cbd-calculation [calculation]="calculations" 
+    *ngFor="let calculation of calculations" 
+    (click)="setCurrentCalculation(calculation.id)" ></cbd-calculation>
+</div>
+
