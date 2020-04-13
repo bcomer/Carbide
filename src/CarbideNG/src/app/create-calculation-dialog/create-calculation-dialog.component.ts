@@ -30,10 +30,6 @@ export class CreateCalculationDialogComponent {
     let currentProject = this.data.currentProject;
     let newCalculation = new Calculation(null, currentProject.id, this.nameControl.value,  null, null, null, null, null);
     currentProject.calculations = newCalculation;
-   
-    
-   
-    debugger
 
     this.store.dispatch(updateProject({project: currentProject}));
 
