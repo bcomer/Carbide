@@ -41,11 +41,11 @@ export class ProjectService {
         map(actions => {
           return actions.map(action => {
             const id = action.payload.doc.id;
-            let project = action.payload.doc.data() as Project;
+            let subProject = action.payload.doc.data() as Project;
 
-            project.id = id;
+            subProject.id = id;
 
-            return project;
+            return subProject;
           });
         })
       );

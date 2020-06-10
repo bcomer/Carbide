@@ -21,7 +21,7 @@ export class AppEffects {
     // updateProject$ = createEffect(() => this.actions$.pipe(
     //     //i'm stuck - i was wanting to update a project when a calculation is created
     //     ));
-    
+
     loadProjects$ = createEffect(() => this.actions$.pipe(
         ofType(AppActions.loadProjects),
         withLatestFrom(this.store$),
@@ -33,17 +33,25 @@ export class AppEffects {
         )
     ));
 
+    loadSubProject$ = createEffect(() => this.actions$.pipe(
+        ofType(AppActions.loadSubProjects),
+        mergeMap(action => {
+            return this.projectSvc.getSubProjects(action.project).pipe(
+                map(subProject => AppActions.loadSubProjectsSuccess({ projects: subProject })),
+                catchError(error => of(AppActions.loadSubProjectsFail({ error: error.message })))
+            )
+        })
+    ));
+
     createProject$ = createEffect(() => this.actions$.pipe(
         ofType(AppActions.createProject),
         withLatestFrom(this.store$),
         mergeMap(actionAndStore => {
-            debugger
             return this.projectSvc.create(actionAndStore[0].project, actionAndStore[1]['users'].user.companyId, actionAndStore[1]['users'].user.id).pipe(
                 map(project => AppActions.createProjectSuccess({ project: project })),
                 catchError(error => of(AppActions.createProjectFail({ error: error.message })))
             )
-        }
-        )
+        })
     ));
 
     loadCalculations$ = createEffect(() => this.actions$.pipe(

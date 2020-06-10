@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
 import { Project } from '../models/project';
-import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { State } from '../state/app.reducers';
 import { MatDialog } from '@angular/material/dialog';

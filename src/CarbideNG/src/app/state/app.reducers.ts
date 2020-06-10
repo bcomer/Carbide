@@ -25,6 +25,8 @@ const appReducer = createReducer(
     on(AppActions.setCurrentProject, setCurrentProjectState),    
     on(AppActions.loadProjectsSuccess, setProjectLoadedSuccessState),
     on(AppActions.loadProjectsFail, setProjectLoadedFailState),
+    on(AppActions.loadSubProjectsSuccess, setSubProjectsLoadedSuccessState),
+    on(AppActions.loadSubProjectsFail, setSubProjectsLoadedFailState),
     on(AppActions.createProjectSuccess, setCreateProjectSuccessState),
     on(AppActions.createProjectFail, setCreateProjectFailState),
     on(AppActions.setCurrentCalculation, setCurrentCalculationState),
@@ -81,6 +83,25 @@ function setProjectLoadedFailState(state: State, action): State {
         error: action.error
     };
 };
+
+function setSubProjectsLoadedSuccessState(state: State, action): State {
+    let projects = state.projects;
+    let currentProject = state.projects.find(x => x.id == state.currentProjectId);
+    currentProject.subProjects = action.projects;
+
+    return {
+        ...state,
+        projects: [...projects],
+        error: null
+    }
+}
+
+function setSubProjectsLoadedFailState(state: State, action): State {
+    return {
+        ...state,
+        error: action.error
+    }
+}
 
 function setCreateProjectSuccessState(state: State, action): State {
     let projects = [...state.projects];
