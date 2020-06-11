@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { State } from '../state/app.reducers';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateProjectDialogComponent } from '../create-project-dialog/create-project-dialog.component';
-import { setCurrentProject } from '../state/app.actions';
 
 @Component({
   selector: 'cbd-project-list',
@@ -32,12 +31,5 @@ export class ProjectListComponent implements OnInit {
 
   toggleProjectList(): void {
     this.showList = !this.showList;
-
-    console.log(this.projects);
-  }
-
-  setSelectedProject(id: string) {
-    console.log(id)
-    this.store.dispatch(setCurrentProject({id}))
-  }
+  } 
 }

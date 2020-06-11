@@ -16,6 +16,11 @@ export const getCurrentProject = createSelector(
             : state.projects.find(project => project.subProjects.findIndex(x => x.id == state.currentProjectId) >= 0).subProjects.find(x => x.id == state.currentProjectId)
 );
 
+export const getCurrentProjectId = createSelector(
+    getAppState,
+    state => state.currentProjectId
+);
+
 export const getProjects = createSelector(
     getAppState,
     state => state.projects

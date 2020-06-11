@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Project } from '../models/project';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { State } from '../state/app.reducers';
-import { loadSubProjects } from '../state/app.actions';
+import { loadSubProjects, setCurrentProject } from '../state/app.actions';
+import { getCurrentProjectId } from '../state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'cbd-project',
@@ -12,10 +14,12 @@ import { loadSubProjects } from '../state/app.actions';
 export class ProjectComponent implements OnInit {
   @Input() project: Project;
   showList: boolean = false;
+  selectedProjectId$: Observable<string>;
 
   constructor(private readonly store: Store<State>) { }
 
   ngOnInit() {
+    this.selectedProjectId$ = this.store.pipe(select(getCurrentProjectId));
   }
 
   openContextMenu(): void {
@@ -24,9 +28,17 @@ export class ProjectComponent implements OnInit {
 
   toggleProjectList(): void {
     this.showList = !this.showList;
-
     this.store.dispatch(loadSubProjects({project: this.project}));
+  }
 
-    console.log(this.project);
+  setSelectedProject(id: string) {    
+
+    debugger
+
+    if (this.project.id === id) {
+      this.toggleProjectList();
+    }
+
+    this.store.dispatch(setCurrentProject({id: id}));
   }
 }

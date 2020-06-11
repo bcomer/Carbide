@@ -59,18 +59,9 @@ function setCurrentProjectState(state: State, action): State {
 }
 
 function setProjectLoadedSuccessState(state: State, action): State {
-    let projects: Array<Project> = [];
-    let currentProjectId: string = null;
-
-    if (action.projects.length > 0) {
-        projects = action.projects;
-        currentProjectId = projects[0].id;
-    }
-
     return {
         ...state,
-        currentProjectId: currentProjectId,
-        projects: projects,
+        projects: action.projects,
         error: null
     };
 };
