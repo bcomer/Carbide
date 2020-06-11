@@ -1,12 +1,16 @@
-<h1 mat-dialog-title>Create New Project</h1>
+<div class="dialog-title">
+    <mat-icon color="primary" class="dialog-icon" aria-hidden="false" aria-label="Add project icon">create_new_folder</mat-icon> 
+    <span class="title-text">Create New Project</span> 
+</div>
 <div mat-dialog-content>
-    <mat-form-field appearance="fill">
+    <div class="content-help-msg">Please enter the name of the new project</div>
+    <mat-form-field class="project-name" appearance="fill">
         <mat-label>Project Name</mat-label>
         <input matInput type="text" [formControl]="nameControl">
     </mat-form-field>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions class="dialog-actions">
     <button mat-button (click)="onCancelClick()">Cancel</button>
-    <button mat-button (click)="onSaveClick()" cdkFocusInitial>Save</button>
+    <button mat-button color="primary" (click)="onSaveClick()" cdkFocusInitial>Save</button>
 </div>
 

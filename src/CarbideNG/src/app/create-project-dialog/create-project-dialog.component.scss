@@ -1,0 +1,33 @@
+:host {
+    .project-name {
+        width: 100%;
+    }
+
+    .content-help-msg {
+        margin-bottom: 12px;
+    }
+
+    .dialog-actions {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .dialog-title {
+        width: 100%;
+        display: flex;
+        margin-bottom: 12px;
+
+        .dialog-icon {
+            font-size: 3.2rem;
+            line-height: 3.2rem;
+        }
+
+        .title-text {
+            font-size: 2.4rem;
+            line-height: 3.2rem;
+            margin-left: 12px;
+        }
+    }
+}
+

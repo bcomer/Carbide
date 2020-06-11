@@ -23,7 +23,6 @@ export class ProjectComponent implements OnInit {
   }
 
   openContextMenu(): void {
-
   }
 
   toggleProjectList(): void {
@@ -32,12 +31,9 @@ export class ProjectComponent implements OnInit {
   }
 
   setSelectedProject(id: string) {    
-
-    debugger
-
     if (this.project.id === id) {
       this.toggleProjectList();
-    }
+    }    
 
     this.store.dispatch(setCurrentProject({id: id}));
   }
