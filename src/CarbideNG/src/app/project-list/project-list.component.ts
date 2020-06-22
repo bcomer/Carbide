@@ -25,7 +25,8 @@ export class ProjectListComponent implements OnInit {
 
   openNewProjectDialog(): void {
     this.dialog.open(CreateProjectDialogComponent, {
-      width: '400px'
+      width: '400px',
+      data: null
     });    
   }
 

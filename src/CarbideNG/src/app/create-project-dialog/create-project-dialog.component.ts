@@ -17,7 +17,8 @@ export class CreateProjectDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<CreateProjectDialogComponent>,
-    private readonly store: Store<State>
+    private readonly store: Store<State>,
+    @Inject(MAT_DIALOG_DATA) public data: Project
   ) { }
 
   onCancelClick(): void {
@@ -27,7 +28,8 @@ export class CreateProjectDialogComponent {
   onSaveClick(): void {
     if (!this.nameControl.value) return;
 
-    let project: Project = new Project(null, null, this.nameControl.value);
+    let parentId: string = !!this.data ? this.data.id : null;
+    let project: Project = new Project(null, parentId, this.nameControl.value);
 
     this.store.dispatch(createProject({project: project}));
 

@@ -21,10 +21,7 @@ export class ProjectComponent implements OnInit {
   ngOnInit() {
     this.selectedProjectId$ = this.store.pipe(select(getCurrentProjectId));
   }
-
-  openContextMenu(): void {
-  }
-
+ 
   toggleProjectList(): void {
     this.showList = !this.showList;
     this.store.dispatch(loadSubProjects({project: this.project}));

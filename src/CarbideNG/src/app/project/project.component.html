@@ -1,18 +1,29 @@
-<div class="project-controls" [ngClass]="{selected: (selectedProjectId$ | async) === project?.id}" (click)="setSelectedProject(project?.id)">
+<div class="project-controls" [ngClass]="{selected: (selectedProjectId$ | async) === project?.id}"
+    (click)="setSelectedProject(project?.id)">
     <button mat-icon-button>
         <mat-icon [ngClass]="{'rotate-90': showList}">chevron_right</mat-icon>
     </button>
     <span>{{project?.name}}</span>
-    <button mat-icon-button (click)="openContextMenu()">
+    <button mat-icon-button [matMenuTriggerFor]="moreMenu">
         <mat-icon>more_vert</mat-icon>
-    </button>    
+    </button>
 </div>
-<div *ngIf="showList" id="project-list-items">  
-    <div *ngFor="let sub of project.subProjects" class="project-controls" [ngClass]="{selected: (selectedProjectId$ | async) === sub?.id}" (click)="setSelectedProject(sub?.id)">
+<div *ngIf="showList" id="project-list-items">
+    <div *ngFor="let sub of project.subProjects" class="project-controls"
+        [ngClass]="{selected: (selectedProjectId$ | async) === sub?.id}" (click)="setSelectedProject(sub?.id)">
         <span></span>
         <span>{{sub?.name}}</span>
-        <button mat-icon-button (click)="openContextMenu()">
+        <button mat-icon-button [matMenuTriggerFor]="calcMenu">
             <mat-icon>more_vert</mat-icon>
-        </button>    
+        </button>
     </div>
 </div>
+
+<mat-menu #moreMenu="matMenu">
+    <button mat-menu-item>Add Project</button>
+    <button mat-menu-item>Add Calculation</button>
+</mat-menu>
+
+<mat-menu #calcMenu="matMenu">
+    <button mat-menu-item>Add Calculation</button>
+</mat-menu>
