@@ -94,26 +94,9 @@ function setSubProjectsLoadedFailState(state: State, action): State {
     }
 }
 
-function setCreateProjectSuccessState(state: State, action): State {
-    let projects = [...state.projects];
-
-    if (action.project.parentId) {
-        let parent = projects.find(x => x.id == action.project.parentId);
-
-        if (parent.subProjects == undefined) {
-            parent.subProjects = [];
-        }
-        
-        parent.subProjects.push(action.project);
-    }
-    else {
-        projects.push(action.project);
-    }
-
+function setCreateProjectSuccessState(state: State, action): State {    
     return {
         ...state,
-        projects: projects,
-        currentProjectId: action.project.id,
         error: null
     }
 }

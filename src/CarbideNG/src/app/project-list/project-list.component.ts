@@ -16,9 +16,7 @@ export class ProjectListComponent implements OnInit {
   showList: boolean = true;
 
   constructor(
-    public dialog: MatDialog,
-    private readonly store: Store<State>,
-    private readonly cdRef: ChangeDetectorRef
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {}  

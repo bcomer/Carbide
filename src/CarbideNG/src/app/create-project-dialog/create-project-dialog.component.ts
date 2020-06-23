@@ -18,7 +18,7 @@ export class CreateProjectDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<CreateProjectDialogComponent>,
     private readonly store: Store<State>,
-    @Inject(MAT_DIALOG_DATA) public data: Project
+    @Inject(MAT_DIALOG_DATA) public data: {id: string}
   ) { }
 
   onCancelClick(): void {
