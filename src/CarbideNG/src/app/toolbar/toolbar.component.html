@@ -1,8 +1,14 @@
 <mat-toolbar color="primary">
     <span>Newton</span>
-    <span class="spacer"></span>
+    <span class="spacer"></span>   
     <span>{{(user$ | async )?.firstName}} {{(user$ | async )?.lastName}}</span>
-    <button mat-icon-button class="account-icon" (click)="signOut()" aria-label="icon-button with an account icon">
+    <button mat-icon-button class="account-icon" [matMenuTriggerFor]="userMenu" aria-label="icon-button with an account icon, when clicked reveals user menu">
         <mat-icon>account_circle</mat-icon>
     </button>
 </mat-toolbar>
+<mat-menu #userMenu="matMenu">
+    <button mat-menu-item (click)="signOut()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Sign Out</span>
+    </button>
+</mat-menu>
