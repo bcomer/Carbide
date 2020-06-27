@@ -16,15 +16,7 @@ export class AuthService {
         private readonly firestore: AngularFirestore
     ) { }
 
-    public signIn(userCredentials: UserCredentials): Observable<firebase.auth.UserCredential> {
-        return from(this.afAuthSvc.auth.signInWithEmailAndPassword(userCredentials.email, userCredentials.password));
-    }
-
-    public getLoggedInUser(): Observable<firebase.User> {
-        return this.afAuthSvc.user;
-    }
-
-    public getAppUser(id: string): Observable<UserCredentials> {
+    getAppUser(id: string): Observable<UserCredentials> {
         return this.firestore.doc<UserCredentials>(`${this.key}/${id}`).snapshotChanges().pipe(
             map(action => {
                 const id = action.payload.id;
@@ -35,5 +27,17 @@ export class AuthService {
                 return user;
             })
         );
+    }    
+
+    getLoggedInUser(): Observable<firebase.User> {
+        return this.afAuthSvc.user;
+    }
+
+    signIn(userCredentials: UserCredentials): Observable<firebase.auth.UserCredential> {
+        return from(this.afAuthSvc.auth.signInWithEmailAndPassword(userCredentials.email, userCredentials.password));
+    }
+
+    signOut(): Observable<void> {
+        return from(this.afAuthSvc.auth.signOut());
     }
 }

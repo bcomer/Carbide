@@ -19,3 +19,16 @@ export const signInFail = createAction(
 export const getSignedInUser = createAction(
     '[User] Get Signed In User'
 );
+
+export const signOut = createAction(
+    '[User] Sign Out'
+);
+
+export const signOutSuccess = createAction(
+    '[User] Sign Out Success'
+);
+
+export const signOutFail = createAction(
+    '[User] Sign Out Fail',
+    props<{error: string}>()
+);
