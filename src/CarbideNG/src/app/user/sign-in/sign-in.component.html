@@ -1,20 +1,26 @@
 <form>
-    <mat-form-field appearance="fill">
-      <input matInput placeholder="email" [formControl]="emailControl"
-        [errorStateMatcher]="submittedErrorStateMatcher" autocomplete="off" role="presentation">
-      <mat-error *ngIf="emailControl.hasError('required')">
-        <strong>Email is required</strong>
-      </mat-error>
-      <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
-        <strong>Please enter a valid email address</strong>
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <input type="password" matInput placeholder="password" [formControl]="passwordControl"
-        [errorStateMatcher]="passwordErrorStateMatcher" autocomplete="off" role="presentation">
-      <mat-error *ngIf="passwordControl.hasError('required')">
-        <strong>Passowrd is required</strong>
-      </mat-error>
-    </mat-form-field>
-    <button mat-flat-button color="primary" (keyup.enter)="signIn()" (click)="signIn()">Sign In</button>   
-  </form>
+  <legend>
+    <h1>Welcome to Newton</h1>    
+  </legend>
+  <div class="form-instructions">Please enter your account information.</div>
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput [formControl]="emailControl" [errorStateMatcher]="submittedErrorStateMatcher"
+      autocomplete="off" role="presentation">
+    <mat-error *ngIf="emailControl.hasError('required')">
+      <strong>Email is required</strong>
+    </mat-error>
+    <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
+      <strong>Please enter a valid email address</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput [formControl]="passwordControl"
+      [errorStateMatcher]="passwordErrorStateMatcher" autocomplete="off" role="presentation">
+    <mat-error *ngIf="passwordControl.hasError('required')">
+      <strong>Passowrd is required</strong>
+    </mat-error>
+  </mat-form-field>
+  <button mat-flat-button color="primary" (keyup.enter)="signIn()" (click)="signIn()">Sign In</button>
+</form>

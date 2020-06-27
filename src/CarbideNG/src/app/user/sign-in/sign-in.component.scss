@@ -6,14 +6,21 @@
 
   form {
     margin-top: 16px;
-    width: 400px;
-
-    mat-form-field {
-      width: 100%;
-    }
+    width: 300px;
 
     button {
       width: 100%;
     }
+
+    .form-instructions {
+      font-size: 1.4rem;
+      line-height: 1.4rem;
+      margin-bottom: 12px;
+    }
+
+    mat-form-field {
+      width: 100%;
+      margin-bottom: 6px;
+    }    
   }
 }
