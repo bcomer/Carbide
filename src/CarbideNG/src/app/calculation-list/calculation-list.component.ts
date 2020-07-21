@@ -46,7 +46,7 @@ export class CalculationListComponent implements OnInit {
   openNewCalculationDialog(): void {
     this.dialog.open(CreateCalculationDialogComponent, {
       width: '400px',
-      data: { currentProject: this.currentProject }
+      data: { currentProjectId: this.currentProjectId }
     });  
   }
  

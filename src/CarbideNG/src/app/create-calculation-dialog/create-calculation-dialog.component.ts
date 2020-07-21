@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { State } from '../state/app.reducers';
 import { FormControl } from '@angular/forms';
 import { Calculation } from '../models/calculation';
-import { updateProject } from '../state/app.actions';
+import { updateProject, createCalculation } from '../state/app.actions';
 import { Project } from '../models/project';
 
 @Component({
@@ -27,11 +27,12 @@ export class CreateCalculationDialogComponent {
 
   onSaveClick(): void {
     if (!this.nameControl.value) return;
-    let currentProject = this.data.currentProject;
-    let newCalculation = new Calculation(null, currentProject.id, this.nameControl.value,  null, null, null, null, null);
-    currentProject.calculations = newCalculation;
 
-    this.store.dispatch(updateProject({project: currentProject}));
+    let currentProjectId = this.data.currentProjectId;
+    let newCalculation = new Calculation(null, currentProjectId, this.nameControl.value,  null, null, null, null, null);
+    
+    this.store.dispatch(createCalculation({calculation: newCalculation}))
+    
 
     this.dialogRef.close();
   }
