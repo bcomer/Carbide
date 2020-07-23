@@ -11,10 +11,17 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Nominal Pipe Size</mat-label>
-      <mat-select>
+      <mat-select [(ngModel)]="selectedNominalPipeSizes">
         <mat-option *ngFor="let size of nominalPipeSize" [value]="size">{{size.nominalPipeSize}}</mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Wall Thickness</mat-label>
+      <mat-select>
+        <mat-option [disabled]="selectedNominalPipeSizes == undefined" *ngFor="let wallThicknessValue of selectedNominalPipeSizes?.wallThickness" [value]="wallThicknessValue">{{wallThicknessValue}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="onSave()">Save</button>
   </div>
   <div class="output-container">
     <h2>Output</h2>

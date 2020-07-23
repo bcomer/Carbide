@@ -10,6 +10,7 @@ import { map, mapTo } from 'rxjs/operators';
 })
 export class CalculationDetailsComponent implements OnInit {
 private nominalPipeSize:Api5L[]=[];
+private selectedNominalPipeSizes: number;
 
   constructor(private readonly fireStore: AngularFirestore ) {this.getApi5LValues(); }
 
@@ -18,7 +19,11 @@ private nominalPipeSize:Api5L[]=[];
   }
 
   getApi5LValues(){
-    this.fireStore.collection<Api5L>('Api5L').get().forEach(a => a.docs.forEach(b => {this.nominalPipeSize.push(b.data() as Api5L);}));
+    let g = this.fireStore.collection<Api5L>('Api5L').get().forEach(a => a.docs.forEach(b => {this.nominalPipeSize.push( b.data() as Api5L) ;console.log(b.data());}));
+    console.log(g);
   } 
+  onSave(){
+    console.log(this.selectedNominalPipeSizes);
+  }
 
 }

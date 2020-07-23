@@ -4,7 +4,7 @@ export class Api5L{
     constructor(
         public nominalPipeSize: number,
         public nominalOd: number,
-        public wallThickness: WallThickness[]
+        public wallThickness: WallThickness[]=[]
     
     ) {}
 }
