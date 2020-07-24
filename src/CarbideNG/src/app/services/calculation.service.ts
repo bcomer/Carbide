@@ -15,9 +15,9 @@ export class CalculationService {
     private readonly fireStore: AngularFirestore
   ) { }
 
-  getAll(currentProjectId: string): Observable<Array<Calculation>> {
+  getAll(parentId: string, companyId: string): Observable<Array<Calculation>> {
     return this.fireStore
-        .collection<Calculation>(this.key, ref => ref.where('parentId', '==', currentProjectId))
+        .collection<Calculation>(this.key, ref => ref.where('companyId', '==', companyId))//.where('parentId', '==', parentId))
         .snapshotChanges()
         .pipe(
           map(actions => {
@@ -33,9 +33,7 @@ export class CalculationService {
         );
   }
 
-  // getAll(): Observable<Array<Calculation>> {
-  //   return of(new Array<Calculation>());
-  // }
+
 
   create(entity: Calculation, companyId: string, userId: string): Observable<Calculation> {
     delete entity.id;
@@ -45,7 +43,6 @@ export class CalculationService {
     entity.companyId = companyId;
     entity.createdOn = Date.now().toString();
     entity.createdBy = userId;
-
     return from(this.fireStore.collection<Calculation>(this.key).add({...entity}));
   }
 

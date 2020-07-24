@@ -19,7 +19,7 @@ export class CreateCalculationDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<CreateCalculationDialogComponent>,
     private readonly store: Store<State>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {}
+    @Inject(MAT_DIALOG_DATA) public data: {currentProjectId: string}) {}
 
   onCancelClick(): void {
     this.dialogRef.close();
@@ -28,8 +28,8 @@ export class CreateCalculationDialogComponent {
   onSaveClick(): void {
     if (!this.nameControl.value) return;
 
-    let currentProjectId = this.data.currentProjectId;
-    let newCalculation = new Calculation(null, currentProjectId, this.nameControl.value,  null, null, null, null, null);
+    let currentProjectId: string = !!this.data ? this.data.currentProjectId : null;
+    let newCalculation: Calculation = new Calculation(null, currentProjectId, this.nameControl.value,  null, null, null, null, null);
     
     this.store.dispatch(createCalculation({calculation: newCalculation}))
     

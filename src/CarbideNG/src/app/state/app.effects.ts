@@ -56,8 +56,9 @@ export class AppEffects {
 
     loadCalculations$ = createEffect(() => this.actions$.pipe(
         ofType(AppActions.loadCalculations),
-        mergeMap((action => {
-            return this.calculationSvc.getAll(action.id).pipe(
+        withLatestFrom(this.store$),
+        mergeMap((actionAndStore => {
+            return this.calculationSvc.getAll(actionAndStore[0].id, actionAndStore[1]['users'].user.companyId).pipe(
                 map(calculation => AppActions.loadCalculationsSuccess({calculations : calculation})),
                 catchError(error => of(AppActions.loadCalculationsFail({ error: error.message })))
             )

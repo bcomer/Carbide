@@ -5,7 +5,7 @@
         </button>
 </div>
 <div id="calculation-list-items">  
-    <cbd-calculation [calculation]="calculations" 
+    <cbd-calculation [calculation]="calculations$ | async" 
     *ngFor="let calculation of calculations" 
     (click)="setCurrentCalculation(calculation.id)" ></cbd-calculation>
 </div>

@@ -154,19 +154,10 @@ function setCalculationLoadedFailState(state: State, action): State {
 };
 
 function setCreateCalculationSuccessState(state: State, action): State {
-    let calculations = [...state.calculations];
-
-    if (action.calculations.length > 0) {
-        calculations = action.calculations;
-    }
-    else {
-        calculations.push(action.calculation);
-    }
+    
 
     return {
         ...state,
-        calculations: calculations,
-        currentCalculationId: action.calculation.id,
         error: null
     }
 }

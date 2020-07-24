@@ -3,9 +3,9 @@ import { Calculation } from '../models/calculation'
 import { Project } from '../models/project';
 import { Store, select } from '@ngrx/store';
 import { State } from '../state/app.reducers';
-import { getCurrentProject } from '../state';
+import { getCurrentProject, getCurrentProjectId, getCalculations } from '../state';
 import { Observable } from 'rxjs';
-import { setCurrentCalculation } from '../state/app.actions';
+import { setCurrentCalculation, loadCalculations } from '../state/app.actions';
 import { SubSink } from 'subsink';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateCalculationDialogComponent } from '../create-calculation-dialog/create-calculation-dialog.component';
@@ -17,8 +17,9 @@ import { CreateCalculationDialogComponent } from '../create-calculation-dialog/c
 })
 export class CalculationListComponent implements OnInit {
   private subs: SubSink;
-  calculations: Calculation[];
+  calculations$: Observable<Calculation[]>;
   currentProject: Project;
+  currentProjectId$: Observable<string>;
   currentProjectId: string;
 
   constructor(
@@ -29,14 +30,22 @@ export class CalculationListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subs.sink = this.store.pipe(select(getCurrentProject)).subscribe(project => {
-      if(project) {
-        this.currentProject = project;
-        this.calculations = project.calculations;
-        this.currentProjectId = project.id;
-      }
-    })
-  }
+        this.subs.sink = this.store.pipe(select(getCurrentProjectId)).subscribe(id => {
+          if (id) {
+            this.store.dispatch(loadCalculations({id}))
+            this.currentProjectId = id;
+          }
+        });  
+        
+        this.calculations$ = this.store.pipe(select(getCalculations));
+        debugger
+        
+ }
+
+ ngOnDestroy(): void {
+   this.subs.unsubscribe();
+ }
+  
 
   setCurrentCalculation(id: string) {
     console.log(id)
