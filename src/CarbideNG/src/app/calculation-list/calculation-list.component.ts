@@ -18,9 +18,11 @@ import { CreateCalculationDialogComponent } from '../create-calculation-dialog/c
 export class CalculationListComponent implements OnInit {
   private subs: SubSink;
   calculations$: Observable<Calculation[]>;
+  calculations: Calculation[]
   currentProject: Project;
   currentProjectId$: Observable<string>;
   currentProjectId: string;
+
 
   constructor(
     public dialog: MatDialog,
@@ -32,13 +34,14 @@ export class CalculationListComponent implements OnInit {
   ngOnInit() {
         this.subs.sink = this.store.pipe(select(getCurrentProjectId)).subscribe(id => {
           if (id) {
-            this.store.dispatch(loadCalculations({id}))
+            this.store.dispatch(loadCalculations({id}));
             this.currentProjectId = id;
+            this.calculations$ = this.store.pipe(select(getCalculations));
           }
         });  
         
-        this.calculations$ = this.store.pipe(select(getCalculations));
-        debugger
+        
+       
         
  }
 

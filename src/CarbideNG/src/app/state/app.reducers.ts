@@ -131,11 +131,9 @@ function setCalculationLoadedSuccessState(state: State, action): State {
     let calculations: Array<Calculation> = [];
     let currentCalculationId: string = null;
 
-    if (action.calculations.length > 0) {
-        calculations = action.calculations;
-        currentCalculationId = calculations[0].id;
-    }
-
+    state.calculations = null;
+    calculations = action.calculations;
+    
     return {
         ...state,
         currentCalculationId: currentCalculationId,

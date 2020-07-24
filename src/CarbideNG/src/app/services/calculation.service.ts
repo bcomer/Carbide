@@ -17,7 +17,7 @@ export class CalculationService {
 
   getAll(parentId: string, companyId: string): Observable<Array<Calculation>> {
     return this.fireStore
-        .collection<Calculation>(this.key, ref => ref.where('companyId', '==', companyId))//.where('parentId', '==', parentId))
+        .collection<Calculation>(this.key, ref => ref.where('companyId', '==', companyId).where('parentId', '==', parentId))
         .snapshotChanges()
         .pipe(
           map(actions => {
