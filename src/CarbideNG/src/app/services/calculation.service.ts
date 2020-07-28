@@ -1,24 +1,49 @@
 import { Injectable } from '@angular/core';
-import { of, Observable } from 'rxjs';
+import { of, Observable, from } from 'rxjs';
 import { Calculation } from '../models/calculation';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators'
 
-//fuck, i dont know if we need this lol
 @Injectable({
   providedIn: 'root'
 })
 export class CalculationService {
 
-  constructor() { }
+  private readonly key: string = 'calculations';
 
-  getAll(): Observable<Array<Calculation>> {
-    return of(new Array<Calculation>());
+  constructor(
+    private readonly fireStore: AngularFirestore
+  ) { }
+
+  getAll(parentId: string, companyId: string): Observable<Array<Calculation>> {
+    return this.fireStore
+        .collection<Calculation>(this.key, ref => ref.where('companyId', '==', companyId).where('parentId', '==', parentId))
+        .snapshotChanges()
+        .pipe(
+          map(actions => {
+            return actions.map(action => {
+              const id = action.payload.doc.id
+              let calculation = action.payload.doc.data() as Calculation;
+
+              calculation.id = id;
+
+              return calculation;
+            });
+          })
+        );
   }
 
-  create(entity: Calculation): Observable<Calculation> {
-    entity.id =  `calculation-${entity.name}`;
+
+
+  create(entity: Calculation, companyId: string, userId: string): Observable<Calculation> {
+    delete entity.id;
+    
+
+    //entity.id =  `calculation-${entity.name}`;
+    entity.companyId = companyId;
     entity.createdOn = Date.now().toString();
-    entity.createdBy = "JEREMY";
-    return of(entity);
+    entity.createdBy = userId;
+    return from(this.fireStore.collection<Calculation>(this.key).add({...entity}));
   }
 
   update(entity: Calculation): Observable<Calculation> {

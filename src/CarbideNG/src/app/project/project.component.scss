@@ -10,6 +10,10 @@
       font-size: 1.6rem;
       cursor: pointer;
 
+      &:hover {
+        background-color: whitesmoke;
+      }
+
       &.selected {
         color: #2366a0;
       }

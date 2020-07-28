@@ -82,7 +82,8 @@ export const clearCurrentCalculation = createAction(
 );
 
 export const loadCalculations = createAction(
-    '[Calculation] Load Calculations'
+    '[Calculation] Load Calculations',
+    props<{id: string}>()
 );
 
 export const loadCalculationsSuccess = createAction(

@@ -56,20 +56,22 @@ export class AppEffects {
 
     loadCalculations$ = createEffect(() => this.actions$.pipe(
         ofType(AppActions.loadCalculations),
-        mergeMap(() =>
-            this.calculationSvc.getAll().pipe(
-                map(calculations => AppActions.loadCalculationsSuccess({ calculations: calculations })),
-                catchError(error => of(AppActions.loadProjectsFail({ error: error.message })))
+        withLatestFrom(this.store$),
+        mergeMap((actionAndStore => {
+            return this.calculationSvc.getAll(actionAndStore[0].id, actionAndStore[1]['users'].user.companyId).pipe(
+                map(calculation => AppActions.loadCalculationsSuccess({calculations : calculation})),
+                catchError(error => of(AppActions.loadCalculationsFail({ error: error.message })))
             )
-        )
-    ));
-
+        })
+    )));
+    
     createCalculation$ = createEffect(() => this.actions$.pipe(
         ofType(AppActions.createCalculation),
-        mergeMap(action =>
-            this.calculationSvc.create(action.calculation).pipe(
+        withLatestFrom(this.store$),
+        mergeMap(actionAndStore =>
+            this.calculationSvc.create(actionAndStore[0].calculation, actionAndStore[1]['users'].user.companyId, actionAndStore[1]['users'].user.id ).pipe(
                 map(calculation => AppActions.createCalculationSuccess({ calculation: calculation })),
-                catchError(error => of(AppActions.createCalculationFail({ error: error.message })))
+                catchError(error => of(AppActions.createCalculationFail({ error: error.message })))  
             )
         )
     ));

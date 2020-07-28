@@ -3,12 +3,17 @@
   height: 100%;
 
   #project-list-controls {
-    width: 100%;
+    align-items: center;
+    border-bottom: 1px solid darkgrey;
     display: grid;
+    font-size: 1.6rem;
     grid-template-columns: 40px auto 40px;
     grid-template-rows: 40px;
-    align-items: center;
-    font-size: 1.6rem;
+    width: 100%;
+
+    &:hover {
+      background-color: whitesmoke;
+    }
 
     mat-icon {
       transition: transform 0.3s;
