@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Api5L } from '../models/api-5l';
-import { map, mapTo } from 'rxjs/operators';
 import { CalculationValueService } from '../services/calculation-values.service';
-import { WallThickness } from '../models/wall-thickness';
 
 @Component({
   selector: 'cbd-calculation-details',

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CalculationValueService } from '../services/calculation-values.service';
-import { Api5L } from '../models/api-5l';
 
 @Component({
     selector: 'cbd-api5L-wall-thickness-select',
