@@ -2,11 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CalculationValueService } from '../services/calculation-values.service';
 
 @Component({
-    selector: 'cbd-nominal-pipe-size-select',
-    templateUrl: './nominal-pipe-size-select.component.html'
+    selector: 'cbd-api5L-nominal-pipe-size-select',
+    templateUrl: './api5L-nominal-pipe-size-select.component.html'
   })
 
-export class NominalPipeSizeSelectComponent implements OnInit {
+export class Api5LNominalPipeSizeSelectComponent implements OnInit {
     public selectData: any;
     public selectedValue: string;
     @Output() selected = new EventEmitter<string>();

@@ -28,8 +28,8 @@ import { CalculationListComponent } from './calculation-list/calculation-list.co
 import { CreateCalculationDialogComponent } from './create-calculation-dialog/create-calculation-dialog.component';
 import { CalculationDetailsComponent } from './calculation-details/calculation-details.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { NominalPipeSizeSelectComponent } from './calculation-selects/nominal-pipe-size-select.component';
 import {Api5LWallThicknessComponent } from './calculation-selects/api5L-wall-thickness-select.component';
+import { Api5LNominalPipeSizeSelectComponent } from './calculation-selects/api5L-nominal-pipe-size-select.component';
 
 
 
@@ -45,7 +45,7 @@ import {Api5LWallThicknessComponent } from './calculation-selects/api5L-wall-thi
     CreateCalculationDialogComponent,
     CalculationDetailsComponent,
     ToolbarComponent,
-    NominalPipeSizeSelectComponent,
+    Api5LNominalPipeSizeSelectComponent,
     Api5LWallThicknessComponent  ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
