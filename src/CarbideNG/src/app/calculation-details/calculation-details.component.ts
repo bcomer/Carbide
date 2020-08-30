@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Api5L } from '../models/api-5l';
 import { map, mapTo } from 'rxjs/operators';
+import { CalculationValueService } from '../services/calculation-values.service';
+import { WallThickness } from '../models/wall-thickness';
 
 @Component({
   selector: 'cbd-calculation-details',
@@ -9,21 +11,19 @@ import { map, mapTo } from 'rxjs/operators';
   styleUrls: ['./calculation-details.component.scss']
 })
 export class CalculationDetailsComponent implements OnInit {
-private nominalPipeSize:Api5L[]=[];
-private selectedNominalPipeSizes: number;
-
-  constructor(private readonly fireStore: AngularFirestore ) {this.getApi5LValues(); }
+  public nominalPipeSize: string;
+  constructor(private calculationValueService: CalculationValueService) { }
 
   ngOnInit() {
-    
+
   }
 
-  getApi5LValues(){
-    let g = this.fireStore.collection<Api5L>('Api5L').get().forEach(a => a.docs.forEach(b => {this.nominalPipeSize.push( b.data() as Api5L) ;console.log(b.data());}));
-    console.log(g);
-  } 
-  onSave(){
-    console.log(this.selectedNominalPipeSizes);
+
+  onSave() {
   }
+  onSelected(value: string) {
+    this.nominalPipeSize = value;
+  }
+
 
 }
