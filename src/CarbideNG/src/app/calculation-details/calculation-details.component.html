@@ -1,15 +1,10 @@
-<h1>DESIGN PRESSURE</h1>
+ <h1>DESIGN PRESSURE</h1>
 <div class="fields">
 <div class="input-container">
     <h2>Input</h2>
-    <mat-form-field appearance="fill">
-             <mat-label>Pipe and Location Data</mat-label>
-            <mat-select>
-              <mat-option>Line Pipe - API Spec 5L</mat-option>
-              <mat-option>Standard Steel Pipe - ASTM - ANSI B36.10 </mat-option>
-            </mat-select>
-          </mat-form-field>
-</div>
+    <cbd-api5L-nominal-pipe-size-select (selected)=onSelected($event)></cbd-api5L-nominal-pipe-size-select>
+    <cbd-api5L-wall-thickness-select [(nominalPipeSize)]="nominalPipeSize"></cbd-api5L-wall-thickness-select>
+  </div>
 <div class="output-container">
     <h2>Output</h2>
     </div>
