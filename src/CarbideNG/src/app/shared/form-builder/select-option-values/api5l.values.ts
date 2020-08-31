@@ -1,22 +1,22 @@
 export const Api5L = {
     "grades": [
-        { name: "A25", value: 25000 },
-        { name: "A30", value: 30000 },
-        { name: "B35", value: 35000 },
-        { name: "X42", value: 42000 },
-        { name: "X46", value: 46000 },
-        { name: "X52", value: 52000 },
-        { name: "X60", value: 60000 },
-        { name: "X65", value: 65000 },
-        { name: "X70", value: 70000 },
-        { name: "X80", value: 80000 },
+        { description: "A25", value: 25000 },
+        { description: "A30", value: 30000 },
+        { description: "B35", value: 35000 },
+        { description: "X42", value: 42000 },
+        { description: "X46", value: 46000 },
+        { description: "X52", value: 52000 },
+        { description: "X60", value: 60000 },
+        { description: "X65", value: 65000 },
+        { description: "X70", value: 70000 },
+        { description: "X80", value: 80000 },
     ],
     "joint-factors": [
-        { name: 'API 5L Seamless', value: 1.00 },
-        { name: 'API 5L Electric Resistance Welded', value: 1.00 },
-        { name: 'API 5L Electric Flash Welded', value: 1.00 },
-        { name: 'API 5L Submerged Arc Welded', value: 1.00 },
-        { name: 'API 5L Furnace Butt Welded', value: 0.60 }
+        { description: 'API 5L Seamless', value: 1.00 },
+        { description: 'API 5L Electric Resistance Welded', value: 1.00 },
+        { description: 'API 5L Electric Flash Welded', value: 1.00 },
+        { description: 'API 5L Submerged Arc Welded', value: 1.00 },
+        { description: 'API 5L Furnace Butt Welded', value: 0.60 }
     ],
     "pipe-sizes": [
         {
@@ -378,9 +378,19 @@ export const Api5L = {
 
 export const DesignFactor = {
     "options": [
-        { name: 'Location Class 1', value: 0.72 },
-        { name: 'Location Class 2', value: 0.60 },
-        { name: 'Location Class 3', value: 0.50 },
-        { name: 'Location Class 4', value: 0.40 }
+        { description: 'Location Class 1', value: 0.72 },
+        { description: 'Location Class 2', value: 0.60 },
+        { description: 'Location Class 3', value: 0.50 },
+        { description: 'Location Class 4', value: 0.40 }
+    ]
+}
+
+export const TemperatureDeratingFactor = {
+    "options": [
+        { description: '250 or less', value: 1.000 },
+        { description: '300', value: 0.967 },
+        { description: '350', value: 0.933 },
+        { description: '400', value: 0.900 },
+        { description: '450', value: 0.867 }
     ]
 }
