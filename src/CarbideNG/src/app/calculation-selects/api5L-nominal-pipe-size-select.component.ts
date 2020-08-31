@@ -17,6 +17,7 @@ export class Api5LNominalPipeSizeSelectComponent implements OnInit {
     ngOnInit() {
         this.selectData = this.calculationValuesService.getApi5Values();
     }
+    
     onNominalPipeSizeChange(selectedNominalPipeSize: string){
         this.selected.emit(selectedNominalPipeSize);
     }
