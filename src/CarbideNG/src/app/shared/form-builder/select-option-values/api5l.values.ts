@@ -11,14 +11,14 @@ export const Api5L = {
         { description: "X70", value: 70000 },
         { description: "X80", value: 80000 },
     ],
-    "joint-factors": [
+    "longitudinalJointFactors": [
         { description: 'API 5L Seamless', value: 1.00 },
         { description: 'API 5L Electric Resistance Welded', value: 1.00 },
         { description: 'API 5L Electric Flash Welded', value: 1.00 },
         { description: 'API 5L Submerged Arc Welded', value: 1.00 },
         { description: 'API 5L Furnace Butt Welded', value: 0.60 }
     ],
-    "pipe-sizes": [
+    "pipeSizes": [
         {
             size: '1/8',
             outsideDiameter: 0.405,
