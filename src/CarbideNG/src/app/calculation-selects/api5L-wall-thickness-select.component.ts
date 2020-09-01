@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CalculationValueService } from '../services/calculation-values.service';
+import { CalculationValuesService } from '../shared/form-builder/Services/calculation-values.service';
 
 @Component({
     selector: 'cbd-api5L-wall-thickness-select',
@@ -10,7 +10,7 @@ export class Api5LWallThicknessComponent implements OnInit {
     public selectData: any;
     @Input() nominalPipeSize: string;
 
-    constructor(private calculationValuesService: CalculationValueService){
+    constructor(private calculationValuesService: CalculationValuesService){
     }
 
     ngOnInit() {
@@ -22,9 +22,9 @@ export class Api5LWallThicknessComponent implements OnInit {
     }
 
     getWallThicknessValues(){
-        this.calculationValuesService.getApi5Values()
-        .find(a => {if (this.nominalPipeSize == a.nominalPipeSize) {
-            this.selectData = a.wallThickness;
+        this.calculationValuesService.getApi5lPipeSizes()
+        .find(a => {if (this.nominalPipeSize == a.size) {
+            this.selectData = a.wallThicknesses;
         }});
 
     }

@@ -11,19 +11,19 @@ export class CalculationValuesService {
         return Api5L.grades;
     }
     
-    public getApi5PipeSizes() {
+    public getApi5lPipeSizes() : Array<{size: String, outsideDiameter: Number, wallThicknesses: Array<{value: Number}>}> {
         return Api5L.pipeSizes;
     }
 
     public getDesignFactorValues() {
-        return DesignFactor;
+        return DesignFactor.options;
     }
 
     public getLongitudinalJointFactorValues() {
         return Api5L.longitudinalJointFactors;
     }
 
-    public temperatureDeratingFactorValues() {
-        return TemperatureDeratingFactor;
+    public getTemperatureDeratingFactorValues() {
+        return TemperatureDeratingFactor.options;
     }
 }
