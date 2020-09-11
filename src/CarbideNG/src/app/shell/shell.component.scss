@@ -1,6 +1,6 @@
 :host {
     display: grid;
-    grid-column: 400px auto;
+    grid-column: auto auto;
     grid-template-columns: 1fr 1fr 2fr;
     grid-template-rows: 64px 1fr;
     grid-template-areas:
@@ -21,7 +21,6 @@
     cbd-project-list {
         grid-area: projects;
         height: auto;
-        margin: 64px 0 0 64px;
     }
     
     cbd-toolbar {

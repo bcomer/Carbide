@@ -1,6 +1,7 @@
 :host {
-  width: 320px;  
-  height: 100%;
+  background-color: #eef1f0;
+  box-sizing: border-box;
+  padding: 64px 64px 0 64px;
 
   #project-list-controls {
     align-items: center;
@@ -9,7 +10,6 @@
     font-size: 1.6rem;
     grid-template-columns: 40px auto 40px;
     grid-template-rows: 40px;
-    width: 100%;
 
     &:hover {
       background-color: whitesmoke;
@@ -21,7 +21,7 @@
   }
 
   #project-list-items {
-    display: grid;    
+    display: grid;
   }
 
   .rotate-90 {
