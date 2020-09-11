@@ -3,12 +3,14 @@
 @include mat-core();
 
 @import "./themes/palettes/persian-red.palette.scss";
-@import "./themes/palettes/lapis-lazuli.palette.scss";
+@import "./themes/palettes/charcoal.palette.scss";
+@import "./themes/palettes/fire-opal.palette.scss";
 
-$CarbideNG-primary: mat-palette($cbd-lapislazuli, 500, 200, 800);
+$CarbideNG-primary: mat-palette($cbd-charcoal, 500, 200, 800);
+$CarbideNG-accent: mat-palette($cbd-fireopal, 500, 200, 800);
 $CarbideNG-warn: mat-palette($cbd-persianred, 500, 300, 900);
 
-$CarbideNG-theme: mat-light-theme($CarbideNG-primary, $CarbideNG-primary, $CarbideNG-warn);
+$CarbideNG-theme: mat-light-theme($CarbideNG-primary, $CarbideNG-accent, $CarbideNG-warn);
 
 $dark-gunmetal: #222428;
 
