@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'cbd-module-selector',
@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./module-selector.component.scss']
 })
 export class ModuleSelectorComponent implements OnInit {
+
+  @Input() module: string;
+  @Input() matIcon: string;
+  @Input() isRotated: boolean;
 
   constructor() { }
 

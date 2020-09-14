@@ -1,21 +1,14 @@
 :host {
     display: grid;
-    grid-column: auto auto;
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: auto 1fr;
     grid-template-rows: 64px 1fr;
     grid-template-areas:
-        "header header header"
-        "projects calculations details";
+        "header header"
+        "projects details";
     height: 100%;
 
     cbd-calculation-details {
         grid-area: details;
-    }
-
-    cbd-calculation-list {
-        grid-area: calculations;
-        height: auto;
-        margin: 64px 0 0 64px;
     }
 
     cbd-project-list {

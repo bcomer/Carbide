@@ -26,10 +26,10 @@ import { ProjectComponent } from './project/project.component';
 import { CalculationComponent } from './calculation/calculation.component';
 import { CalculationListComponent } from './calculation-list/calculation-list.component';
 import { CreateCalculationDialogComponent } from './create-calculation-dialog/create-calculation-dialog.component';
-import { CalculationDetailsComponent } from './calculation-details/calculation-details.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import {Api5LWallThicknessComponent } from './calculation-selects/api5L-wall-thickness-select.component';
+import { Api5LWallThicknessComponent } from './calculation-selects/api5L-wall-thickness-select.component';
 import { Api5LNominalPipeSizeSelectComponent } from './calculation-selects/api5L-nominal-pipe-size-select.component';
+import { FormBuilderModule } from './shared/form-builder/form-builder.module';
 
 
 
@@ -43,10 +43,9 @@ import { Api5LNominalPipeSizeSelectComponent } from './calculation-selects/api5L
     CalculationComponent,
     CalculationListComponent,
     CreateCalculationDialogComponent,
-    CalculationDetailsComponent,
     ToolbarComponent,
     Api5LNominalPipeSizeSelectComponent,
-    Api5LWallThicknessComponent  ],
+    Api5LWallThicknessComponent],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
@@ -57,6 +56,7 @@ import { Api5LNominalPipeSizeSelectComponent } from './calculation-selects/api5L
     BrowserAnimationsModule,
     UserModule,
     FormsModule,
+    FormBuilderModule,
     ReactiveFormsModule,
     MaterialModule,
     StoreModule.forRoot({ app: AppReducers.reducer }),

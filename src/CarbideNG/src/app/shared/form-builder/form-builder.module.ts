@@ -4,12 +4,19 @@ import { DesignPressureSteelPipeComponent } from './design-pressure-steel-pipe/d
 import { CalculationDetailsComponent } from './calculation-details/calculation-details.component';
 import { ModuleSelectorComponent } from './module-selector/module-selector.component';
 import { ModuleListComponent } from './module-list/module-list.component';
+import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
-  declarations: [DesignPressureSteelPipeComponent, CalculationDetailsComponent, ModuleSelectorComponent, ModulesListComponent, ModuleListComponent],
-  imports: [
-    CommonModule
+  declarations: [
+    DesignPressureSteelPipeComponent, 
+    CalculationDetailsComponent, 
+    ModuleSelectorComponent, 
+    ModuleListComponent
+  ],
+  imports: [    
+    CommonModule,
+    MaterialModule
   ],
   exports: [
     CalculationDetailsComponent
