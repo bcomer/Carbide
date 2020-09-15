@@ -2,9 +2,18 @@
     align-items: center;
     border-bottom: 1px solid #dbdbdb;
     box-sizing: border-box;
+    cursor: pointer;
     display: flex;
     height: 42px;
     padding-left: 20px;
+
+    &:hover {
+        background-color: whitesmoke;
+    }
+
+    &:first-of-type {
+        border-top: 1px solid #dbdbdb;
+    }
 
     mat-icon {
 
