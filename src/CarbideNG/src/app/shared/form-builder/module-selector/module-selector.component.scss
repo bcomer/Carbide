@@ -1,9 +1,9 @@
 :host {
     align-items: center;
-    border-bottom: 1px solid #8d8d8d;
+    border-bottom: 1px solid #dbdbdb;
     box-sizing: border-box;
     display: flex;
-    height: 64px;
+    height: 42px;
     padding-left: 20px;
 
     mat-icon {
@@ -13,10 +13,8 @@
         line-height: 3rem;
         margin-right: 14px;
 
-        .rotate {
+        &.rotate {
             transform: rotate(180deg);
         }
-    }
-    
-    
+    }  
 }

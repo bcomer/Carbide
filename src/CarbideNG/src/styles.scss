@@ -1,4 +1,5 @@
 @import "~@angular/material/theming";
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900&display=swap');
 
 @include mat-core();
 
@@ -11,6 +12,17 @@ $CarbideNG-accent: mat-palette($cbd-fireopal, 500, 200, 800);
 $CarbideNG-warn: mat-palette($cbd-persianred, 500, 300, 900);
 
 $CarbideNG-theme: mat-light-theme($CarbideNG-primary, $CarbideNG-accent, $CarbideNG-warn);
+
+$custom-typography: mat-typography-config(
+  $headline: mat-typography-level(3.2rem, 4rem, 300),
+  $title: mat-typography-level(2.6rem, 3rem, 300),
+  $body-1: mat-typography-level(1.8rem, 2rem, 300),
+  $body-2: mat-typography-level(1.8rem, 2rem, 600),
+);
+
+@include angular-material-typography($custom-typography);
+
+@include mat-core($custom-typography);
 
 $dark-gunmetal: #222428;
 
@@ -39,11 +51,7 @@ $CarbideNG-theme: map-merge(
 html,
 body {
   height: 100%;
-  font-size: 10px;
-
-  h1 {
-    font-size: 2.8rem;
-  }
+  font-size: 10px;  
 }
 
 body {
