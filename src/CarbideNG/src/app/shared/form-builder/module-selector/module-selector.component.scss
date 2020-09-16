@@ -5,7 +5,7 @@
     cursor: pointer;
     display: flex;
     height: 42px;
-    padding-left: 20px;
+    padding-left: 6px;
 
     &:hover {
         background-color: whitesmoke;
@@ -18,12 +18,16 @@
     mat-icon {
 
         height: 30px;
+        width: 30px;
         font-size: 3rem;
         line-height: 3rem;
-        margin-right: 14px;
 
         &.rotate {
             transform: rotate(180deg);
         }
     }  
+
+    .module-name {
+        margin-left: 12px;
+    }
 }
