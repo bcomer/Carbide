@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModuleSelector } from '../Models/module-selector';
 
 @Component({
   selector: 'cbd-module-list',
@@ -7,21 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModuleListComponent implements OnInit {
 
-  modules: Array<{ name: string, matIcon: string, rotate: boolean }>;
+  moduleSelectors: Array<ModuleSelector>;
 
   constructor() { }
 
   ngOnInit() {
-    this.modules = this.getModules();
+    this.moduleSelectors = this.getModuleSelectors();
   }
 
-  private getModules(): Array<{ name: string, matIcon: string, rotate: boolean }> {
+  private getModuleSelectors(): Array<ModuleSelector> {
     return [
-      { name: 'Pipeline Design & Analysis', matIcon: 'filter_hdr', rotate: false },
-      { name: 'Horizontal Directional Drilling', matIcon: 'looks', rotate: true },
-      { name: 'Pipeline Crossing', matIcon: 'local_shipping', rotate: false },
-      { name: 'Pipeline Corrosion', matIcon: 'local_fire_department', rotate: false },
-      { name: 'Facilities', matIcon: 'domain', rotate: false }
+      { name: 'Pipeline Design & Analysis', matIcon: 'filter_hdr', isRotated: false },
+      { name: 'Horizontal Directional Drilling', matIcon: 'looks', isRotated: true },
+      { name: 'Pipeline Crossing', matIcon: 'local_shipping', isRotated: false },
+      { name: 'Pipeline Corrosion', matIcon: 'local_fire_department', isRotated: false },
+      { name: 'Facilities', matIcon: 'domain', isRotated: false }
     ]
   }
 }
