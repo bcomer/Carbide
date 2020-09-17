@@ -9,11 +9,18 @@ import { ModuleSelector } from '../Models/module-selector';
 export class ModuleListComponent implements OnInit {
 
   moduleSelectors: Array<ModuleSelector>;
+  moduleType: 'Pipeline Design & Analysis' | 'Horizontal Directional Drilling' | 'Pipeline Crossing' | 'Pipeline Corrosion' | 'Facilities';
+  showModuleList: boolean = true;
 
   constructor() { }
 
   ngOnInit() {
     this.moduleSelectors = this.getModuleSelectors();
+  }
+
+  onModuleSelect(moduleName: 'Pipeline Design & Analysis' | 'Horizontal Directional Drilling' | 'Pipeline Crossing' | 'Pipeline Corrosion' | 'Facilities'): void {
+    this.showModuleList = false;
+    this.moduleType = moduleName;
   }
 
   private getModuleSelectors(): Array<ModuleSelector> {

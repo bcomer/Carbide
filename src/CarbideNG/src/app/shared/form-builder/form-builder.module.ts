@@ -5,6 +5,7 @@ import { CalculationDetailsComponent } from './calculation-details/calculation-d
 import { ModuleSelectorComponent } from './module-selector/module-selector.component';
 import { ModuleListComponent } from './module-list/module-list.component';
 import { MaterialModule } from '../material/material.module';
+import { CalculationListComponent } from './calculation-list/calculation-list.component';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { MaterialModule } from '../material/material.module';
     DesignPressureSteelPipeComponent, 
     CalculationDetailsComponent, 
     ModuleSelectorComponent, 
-    ModuleListComponent
+    ModuleListComponent,
+    CalculationListComponent
   ],
   imports: [    
     CommonModule,
