@@ -1,8 +1,11 @@
 <div [ngSwitch]="moduleType">
     <ng-template [ngSwitchCase]="'Pipeline Design & Analysis'">
-        <span>Design Pressure - Steel Pipe</span>
+        <h1 class="mat-h1">Pipeline Design & Analysis</h1>
+        <cbd-calculation-selector calculationName="Design Pressure - Steel Pipe"></cbd-calculation-selector>
     </ng-template>
     <ng-template ngSwitchDefault>
         <span>Default</span>
     </ng-template>
 </div>
+<button mat-stroked-button (click)="onCancelClicked()">Cancel</button>
+<button mat-flat-button class="back-btn" (click)="onBackClicked()" color="primary">Back</button>

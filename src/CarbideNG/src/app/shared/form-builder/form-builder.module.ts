@@ -6,6 +6,7 @@ import { ModuleSelectorComponent } from './module-selector/module-selector.compo
 import { ModuleListComponent } from './module-list/module-list.component';
 import { MaterialModule } from '../material/material.module';
 import { CalculationListComponent } from './calculation-list/calculation-list.component';
+import { CalculationSelectorComponent } from './calculation-selector/calculation-selector.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { CalculationListComponent } from './calculation-list/calculation-list.co
     CalculationDetailsComponent, 
     ModuleSelectorComponent, 
     ModuleListComponent,
-    CalculationListComponent
+    CalculationListComponent,
+    CalculationSelectorComponent
   ],
   imports: [    
     CommonModule,

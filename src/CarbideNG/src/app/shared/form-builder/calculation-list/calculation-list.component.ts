@@ -9,7 +9,17 @@ export class CalculationListComponent implements OnInit {
 
   @Input() moduleType: 'Pipeline Design & Analysis' | 'Horizontal Directional Drilling' | 'Pipeline Crossing' | 'Pipeline Corrosion' | 'Facilities';
 
+  calculationSelectors: Array<{ key: string, selectors: Array<string> }>
+
   constructor() { }
+
+  onBackClicked(): void {
+
+  }
+
+  onCancelClicked(): void {
+
+  }
 
   ngOnInit() {
   }
