@@ -7,7 +7,8 @@ import { ModuleListComponent } from './module-list/module-list.component';
 import { MaterialModule } from '../material/material.module';
 import { CalculationListComponent } from './calculation-list/calculation-list.component';
 import { CalculationSelectorComponent } from './calculation-selector/calculation-selector.component';
-
+import { StoreModule } from '@ngrx/store';
+import * as formFormBuilder from './state/form-builder.reducers';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CalculationSelectorComponent } from './calculation-selector/calculation
   ],
   imports: [    
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    StoreModule.forFeature('form-builder', formFormBuilder.reducer)
   ],
   exports: [
     CalculationDetailsComponent

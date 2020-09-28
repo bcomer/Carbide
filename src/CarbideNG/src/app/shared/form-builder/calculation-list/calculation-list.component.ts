@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { State } from '../state';
+import { navigateBackToModuleList } from '../state/form-builder.actions';
 
 @Component({
   selector: 'cbd-calculation-list',
@@ -11,10 +14,10 @@ export class CalculationListComponent implements OnInit {
 
   calculationSelectors: Array<{ key: string, selectors: Array<string> }>
 
-  constructor() { }
+  constructor(private readonly store: Store<State>) { }
 
   onBackClicked(): void {
-
+    this.store.dispatch(navigateBackToModuleList());
   }
 
   onCancelClicked(): void {
