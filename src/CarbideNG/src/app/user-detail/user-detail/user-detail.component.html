@@ -5,7 +5,6 @@
         aria-label="icon-button with an account icon, when clicked reveals user menu">
         <mat-icon> account_circle</mat-icon>
         </button>
-    <span matLine>Britany Kaiser</span>
     <span matLine>{{(user$ | async )?.firstName}} {{(user$ | async )?.lastName}}</span>
     <span matLine>{{(userTitle)}}</span>
 </mat-list-item>

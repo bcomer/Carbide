@@ -23,12 +23,12 @@ export class UserDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.user$ = this.userStore.pipe(select(getAppUser));
+    this.user$ = this.userStore.pipe(select(getAppUser));
   }
 
   signOut(): void {
-    // this.userStore.dispatch(signOut());
-    // this.router.navigate(['signin']);
+    this.userStore.dispatch(signOut());
+    this.router.navigate(['signin']);
   }
 
 }
