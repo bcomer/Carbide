@@ -30,6 +30,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { Api5LWallThicknessComponent } from './calculation-selects/api5L-wall-thickness-select.component';
 import { Api5LNominalPipeSizeSelectComponent } from './calculation-selects/api5L-nominal-pipe-size-select.component';
 import { FormBuilderModule } from './shared/form-builder/form-builder.module';
+import { UserDetailComponent } from './user-detail/user-detail/user-detail.component';
 
 
 
@@ -44,6 +45,7 @@ import { FormBuilderModule } from './shared/form-builder/form-builder.module';
     CalculationListComponent,
     CreateCalculationDialogComponent,
     ToolbarComponent,
+    UserDetailComponent,
     Api5LNominalPipeSizeSelectComponent,
     Api5LWallThicknessComponent],
   imports: [

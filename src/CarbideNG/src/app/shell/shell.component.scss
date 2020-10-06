@@ -1,9 +1,10 @@
 :host {
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-template-rows: 64px 1fr;
+    grid-template-rows: 64px 1fr 6fr;
     grid-template-areas:
         "header header"
+        "userDetails details"
         "projects details";
     height: 100%;
 
@@ -19,5 +20,8 @@
     cbd-toolbar {
         grid-area: header;
         z-index: 2;
+    }
+    cbd-user-detail{
+        grid-area: userDetails
     }
 }
