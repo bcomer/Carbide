@@ -16,17 +16,7 @@ export class ToolbarComponent implements OnInit {
   userName: string = "Brandon Comer";
   user$: Observable<UserCredentials>;
 
-  constructor(
-    private readonly userStore: Store<UserState>,
-    private readonly router: Router
-  ) { }
+  constructor() {}
 
-  ngOnInit() {
-    this.user$ = this.userStore.pipe(select(getAppUser));
-  }
-
-  signOut(): void {
-    this.userStore.dispatch(signOut());
-    this.router.navigate(['signin']);
-  }
+  ngOnInit() {}
 }
