@@ -26,7 +26,7 @@ export class AppEffects {
         ofType(AppActions.loadProjects),
         withLatestFrom(this.store$),
         mergeMap(actionAndStore =>
-            this.projectSvc.getAll(actionAndStore[1]['users'].user.companyId).pipe(
+            this.projectSvc.getAll(actionAndStore[1]['users'].user.companyId, actionAndStore[1]['users'].user.id).pipe(
                 map(projects => AppActions.loadProjectsSuccess({ projects: projects })),
                 catchError(error => of(AppActions.loadProjectsFail({ error: error.message })))
             )

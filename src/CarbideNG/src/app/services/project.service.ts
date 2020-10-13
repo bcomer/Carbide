@@ -15,9 +15,16 @@ export class ProjectService {
     private readonly fireStore: AngularFirestore
   ) { }
 
-  getAll(companyId: string): Observable<Array<Project>> {
+  // firebase rules do not filter they return an error when you do not meet requirements
+  // so we have to write our code to mirror the firebase rules
+  getAll(companyId: string, userId: string): Observable<Array<Project>> {
     return this.fireStore
-      .collection<Project>(this.key, ref => ref.where('companyId', '==', companyId).where('parentId', '==', null))
+      .collection<Project>(this.key, ref => 
+        ref
+          .where('companyId', '==', companyId)
+          .where('parentId', '==', null)
+          .where('createdBy', '==', userId)
+      )
       .snapshotChanges()
       .pipe(
         map(actions => {
