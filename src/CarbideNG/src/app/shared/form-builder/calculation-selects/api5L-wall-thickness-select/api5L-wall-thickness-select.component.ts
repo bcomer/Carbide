@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CalculationValuesService } from '../shared/form-builder/Services/calculation-values.service';
+import { CalculationValuesService } from '../../Services/calculation-values.service';
 
 @Component({
     selector: 'cbd-api5L-wall-thickness-select',

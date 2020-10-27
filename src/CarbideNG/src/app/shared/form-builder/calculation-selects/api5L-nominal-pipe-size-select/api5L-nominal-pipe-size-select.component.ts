@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CalculationValueService } from '../services/calculation-values.service';
+import { CalculationValuesService } from '../../Services/calculation-values.service';
 
 @Component({
     selector: 'cbd-api5L-nominal-pipe-size-select',
@@ -11,11 +11,12 @@ export class Api5LNominalPipeSizeSelectComponent implements OnInit {
     public selectedValue: string;
     @Output() selected = new EventEmitter<string>();
 
-    constructor(private calculationValuesService: CalculationValueService){
+    constructor(private calculationValuesService: CalculationValuesService){
     }
 
     ngOnInit() {
-        this.selectData = this.calculationValuesService.getApi5Values();
+        this.selectData = this.calculationValuesService.getApi5lPipeSizes()
+        .map(a => a.size);
     }
     
     onNominalPipeSizeChange(selectedNominalPipeSize: string){
