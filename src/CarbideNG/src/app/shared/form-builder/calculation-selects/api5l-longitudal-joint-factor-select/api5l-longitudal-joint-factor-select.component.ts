@@ -13,7 +13,7 @@ export class Api5lLongitudalJointFactorSelectComponent implements OnInit {
 
   ngOnInit() {
     this.selectData = this.calculationValuesService.getLongitudinalJointFactorValues()
-        .map(a => `${a.description} (${a.value})`);
+        .map(a => `${a.description} (${a.value.toFixed(2)})`);
   }
 
 }

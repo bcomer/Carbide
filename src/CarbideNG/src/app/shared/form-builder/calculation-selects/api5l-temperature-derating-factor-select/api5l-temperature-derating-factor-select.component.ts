@@ -12,8 +12,8 @@ export class Api5lTemperatureDeratingFactorSelectComponent implements OnInit {
   constructor(private calculationValuesService: CalculationValuesService) { }
 
   ngOnInit() {
-    this.selectData = this.calculationValuesService.getDesignFactorValues()
-        .map(a => `${a.description} (${a.value})`);
+    this.selectData = this.calculationValuesService.getTemperatureDeratingFactorValues()
+        .map(a => `${a.description} (${a.value.toFixed(2)})`);
   }
 
 }
