@@ -23,12 +23,8 @@ import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { UserModule } from './user/user.module';
 import { CreateProjectDialogComponent } from './create-project-dialog/create-project-dialog.component';
 import { ProjectComponent } from './project/project.component';
-import { CalculationComponent } from './calculation/calculation.component';
-import { CalculationListComponent } from './calculation-list/calculation-list.component';
 import { CreateCalculationDialogComponent } from './create-calculation-dialog/create-calculation-dialog.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { Api5LWallThicknessComponent } from './calculation-selects/api5L-wall-thickness-select.component';
-import { Api5LNominalPipeSizeSelectComponent } from './calculation-selects/api5L-nominal-pipe-size-select.component';
 import { FormBuilderModule } from './shared/form-builder/form-builder.module';
 import { UserDetailComponent } from './user-detail/user-detail/user-detail.component';
 
@@ -41,13 +37,10 @@ import { UserDetailComponent } from './user-detail/user-detail/user-detail.compo
     ShellComponent,
     CreateProjectDialogComponent,
     ProjectComponent,
-    CalculationComponent,
-    CalculationListComponent,
     CreateCalculationDialogComponent,
     ToolbarComponent,
-    UserDetailComponent,
-    Api5LNominalPipeSizeSelectComponent,
-    Api5LWallThicknessComponent],
+    UserDetailComponent
+  ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
