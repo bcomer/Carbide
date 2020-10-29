@@ -1,1 +1,5 @@
-<p>design-pressure-steel-pipe works!</p>
+<div class="input-container">
+    <h2>Input</h2>
+    <cbd-api5L-nominal-pipe-size-select (selected)=onSelected($event)></cbd-api5L-nominal-pipe-size-select>
+    <cbd-api5L-wall-thickness-select [(nominalPipeSize)]="nominalPipeSize"></cbd-api5L-wall-thickness-select>
+  </div>

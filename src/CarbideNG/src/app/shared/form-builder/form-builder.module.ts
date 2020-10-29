@@ -9,6 +9,9 @@ import { CalculationListComponent } from './calculation-list/calculation-list.co
 import { CalculationSelectorComponent } from './calculation-selector/calculation-selector.component';
 import { StoreModule } from '@ngrx/store';
 import * as formFormBuilder from './state/form-builder.reducers';
+import { Api5LNominalPipeSizeSelectComponent } from './calculation-selects/api5L-nominal-pipe-size-select/api5L-nominal-pipe-size-select.component';
+import { Api5LWallThicknessComponent } from './calculation-selects/api5L-wall-thickness-select/api5L-wall-thickness-select.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,11 +20,15 @@ import * as formFormBuilder from './state/form-builder.reducers';
     ModuleSelectorComponent, 
     ModuleListComponent,
     CalculationListComponent,
-    CalculationSelectorComponent
+    CalculationSelectorComponent,
+    Api5LNominalPipeSizeSelectComponent,
+    Api5LWallThicknessComponent
   ],
   imports: [    
     CommonModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     StoreModule.forFeature('form-builder', formFormBuilder.reducer)
   ],
   exports: [

@@ -1,10 +1,13 @@
-<!-- <div [ngSwitch]="calculationType">
-    <span *ngSwitchCase="Design Pressure - Steel Pipe">Design Pressure - Steel Pipe</span>
-    <span *ngSwitchCase="Design Pressure - Other">Design Pressure - Steel Pipe</span>
+<ng-template [ngIf]="calculationType" [ngIfElse]="moduleList">
+<div [ngSwitch]="calculationType">
+    <span *ngSwitchCase="'Design Pressure - Steel Pipe'"><cbd-design-pressure-steel-pipe></cbd-design-pressure-steel-pipe></span>
+    <span *ngSwitchCase="'Design Pressure - Other'">Design Pressure - Steel Pipe</span>
     <span *ngSwitchDefault>Unknown Calculation</span>
-</div> -->
+</div>
+</ng-template>
 
 <!-- if they pass a type we do the switch -->
 <!-- else we show those module type button -->
-
-<cbd-module-list></cbd-module-list>
+<ng-template #moduleList>
+    <cbd-module-list></cbd-module-list>
+</ng-template>
