@@ -1,4 +1,9 @@
 <cbd-toolbar></cbd-toolbar>
 <cbd-user-detail></cbd-user-detail>
 <cbd-project-list [projects]="projects$ | async"></cbd-project-list>
-<cbd-calculation-details [calculationType]="'Design Pressure - Steel Pipe'"></cbd-calculation-details>
+<ng-template [ngIf]="hasCalculations()" [ngIfElse]="calcDetails">
+    <cbd-calculation-list></cbd-calculation-list>
+</ng-template>
+<ng-template #calcDetails>
+    <cbd-calculation-details [calculationType]="'Design Pressure - Steel Pipe'"></cbd-calculation-details>
+</ng-template>  

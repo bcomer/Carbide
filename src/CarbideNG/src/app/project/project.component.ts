@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Project } from '../models/project';
 import { Store, select } from '@ngrx/store';
 import { State } from '../state/app.reducers';
@@ -7,24 +7,34 @@ import { getCurrentProjectId } from '../state';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateProjectDialogComponent } from '../create-project-dialog/create-project-dialog.component';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'cbd-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent implements OnInit, OnDestroy {
   @Input() project: Project;
   showList: boolean = false;
-  selectedProjectId$: Observable<string>;
+  selectedProjectId: string;
+
+  private subs: SubSink = new SubSink();
 
   constructor(
     private readonly store: Store<State>,
     public dialog: MatDialog
   ) { }
 
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
+
   ngOnInit() {
-    this.selectedProjectId$ = this.store.pipe(select(getCurrentProjectId));
+    this.subs.sink = this.store.pipe(select(getCurrentProjectId)).subscribe(id => {
+      this.selectedProjectId = id;
+    });
   }
 
   openNewProjectDialog(): void {
@@ -45,5 +55,13 @@ export class ProjectComponent implements OnInit {
     }
 
     this.store.dispatch(setCurrentProject({ id: id }));
+  }
+
+  shouldParentProjectBeSelected(): boolean {
+    return this.selectedProjectId == this.project.id;
+  }
+
+  shouldSubProjectBeSelected(id: string): boolean {
+    return id == this.selectedProjectId;
   }
 }

@@ -1,4 +1,4 @@
-<div class="project-controls" [ngClass]="{selected: (selectedProjectId$ | async) === project?.id}"
+<div class="project-controls" [ngClass]="{'selected': shouldParentProjectBeSelected()}"
     (click)="setSelectedProject(project?.id)">
     <button mat-icon-button>
         <mat-icon [ngClass]="{'rotate-90': showList}">chevron_right</mat-icon>
@@ -10,7 +10,7 @@
 </div>
 <div *ngIf="showList" id="project-list-items">
     <div *ngFor="let sub of project.subProjects" class="project-controls"
-        [ngClass]="{selected: (selectedProjectId$ | async) === sub?.id}" (click)="setSelectedProject(sub?.id)">
+        [ngClass]="{'selected': shouldSubProjectBeSelected(sub?.id)}" (click)="setSelectedProject(sub?.id)">
         <span></span>
         <span>{{sub?.name}}</span>
         <button mat-icon-button [matMenuTriggerFor]="calcMenu" (click)="$event.stopPropagation();">
