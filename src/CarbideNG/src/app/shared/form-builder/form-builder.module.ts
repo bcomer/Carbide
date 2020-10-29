@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Api5lGradeSelectComponent } from './calculation-selects/api5l-grade-select/api5l-grade-select.component';
 import { Api5lDesignFactorSelectComponent } from './calculation-selects/api5l-design-factor-select/api5l-design-factor-select.component';
 import { Api5lLongitudalJointFactorSelectComponent } from './calculation-selects/api5l-longitudal-joint-factor-select/api5l-longitudal-joint-factor-select.component';
+import { Api5lTemperatureDeratingFactorSelectComponent } from './calculation-selects/api5l-temperature-derating-factor-select/api5l-temperature-derating-factor-select.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { Api5lLongitudalJointFactorSelectComponent } from './calculation-selects
     Api5LWallThicknessComponent,
     Api5lGradeSelectComponent,
     Api5lDesignFactorSelectComponent,
-    Api5lLongitudalJointFactorSelectComponent
+    Api5lLongitudalJointFactorSelectComponent,
+    Api5lTemperatureDeratingFactorSelectComponent
   ],
   imports: [    
     CommonModule,

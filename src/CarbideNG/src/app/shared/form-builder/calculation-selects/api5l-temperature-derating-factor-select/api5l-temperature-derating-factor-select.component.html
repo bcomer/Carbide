@@ -1,0 +1,8 @@
+<mat-form-field appearance="fill">
+    <mat-label>Temperature Derating Factor</mat-label>
+    <mat-select [(ngModel)]="selectedValue">
+        <mat-option *ngFor="let item of selectData" [value]="item">
+            {{item}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
