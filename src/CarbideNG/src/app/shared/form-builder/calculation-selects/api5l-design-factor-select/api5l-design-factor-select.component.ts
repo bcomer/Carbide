@@ -13,7 +13,7 @@ export class Api5lDesignFactorSelectComponent implements OnInit {
 
   ngOnInit() {
     this.selectData = this.calculationValuesService.getDesignFactorValues()
-        .map(a => a.description + a.value);
+        .map(a => `${a.description} (${a.value.toFixed(2)})`);
   }
 
 }
