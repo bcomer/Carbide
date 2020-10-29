@@ -12,6 +12,8 @@ import * as formFormBuilder from './state/form-builder.reducers';
 import { Api5LNominalPipeSizeSelectComponent } from './calculation-selects/api5L-nominal-pipe-size-select/api5L-nominal-pipe-size-select.component';
 import { Api5LWallThicknessComponent } from './calculation-selects/api5L-wall-thickness-select/api5L-wall-thickness-select.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Api5lGradeSelectComponent } from './calculation-selects/api5l-grade-select/api5l-grade-select.component';
+import { Api5lDesignFactorSelectComponent } from './calculation-selects/api5l-design-factor-select/api5l-design-factor-select.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CalculationListComponent,
     CalculationSelectorComponent,
     Api5LNominalPipeSizeSelectComponent,
-    Api5LWallThicknessComponent
+    Api5LWallThicknessComponent,
+    Api5lGradeSelectComponent,
+    Api5lDesignFactorSelectComponent
   ],
   imports: [    
     CommonModule,

@@ -1,0 +1,11 @@
+:host {
+    width: 320px;
+    height: 100%;
+
+    .input-container {
+        align-items: center;
+        display: grid;
+        font-size: 1.6rem;
+        width: 100%;
+    }
+}
