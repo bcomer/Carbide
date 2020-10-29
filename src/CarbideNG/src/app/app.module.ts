@@ -27,6 +27,7 @@ import { CreateCalculationDialogComponent } from './create-calculation-dialog/cr
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FormBuilderModule } from './shared/form-builder/form-builder.module';
 import { UserDetailComponent } from './user-detail/user-detail/user-detail.component';
+import { CalculationListComponent } from './calculation-list/calculation-list.component';
 
 
 
@@ -39,7 +40,8 @@ import { UserDetailComponent } from './user-detail/user-detail/user-detail.compo
     ProjectComponent,
     CreateCalculationDialogComponent,
     ToolbarComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    CalculationListComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
