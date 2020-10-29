@@ -14,6 +14,7 @@ import { Api5LWallThicknessComponent } from './calculation-selects/api5L-wall-th
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Api5lGradeSelectComponent } from './calculation-selects/api5l-grade-select/api5l-grade-select.component';
 import { Api5lDesignFactorSelectComponent } from './calculation-selects/api5l-design-factor-select/api5l-design-factor-select.component';
+import { Api5lLongitudalJointFactorSelectComponent } from './calculation-selects/api5l-longitudal-joint-factor-select/api5l-longitudal-joint-factor-select.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { Api5lDesignFactorSelectComponent } from './calculation-selects/api5l-de
     Api5LNominalPipeSizeSelectComponent,
     Api5LWallThicknessComponent,
     Api5lGradeSelectComponent,
-    Api5lDesignFactorSelectComponent
+    Api5lDesignFactorSelectComponent,
+    Api5lLongitudalJointFactorSelectComponent
   ],
   imports: [    
     CommonModule,
