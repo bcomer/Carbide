@@ -1,5 +1,6 @@
 <cbd-toolbar></cbd-toolbar>
 <cbd-user-detail></cbd-user-detail>
+<cbd-my-calculations></cbd-my-calculations>
 <cbd-project-list [projects]="projects$ | async"></cbd-project-list>
 <ng-template [ngIf]="hasCalculations()" [ngIfElse]="calcDetails">
     <cbd-calculation-list></cbd-calculation-list>

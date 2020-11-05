@@ -1,10 +1,11 @@
 :host {
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-template-rows: 64px 1fr 6fr;
+    grid-template-rows: 64px 81px 64px 1fr;
     grid-template-areas:
         "header header"
         "userDetails details"
+        "myCalcs details"
         "projects details";
     height: 100%;
 
@@ -21,7 +22,12 @@
         grid-area: header;
         z-index: 2;
     }
+
     cbd-user-detail{
         grid-area: userDetails
+    }
+
+    cbd-my-calculations {
+        grid-area: myCalcs;
     }
 }
