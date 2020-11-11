@@ -1,9 +1,12 @@
 <div class="input-container">
-    <h2>Input</h2>
-    <cbd-api5L-nominal-pipe-size-select (selected)=onSelected($event)></cbd-api5L-nominal-pipe-size-select>
-    <cbd-api5L-wall-thickness-select [(nominalPipeSize)]="nominalPipeSize"></cbd-api5L-wall-thickness-select>
-    <cbd-api5l-grade-select></cbd-api5l-grade-select>
-    <cbd-api5l-design-factor-select></cbd-api5l-design-factor-select>
-    <cbd-api5l-longitudal-joint-factor-select></cbd-api5l-longitudal-joint-factor-select>
-    <cbd-api5l-temperature-derating-factor-select></cbd-api5l-temperature-derating-factor-select>
+    <h2>Design Pressure</h2>
+    <cbd-api5L-nominal-pipe-size-select  (selected)="onSelected($event)"></cbd-api5L-nominal-pipe-size-select>
+    <cbd-api5L-wall-thickness-select (selectedWallThickness)="assignData($event, 'wall')" [(nominalPipeSize)]="nominalPipeSize"></cbd-api5L-wall-thickness-select>
+    <cbd-api5l-grade-select (selectedGrade)="assignData($event, 'grade')"></cbd-api5l-grade-select>
+    <cbd-api5l-design-factor-select (selectedDesignFactor)="assignData($event, 'design')"></cbd-api5l-design-factor-select>
+    <cbd-api5l-longitudal-joint-factor-select (selectedJointFactor)="assignData($event, 'joint')"></cbd-api5l-longitudal-joint-factor-select>
+    <cbd-api5l-temperature-derating-factor-select (selectedTemperatureFactor)="assignData($event, 'temperature')"></cbd-api5l-temperature-derating-factor-select>
+    <div class="calculate-button-row">
+        <button mat-raised-button color="primary" (click)="onCalculate()">Calculate</button>
+    </div>  
 </div>

@@ -4,6 +4,8 @@
 <ng-template [ngIf]="hasCalculations()" [ngIfElse]="calcDetails">
     <cbd-calculation-list></cbd-calculation-list>
 </ng-template>
+<cbd-calculation-details [calculationType]="'Design Pressure - Steel Pipe'"></cbd-calculation-details>
+
 <ng-template #calcDetails>
     <cbd-calculation-details [calculationType]="'Design Pressure - Steel Pipe'"></cbd-calculation-details>
 </ng-template>  
