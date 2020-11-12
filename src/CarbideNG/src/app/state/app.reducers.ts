@@ -2,6 +2,7 @@ import { Project } from '../models/project'
 import { createReducer, on } from '@ngrx/store'
 import * as AppActions from './app.actions';
 import { Calculation } from '../models/calculation';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 export interface State {
     currentProjectId: string | null,
@@ -34,8 +35,9 @@ const appReducer = createReducer(
     on(AppActions.loadCalculationsSuccess, setCalculationLoadedSuccessState),
     on(AppActions.loadCalculationsFail, setCalculationLoadedFailState),
     on(AppActions.createCalculationSuccess, setCreateCalculationSuccessState),
-    on(AppActions.createCalculationFail, setCreateCalculationFailState)
-    
+    on(AppActions.createCalculationFail, setCreateCalculationFailState),
+    on(AppActions.LoadAllCalculationsSuccess, setLoadAllCalculationsState),
+    on(AppActions.LoadAllCalculationsFail, setLoadAllCalculationsFailState)
 );
 
 export function reducer(state: State | undefined, action) {
@@ -161,6 +163,24 @@ function setCreateCalculationSuccessState(state: State, action): State {
 }
 
 function setCreateCalculationFailState(state: State, action): State {
+
+    return {
+        ...state,
+        error: action.error
+    }
+}
+
+function setLoadAllCalculationsState(state: State, action): State {
+
+    return { 
+        ...state,
+        currentCalculationId: null,
+        calculations: action.calculations,
+        error: null
+    };
+}
+
+function setLoadAllCalculationsFailState(state: State, action): State {
 
     return {
         ...state,
