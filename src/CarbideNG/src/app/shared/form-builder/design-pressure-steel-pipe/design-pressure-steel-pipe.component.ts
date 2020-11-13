@@ -1,5 +1,7 @@
 import { Component, OnInit, Injectable, Input } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+
 @Injectable()
 @Component({
   selector: 'cbd-design-pressure-steel-pipe',
@@ -13,6 +15,7 @@ export class DesignPressureSteelPipeComponent implements OnInit {
   public selectedDesignPressure: number;
   public selectedWallThickness: number;
   public selectedJointFactor: number;
+  public designPressureTotal: number;
 
   constructor(private http: HttpClient) { }
 
@@ -47,19 +50,25 @@ export class DesignPressureSteelPipeComponent implements OnInit {
         break;
     }
   }
-   onCalculate(value: number){
-     console.log(value);
+   onCalculate(){
+
     let designPressure = {
-      nominalOutsideDiameter: this.nominalPipeSize,
-      wallThickness: this.selectedWallThickness,
-      grade: this.selectedGrade,
-      designFactorValue: this.selectedDesignPressure,
-      temperatureDeratingFactor: this.selectedTemperatureFactor,
-      longitudinalJointFactor: this.selectedJointFactor
-    };
+      NominalOutsideDiameter: this.nominalPipeSize,
+      WallThickness: this.selectedWallThickness,
+      Grade: this.selectedGrade,
+      DesignFactorValue: this.selectedDesignPressure,
+      TemperatureDeratingFactor: this.selectedTemperatureFactor,
+      LongitudinalJointFactor: this.selectedJointFactor,
+      DesignPressureTotal: 0
+    }
     console.log(designPressure);
-    let f = this.http.post('http://localhost:5001/newton-cddbd/us-central1/designPressure', designPressure).subscribe();
-     console.log(f);
+    
+    let f = this.http.post('http://localhost:5001/newton-cddbd/us-central1/designPressure', designPressure).subscribe((data: any) =>{
+      console.log(data.DesignPressureTotal);
+      this.designPressureTotal = data.DesignPressureTotal;
+
+    });
+     console.log(designPressure);
     
   }
 }
