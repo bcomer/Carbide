@@ -3,7 +3,8 @@ import { CalculationValuesService } from '../../Services/calculation-values.serv
 
 @Component({
     selector: 'cbd-api5L-nominal-pipe-size-select',
-    templateUrl: './api5L-nominal-pipe-size-select.component.html'
+    templateUrl: './api5L-nominal-pipe-size-select.component.html',
+    styleUrls: ['./api5l-nominal-pipe-size-select.component.scss']
   })
 
 export class Api5LNominalPipeSizeSelectComponent implements OnInit {

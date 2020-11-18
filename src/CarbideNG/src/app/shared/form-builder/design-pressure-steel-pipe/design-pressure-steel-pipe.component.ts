@@ -1,5 +1,7 @@
 import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CalculationFunctionsService } from '../Services/calculation-functions.service';
+import { CalculationField } from 'src/app/models/calculation-field';
 
 
 @Injectable()
@@ -17,7 +19,7 @@ export class DesignPressureSteelPipeComponent implements OnInit {
   public selectedJointFactor: number;
   public designPressureTotal: number;
 
-  constructor(private http: HttpClient) { }
+  constructor(private calculationFunctionsService: CalculationFunctionsService) { }
 
   ngOnInit() {
   }
@@ -26,7 +28,7 @@ export class DesignPressureSteelPipeComponent implements OnInit {
     this.nominalPipeSize = value;
   }
   assignData(value: number, type: string){
-    console.log(value + type);
+  
     switch (type) {
       case 'nominal':
         this.nominalPipeSize = value;
@@ -51,7 +53,7 @@ export class DesignPressureSteelPipeComponent implements OnInit {
     }
   }
    onCalculate(){
-
+    
     let designPressure = {
       NominalOutsideDiameter: this.nominalPipeSize,
       WallThickness: this.selectedWallThickness,
@@ -61,14 +63,9 @@ export class DesignPressureSteelPipeComponent implements OnInit {
       LongitudinalJointFactor: this.selectedJointFactor,
       DesignPressureTotal: 0
     }
-    console.log(designPressure);
-    
-    let f = this.http.post('http://localhost:5001/newton-cddbd/us-central1/designPressure', designPressure).subscribe((data: any) =>{
-      console.log(data.DesignPressureTotal);
-      this.designPressureTotal = data.DesignPressureTotal;
 
-    });
-     console.log(designPressure);
-    
+      this.calculationFunctionsService.calculateDesignPressure(designPressure).subscribe((data: any) => {
+      this.designPressureTotal = data.DesignPressureTotal;
+  })   
   }
 }

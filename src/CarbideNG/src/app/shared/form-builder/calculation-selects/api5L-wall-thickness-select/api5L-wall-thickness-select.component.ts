@@ -3,7 +3,9 @@ import { CalculationValuesService } from '../../Services/calculation-values.serv
 
 @Component({
     selector: 'cbd-api5L-wall-thickness-select',
-    templateUrl: './api5L-wall-thickness-select.component.html'
+    templateUrl: './api5L-wall-thickness-select.component.html',
+    styleUrls: ['./api5L-wall-thickness-select.component.scss']
+
   })
 
 export class Api5LWallThicknessComponent implements OnInit {
