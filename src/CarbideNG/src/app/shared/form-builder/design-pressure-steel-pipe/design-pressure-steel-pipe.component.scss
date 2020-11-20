@@ -3,13 +3,62 @@
     height: 100%;
 
     .input-container {
-        align-items: center;
         display: grid;
         font-size: 1.6rem;
-        width: 100%;
+        width: 100%;  
+        grid-template-areas:   "header header"
+                                "inputs outputs"
+                                "actions actions";
+        grid-template-columns: 1fr 2fr;
+        gap: 20px ;
+
     }
-    .calculate-button-row{
+    .actions{
         display: table-cell;
-        width: 400px;
+        width: 100%;
+        grid-area: actions;
     }
+    header {
+        grid-area: header;
+        // text-align: center;
+        font-weight: bold;
+        font-size: 2.5rem;
+        padding: 10px;    
+      }
+.inputs{
+    grid-area: inputs;
+    margin-left: 20px;
+}
+mat-divider{
+padding-top: 10px;
+}
+.outputs{
+    grid-area: outputs;
+    margin-top: 30px;
+}
+table{
+    border-collapse: collapse;
+    // box-shadow: 0 0 5px #888;
+}
+.total-row{
+    text-align: right;
+    font-weight: bold;
+}
+tr:last-child {
+    background-color: #dddddd;
+  }
+  td, th{
+      padding: 10px;
+      border: 1px solid #dddddd;
+
+  }
+  td:nth-child(2){
+      text-align: right;
+      width: 20%;
+  }
+  tr:nth-child(even) {
+    background-color:  #f2f2f2;
+  }
+
+
 }
