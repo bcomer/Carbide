@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State } from '../state';
 import { LoadAllCalculations } from '../state/app.actions';
@@ -9,6 +9,7 @@ import { LoadAllCalculations } from '../state/app.actions';
   styleUrls: ['./my-calculations.component.scss']
 })
 export class MyCalculationsComponent implements OnInit {
+  @Output() click = new EventEmitter<void>(); 
 
   constructor(private readonly store: Store<State>) { }
 
@@ -17,6 +18,7 @@ export class MyCalculationsComponent implements OnInit {
 
   onMyCalculationsClicked(): void {
     this.store.dispatch(LoadAllCalculations());
+    this.click.emit();
   }
 
 }

@@ -18,6 +18,7 @@ import { getProjects } from '../state';
 export class ShellComponent implements OnInit, OnDestroy {
   projects$: Observable<Project[]>;
     
+  private showCalculationList: boolean = false;
   private subs = new SubSink();
 
   constructor(
@@ -41,8 +42,11 @@ export class ShellComponent implements OnInit, OnDestroy {
     this.projects$ = this.appStore.pipe(select(getProjects));
   }
 
-  hasCalculations(): boolean {
-    return true;
+  showCalculations(): boolean {
+    return this.showCalculationList;
   }
 
+  showAllCalculations(): void {
+    this.showCalculationList = true;
+  }
 }
