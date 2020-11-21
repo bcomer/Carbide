@@ -1,1 +1,3 @@
-<p>calculation-list works!</p>
+<h1>My Calculations</h1>
+
+<span *ngFor="let calc of (calculations$ | async)">{{calc.name}}</span>

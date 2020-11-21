@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Calculation } from '../models/calculation';
+import { getCalculations } from '../state';
+import { State } from '../state/app.reducers';
 
 @Component({
   selector: 'cbd-calculation-list',
@@ -7,9 +12,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalculationListComponent implements OnInit {
 
-  constructor() { }
+  calculations$: Observable<Array<Calculation>>;
+
+  constructor(
+    private readonly store: Store<State>
+    ) { }
 
   ngOnInit() {
+    this.calculations$ = this.store.pipe(select(getCalculations))
   }
-
 }
