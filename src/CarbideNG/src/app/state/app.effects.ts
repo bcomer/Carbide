@@ -18,10 +18,6 @@ export class AppEffects {
         private readonly store$: Store<State>
     ) { }
 
-    // updateProject$ = createEffect(() => this.actions$.pipe(
-    //     //i'm stuck - i was wanting to update a project when a calculation is created
-    //     ));
-
     loadProjects$ = createEffect(() => this.actions$.pipe(
         ofType(AppActions.loadProjects),
         withLatestFrom(this.store$),
@@ -58,23 +54,32 @@ export class AppEffects {
         ofType(AppActions.loadCalculations),
         withLatestFrom(this.store$),
         mergeMap((actionAndStore => {
-            return this.calculationSvc.getAll(actionAndStore[0].id, actionAndStore[1]['users'].user.companyId).pipe(
-                map(calculation => AppActions.loadCalculationsSuccess({calculations : calculation})),
+            return this.calculationSvc.getCalculationsForProject(actionAndStore[0].id, actionAndStore[1]['users'].user.companyId, actionAndStore[1]['users'].user.id).pipe(
+                map(calculation => AppActions.loadCalculationsSuccess({ calculations: calculation })),
                 catchError(error => of(AppActions.loadCalculationsFail({ error: error.message })))
             )
         })
-    )));
-    
+        )));
+
     createCalculation$ = createEffect(() => this.actions$.pipe(
         ofType(AppActions.createCalculation),
         withLatestFrom(this.store$),
         mergeMap(actionAndStore =>
-            this.calculationSvc.create(actionAndStore[0].calculation, actionAndStore[1]['users'].user.companyId, actionAndStore[1]['users'].user.id ).pipe(
+            this.calculationSvc.create(actionAndStore[0].calculation, actionAndStore[1]['users'].user.companyId, actionAndStore[1]['users'].user.id).pipe(
                 map(calculation => AppActions.createCalculationSuccess({ calculation: calculation })),
-                catchError(error => of(AppActions.createCalculationFail({ error: error.message })))  
+                catchError(error => of(AppActions.createCalculationFail({ error: error.message })))
             )
         )
     ));
 
-
+    loadAlllCalclulations$ = createEffect(() => this.actions$.pipe(
+        ofType(AppActions.LoadAllCalculations),
+        withLatestFrom(this.store$),
+        mergeMap(actionAndStore =>
+            this.calculationSvc.getAll(actionAndStore[1]['users'].user.companyId, actionAndStore[1]['users'].user.id).pipe(
+                map(calculations => AppActions.LoadAllCalculationsSuccess({ calculations: calculations })),
+                catchError(error => of(AppActions.LoadAllCalculationsFail({ error: error.message })))
+            )
+        )
+    ));
 }
