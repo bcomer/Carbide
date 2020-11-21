@@ -1,8 +1,29 @@
-<h1>My Calculations</h1>
+<div class="header">
+    <h1>My Calculations</h1>
+
+    <button mat-icon-button [matMenuTriggerFor]="calculationsSortMenu">
+        <mat-icon>more_horizontal</mat-icon>
+    </button>
+</div>
 
 <cbd-calculation-item [calculation]="calc" *ngFor="let calc of (calculations$ | async)"></cbd-calculation-item>
 
 <button mat-button>
     <mat-icon>add</mat-icon>
-    <span>Add Calculation</span>    
+    <span>Add Calculation</span>
 </button>
+
+<mat-menu #calculationsSortMenu="matMenu">
+    <button mat-menu-item (click)="sortCalculations('date')">
+        <mat-icon>event</mat-icon>
+        Sort by date
+    </button>
+    <button mat-menu-item (click)="sortCalculations('name')">
+        <mat-icon>text_fields</mat-icon>
+        Sort by name
+    </button>
+    <button mat-menu-item (click)="sortCalculations('validation')">
+        <mat-icon>check_circle_outline</mat-icon>
+        Sort by validation
+    </button>
+</mat-menu>

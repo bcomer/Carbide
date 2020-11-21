@@ -3,6 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Calculation } from '../models/calculation';
 import { getCalculations } from '../state';
+import { SortCalculations } from '../state/app.actions';
 import { State } from '../state/app.reducers';
 
 @Component({
@@ -20,5 +21,9 @@ export class CalculationListComponent implements OnInit {
 
   ngOnInit() {
     this.calculations$ = this.store.pipe(select(getCalculations))
+  }
+
+  sortCalculations(sortByProp: 'date' | 'name' | 'validation'): void {
+    this.store.dispatch(SortCalculations({sortByProp: sortByProp}))
   }
 }

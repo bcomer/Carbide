@@ -2,7 +2,6 @@ import { Project } from '../models/project'
 import { createReducer, on } from '@ngrx/store'
 import * as AppActions from './app.actions';
 import { Calculation } from '../models/calculation';
-import { Action } from 'rxjs/internal/scheduler/Action';
 
 export interface State {
     currentProjectId: string | null,
@@ -23,7 +22,7 @@ const initialState: State = {
 const appReducer = createReducer(
     initialState,
     on(AppActions.clearCurrentProject, setClearCurrentProjectState),
-    on(AppActions.setCurrentProject, setCurrentProjectState),    
+    on(AppActions.setCurrentProject, setCurrentProjectState),
     on(AppActions.loadProjectsSuccess, setProjectLoadedSuccessState),
     on(AppActions.loadProjectsFail, setProjectLoadedFailState),
     on(AppActions.loadSubProjectsSuccess, setSubProjectsLoadedSuccessState),
@@ -37,7 +36,8 @@ const appReducer = createReducer(
     on(AppActions.createCalculationSuccess, setCreateCalculationSuccessState),
     on(AppActions.createCalculationFail, setCreateCalculationFailState),
     on(AppActions.LoadAllCalculationsSuccess, setLoadAllCalculationsState),
-    on(AppActions.LoadAllCalculationsFail, setLoadAllCalculationsFailState)
+    on(AppActions.LoadAllCalculationsFail, setLoadAllCalculationsFailState),
+    on(AppActions.SortCalculations, setSortCalculationsState)
 );
 
 export function reducer(state: State | undefined, action) {
@@ -53,7 +53,7 @@ function setClearCurrentProjectState(state: State): State {
 }
 
 function setCurrentProjectState(state: State, action): State {
-    
+
     return {
         ...state,
         currentProjectId: action.id
@@ -68,7 +68,7 @@ function setProjectLoadedSuccessState(state: State, action): State {
     };
 };
 
-function setProjectLoadedFailState(state: State, action): State {    
+function setProjectLoadedFailState(state: State, action): State {
     return {
         ...state,
         currentProjectId: null,
@@ -96,7 +96,7 @@ function setSubProjectsLoadedFailState(state: State, action): State {
     }
 }
 
-function setCreateProjectSuccessState(state: State, action): State {    
+function setCreateProjectSuccessState(state: State, action): State {
     return {
         ...state,
         error: null
@@ -114,7 +114,7 @@ function setCreateProjectFailState(state: State, action): State {
 //calculations
 
 function setCurrentCalculationState(state: State, action): State {
-    
+
     return {
         ...state,
         currentCalculationId: action.id
@@ -135,7 +135,7 @@ function setCalculationLoadedSuccessState(state: State, action): State {
 
     state.calculations = null;
     calculations = action.calculations;
-    
+
     return {
         ...state,
         currentCalculationId: currentCalculationId,
@@ -144,7 +144,7 @@ function setCalculationLoadedSuccessState(state: State, action): State {
     };
 };
 
-function setCalculationLoadedFailState(state: State, action): State {    
+function setCalculationLoadedFailState(state: State, action): State {
     return {
         ...state,
         currentCalculationId: null,
@@ -154,7 +154,7 @@ function setCalculationLoadedFailState(state: State, action): State {
 };
 
 function setCreateCalculationSuccessState(state: State, action): State {
-    
+
 
     return {
         ...state,
@@ -172,7 +172,7 @@ function setCreateCalculationFailState(state: State, action): State {
 
 function setLoadAllCalculationsState(state: State, action): State {
 
-    return { 
+    return {
         ...state,
         currentCalculationId: null,
         calculations: action.calculations,
@@ -186,4 +186,26 @@ function setLoadAllCalculationsFailState(state: State, action): State {
         ...state,
         error: action.error
     }
+}
+
+function setSortCalculationsState(state: State, action): State {
+    let newState = { ...state };
+
+    if (action.sortByProp == 'date') {
+        newState.calculations.sort((a, b) => {
+            return Number(a.createdOn) - Number(b.createdOn);
+        });
+
+    } else if (action.sortByProp == 'name') {
+        newState.calculations.sort((a, b) => {
+            return a.name.localeCompare(b.name);
+        });
+
+    } else if (action.sortByProp == 'validation') {
+        newState.calculations.sort((a, b) => {
+            return Number(b.isValid) - Number(a.isValid);
+        });
+    }
+
+    return newState;
 }

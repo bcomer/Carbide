@@ -124,3 +124,8 @@ export const LoadAllCalculationsFail = createAction(
     '[Calculation] Load All Calculations Fail',
     props<{error: string}>()
 )
+
+export const SortCalculations = createAction(
+    '[Calculation] Sort',
+    props<{sortByProp: 'date' | 'name' | 'validation'}>()
+);
