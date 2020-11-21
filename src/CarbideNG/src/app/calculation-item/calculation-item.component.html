@@ -1,1 +1,11 @@
-<p>calculation-item works!</p>
+<ng-template [ngIf]="isValid()" [ngIfElse]="invalidIcon">
+    <mat-icon class="valid-icon">check_circle_outline</mat-icon>
+</ng-template>
+<ng-template #invalidIcon>
+    <mat-icon class="not-valid-icon">add_circle_outline</mat-icon>   
+</ng-template>
+
+<span class="calculation-name">{{calculation?.name}}</span>
+<span class="project-name">{{calculation?.projectName}}</span>
+
+<mat-divider></mat-divider>
