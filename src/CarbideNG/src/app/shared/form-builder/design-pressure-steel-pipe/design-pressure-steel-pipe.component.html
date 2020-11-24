@@ -30,31 +30,31 @@
     <table style="width:75%; position: relative;">     
         <tr>
           <td>Nominal Pipe Size</td>
-          <td>{{nominalPipeSize}}</td>
+          <td>{{nominalPipeSize || '-'}}</td>
         </tr>
         <tr>
             <td>Wall Thickness</td>
-            <td>{{selectedWallThickness}}</td>
+            <td>{{selectedWallThickness || '-'}}</td>
           </tr>
           <tr>
             <td>Grade</td>
-            <td>{{selectedGrade}}</td>
+            <td>{{selectedGrade ||  '-'}}</td>
           </tr>
           <tr>
             <td>Design Factor</td>
-            <td>{{selectedDesignFactor}}</td>
+            <td>{{selectedDesignFactor || '-'}}</td>
           </tr>
           <tr>
             <td>Longitudinal Joint Factor</td>
-            <td>{{selectedJointFactor}}</td>
+            <td>{{selectedJointFactor || '-'}}</td>
           </tr>
           <tr>
             <td>Temperature Derating Factor</td>
-            <td>{{selectedTemperatureFactor}}</td>
+            <td>{{selectedTemperatureFactor || '-'}}</td>
           </tr>
           <tr>
             <td class="total-row">Design Pressure Total (psig)</td>
-            <td>{{designPressureTotal}}</td>
+            <td>{{designPressureTotal || '-'}}</td>
           </tr>
       </table>
       </div>
@@ -62,6 +62,6 @@
       <div class="actions">
         <mat-divider></mat-divider>
         <button mat-raised-button color="basic"(click)="onCalculate()">Calculate</button>
-        <button mat-raised-button color="primary" (click)="onCalculate()">Save</button>
+        <button mat-raised-button color="primary" (click)="onSave()">Save</button>
     </div>
 </div>

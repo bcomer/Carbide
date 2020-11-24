@@ -2,6 +2,8 @@ import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CalculationFunctionsService } from '../Services/calculation-functions.service';
 import { CalculationField } from 'src/app/models/calculation-field';
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/state/app.reducers';
 
 
 @Injectable()
@@ -10,17 +12,19 @@ import { CalculationField } from 'src/app/models/calculation-field';
   templateUrl: './design-pressure-steel-pipe.component.html',
   styleUrls: ['./design-pressure-steel-pipe.component.scss']
 })
-export class DesignPressureSteelPipeComponent implements OnInit {
-  public nominalPipeSize: number;
-  public selectedGrade: number;
-  public selectedTemperatureFactor: number;
-  public selectedDesignFactor: number;
-  public selectedWallThickness: number;
-  public selectedJointFactor: number;
-  public designPressureTotal: number;
-  public dimensionIdentifier: string;
+export class DesignPressureSteelPipeComponent implements OnInit  {
+  nominalPipeSize: number;
+  selectedGrade: number;
+  selectedTemperatureFactor: number;
+  selectedDesignFactor: number;
+  selectedWallThickness: number;
+  selectedJointFactor: number;
+  designPressureTotal: number;
+  dimensionIdentifier: string;
+  designPressure: CalculationField;
 
-  constructor(private calculationFunctionsService: CalculationFunctionsService) { }
+  constructor(private calculationFunctionsService: CalculationFunctionsService)
+   { }
 
   ngOnInit() {
   }
@@ -54,8 +58,8 @@ export class DesignPressureSteelPipeComponent implements OnInit {
     }
   }
    onCalculate(){
-    
-    let designPressure = {
+
+    this.designPressure = {
       NominalOutsideDiameter: this.nominalPipeSize,
       WallThickness: this.selectedWallThickness,
       Grade: this.selectedGrade,
@@ -64,11 +68,12 @@ export class DesignPressureSteelPipeComponent implements OnInit {
       LongitudinalJointFactor: this.selectedJointFactor,
       DesignPressureTotal: 0
     }
-
-      this.calculationFunctionsService.calculateDesignPressure(designPressure).subscribe((data: any) => {
+      this.calculationFunctionsService.calculateDesignPressure(this.designPressure).subscribe((data: any) => {
       this.designPressureTotal = data.DesignPressureTotal;
       this.dimensionIdentifier = ' psig';
-
   })   
+  }
+  onSave(){
+
   }
 }
