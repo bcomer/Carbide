@@ -4,6 +4,8 @@ import { CalculationFunctionsService } from '../Services/calculation-functions.s
 import { CalculationField } from 'src/app/models/calculation-field';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/state/app.reducers';
+import { createCalculation } from 'src/app/state/app.actions';
+import { Calculation } from 'src/app/models/calculation';
 
 
 @Injectable()
@@ -23,15 +25,15 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
   dimensionIdentifier: string;
   designPressure: CalculationField;
 
-  constructor(private calculationFunctionsService: CalculationFunctionsService)
+  constructor(
+    private calculationFunctionsService: CalculationFunctionsService,
+    private readonly store: Store<State>
+    )
    { }
 
   ngOnInit() {
   }
 
-  onSelected(value: number) {
-    this.nominalPipeSize = value;
-  }
   assignData(value: number, type: string){
   
     switch (type) {
@@ -74,6 +76,7 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
   })   
   }
   onSave(){
-
+    let newCalculation: Calculation = new Calculation(null, null, 'test calc field save',  null, [this.designPressure], null, null, null);
+    this.store.dispatch(createCalculation({calculation: newCalculation}));
   }
 }
