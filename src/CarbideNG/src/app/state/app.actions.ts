@@ -110,3 +110,22 @@ export const createCalculationFail = createAction(
     '[Calculation] Create Calculation Fail',
     props<{error: string}>()
 );
+
+export const LoadAllCalculations = createAction(
+    '[Calculation] Load All Calculations'
+)
+
+export const LoadAllCalculationsSuccess = createAction(
+    '[Calculation] Load All Calculations Success',
+    props<{calculations: Array<Calculation>}>()
+)
+
+export const LoadAllCalculationsFail = createAction(
+    '[Calculation] Load All Calculations Fail',
+    props<{error: string}>()
+)
+
+export const SortCalculations = createAction(
+    '[Calculation] Sort',
+    props<{sortByProp: 'date' | 'name' | 'validation'}>()
+);

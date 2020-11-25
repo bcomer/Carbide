@@ -1,7 +1,8 @@
 <cbd-toolbar></cbd-toolbar>
 <cbd-user-detail></cbd-user-detail>
+<cbd-my-calculations (click)="showAllCalculations()"></cbd-my-calculations>
 <cbd-project-list [projects]="projects$ | async"></cbd-project-list>
-<ng-template [ngIf]="hasCalculations()" [ngIfElse]="calcDetails">
+<ng-template [ngIf]="showCalculations()" [ngIfElse]="calcDetails">
     <cbd-calculation-list></cbd-calculation-list>
 </ng-template>
 <cbd-calculation-details [calculationType]="'Design Pressure - Steel Pipe'"></cbd-calculation-details>

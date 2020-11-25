@@ -10,7 +10,8 @@ export class Calculation {
         public result?: number,
         public companyId?: string,
         public createdBy?: string,
-        public createdOn?: string
+        public createdOn?: string,
+        public isValid?: boolean
     ) { }
 }
 

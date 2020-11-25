@@ -28,6 +28,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FormBuilderModule } from './shared/form-builder/form-builder.module';
 import { UserDetailComponent } from './user-detail/user-detail/user-detail.component';
 import { CalculationListComponent } from './calculation-list/calculation-list.component';
+import { MyCalculationsComponent } from './my-calculations/my-calculations.component';
+import { CalculationItemComponent } from './calculation-item/calculation-item.component';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
@@ -42,7 +44,9 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     CreateCalculationDialogComponent,
     ToolbarComponent,
     UserDetailComponent,
-    CalculationListComponent
+    CalculationListComponent,
+    MyCalculationsComponent,
+    CalculationItemComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
