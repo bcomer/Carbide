@@ -18,7 +18,6 @@ export class Api5lLongitudalJointFactorSelectComponent implements OnInit {
         .map(a => a);
   }
   onSelected(){
-    console.log(this.selectedValue)
     this.selectedJointFactor.emit(this.selectedValue);
    }
 }
