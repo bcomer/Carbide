@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CalculationValuesService } from '../../Services/calculation-values.service';
 
 @Component({
@@ -8,12 +8,16 @@ import { CalculationValuesService } from '../../Services/calculation-values.serv
 })
 export class Api5lLongitudalJointFactorSelectComponent implements OnInit {
   public selectData: any;
-
+  public selectedValue: number;
+  @Output() selectedJointFactor = new EventEmitter<number>();
+  
   constructor(private calculationValuesService: CalculationValuesService) { }
 
   ngOnInit() {
     this.selectData = this.calculationValuesService.getLongitudinalJointFactorValues()
-        .map(a => `${a.description} (${a.value.toFixed(2)})`);
+        .map(a => a);
   }
-
+  onSelected(){
+    this.selectedJointFactor.emit(this.selectedValue);
+   }
 }

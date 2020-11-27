@@ -31,6 +31,7 @@ import { CalculationListComponent } from './calculation-list/calculation-list.co
 import { MyCalculationsComponent } from './my-calculations/my-calculations.component';
 import { CalculationItemComponent } from './calculation-item/calculation-item.component';
 
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { CalculationItemComponent } from './calculation-item/calculation-item.co
       logOnly: environment.production
     }),
     EffectsModule.forRoot([AppEffects]),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

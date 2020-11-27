@@ -1,8 +1,8 @@
 <mat-form-field appearance="fill">
     <mat-label>Nominal Pipe Size</mat-label>
     <mat-select [(ngModel)]="selectedValue" (selectionChange)="onNominalPipeSizeChange(selectedValue)">
-        <mat-option *ngFor="let item of selectData" [value]="item">
-            {{item}}
+        <mat-option *ngFor="let item of selectData" [value]="item.outsideDiameter">
+            {{item.size}}
         </mat-option>
     </mat-select>
 </mat-form-field>

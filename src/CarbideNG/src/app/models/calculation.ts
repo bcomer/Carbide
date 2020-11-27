@@ -6,7 +6,7 @@ export class Calculation {
         public parentId?: string,
         public name?: string,
         public type?: string,
-        public fields?: CalculationField[],
+        public fields?: CalculationField,
         public result?: number,
         public companyId?: string,
         public createdBy?: string,

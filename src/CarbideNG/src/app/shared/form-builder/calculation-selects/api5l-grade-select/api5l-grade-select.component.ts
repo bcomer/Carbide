@@ -8,11 +8,16 @@ import { CalculationValuesService } from '../../Services/calculation-values.serv
 })
 export class Api5lGradeSelectComponent implements OnInit {
   public selectData: any;
+  public selectedValue: any;
+  @Output() selectedGrade = new EventEmitter<number>();
   
   constructor(private calculationValuesService: CalculationValuesService) { }
 
   ngOnInit() {
     this.selectData = this.calculationValuesService.getApi5lGrades()
-        .map(a => a.description);
+        .map(a => a);
   }
+  onSelected(){
+    this.selectedGrade.emit(this.selectedValue);
+   }
 }
