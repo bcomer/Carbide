@@ -23,7 +23,15 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
   selectedJointFactor: number;
   designPressureTotal: number;
   dimensionIdentifier: string;
-  designPressure: CalculationField;
+  designPressure: Calculation;  
+  designPressureModel:CalculationField =  {
+    NominalOutsideDiameter: undefined,
+    WallThickness: undefined,
+    Grade: undefined,
+    DesignFactorValue: undefined,
+    TemperatureDeratingFactor: undefined,
+    LongitudinalJointFactor: undefined,
+  }
 
   constructor(
     private calculationFunctionsService: CalculationFunctionsService,
@@ -32,28 +40,30 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
    { }
 
   ngOnInit() {
+    
   }
 
   assignData(value: number, type: string){
   
     switch (type) {
       case 'nominal':
+        this.designPressureModel.NominalOutsideDiameter = value;
         this.nominalPipeSize = value;
         break;
       case 'wall':
-        this.selectedWallThickness = value;
+        this.designPressureModel.WallThickness = value;
         break;
       case 'grade':
-        this.selectedGrade = value;
+        this.designPressureModel.Grade = value;
         break;
       case 'temperature':
-        this.selectedTemperatureFactor = value;
+        this.designPressureModel.TemperatureDeratingFactor = value;
         break;
       case 'joint':
-        this.selectedJointFactor = value;
+        this.designPressureModel.LongitudinalJointFactor = value;
         break;
       case 'design':
-        this.selectedDesignFactor = value;
+        this.designPressureModel.DesignFactorValue = value;
         break;
       default:
         break;
@@ -61,16 +71,7 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
   }
    onCalculate(){
 
-     this.designPressure = {
-      NominalOutsideDiameter: this.nominalPipeSize,
-      WallThickness: this.selectedWallThickness,
-      Grade: this.selectedGrade,
-      DesignFactorValue: this.selectedDesignFactor,
-      TemperatureDeratingFactor: this.selectedTemperatureFactor,
-      LongitudinalJointFactor: this.selectedJointFactor,
-    }
-
-      this.calculationFunctionsService.calculateDesignPressure(this.designPressure).subscribe((data: any) => {
+      this.calculationFunctionsService.calculateDesignPressure(this.designPressureModel).subscribe((data: any) => {
       this.designPressureTotal = data.DesignPressureTotal;
       this.dimensionIdentifier = ' psig';
   })   
@@ -80,4 +81,7 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
     let newCalculation: Calculation = new Calculation(null, null, 'test calc field',  null, this.designPressure, null, null, null, null, true);
     this.store.dispatch(createCalculation({calculation: newCalculation}));
   }
+}
+export class DesignPressure{
+
 }

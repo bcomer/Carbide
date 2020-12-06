@@ -11,7 +11,7 @@ import { CalculationValuesService } from '../../Services/calculation-values.serv
 export class Api5LWallThicknessComponent implements OnInit {
     public selectData: any;
     public selectValue: any;
-    @Input() nominalPipeSize: any;
+    @Input() nominalPipeSize: number;
     @Output() selectedWallThickness = new EventEmitter<number>();
 
     constructor(private calculationValuesService: CalculationValuesService){

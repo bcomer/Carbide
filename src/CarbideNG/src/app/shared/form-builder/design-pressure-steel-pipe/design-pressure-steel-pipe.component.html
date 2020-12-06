@@ -30,27 +30,27 @@
     <table style="width:75%; position: relative;">     
         <tr>
           <td>Nominal Pipe Size</td>
-          <td>{{nominalPipeSize || '-'}}</td>
+          <td>{{designPressureModel?.NominalOutsideDiameter || '-'}}</td>
         </tr>
         <tr>
             <td>Wall Thickness</td>
-            <td>{{selectedWallThickness || '-'}}</td>
+            <td>{{designPressureModel?.WallThickness || '-'}}</td>
           </tr>
           <tr>
             <td>Grade</td>
-            <td>{{selectedGrade ||  '-'}}</td>
+            <td>{{designPressureModel?.Grade ||  '-'}}</td>
           </tr>
           <tr>
             <td>Design Factor</td>
-            <td>{{selectedDesignFactor || '-'}}</td>
+            <td>{{designPressureModel?.DesignFactorValue || '-'}}</td>
           </tr>
           <tr>
             <td>Longitudinal Joint Factor</td>
-            <td>{{selectedJointFactor || '-'}}</td>
+            <td>{{designPressureModel?.LongitudinalJointFactor || '-'}}</td>
           </tr>
           <tr>
             <td>Temperature Derating Factor</td>
-            <td>{{selectedTemperatureFactor || '-'}}</td>
+            <td>{{designPressureModel?.TemperatureDeratingFactor || '-'}}</td>
           </tr>
           <tr>
             <td class="total-row">Design Pressure Total (psig)</td>
