@@ -3,12 +3,12 @@ import { UserState } from '../user/state/user.reducer';
 import { Store, select } from '@ngrx/store';
 import { getSignedInUser } from '../user/state/user.actions';
 import { State } from '../state/app.reducers';
-import { loadProjects } from '../state/app.actions';
+import { loadProjects, SetCalculationListVisibility } from '../state/app.actions';
 import { getAppUser } from '../user/state';
 import { SubSink } from 'subsink';
 import { Observable } from 'rxjs';
 import { Project } from '../models/project';
-import { getProjects } from '../state';
+import { getProjects, getSelectedCalculation, getCalculationListVisibility } from '../state';
 
 @Component({
   selector: 'cbd-shell',
@@ -17,8 +17,8 @@ import { getProjects } from '../state';
 })
 export class ShellComponent implements OnInit, OnDestroy {
   projects$: Observable<Project[]>;
-    
-  private showCalculationList: boolean = false;
+  selectedCalculationType$: Observable<string>;
+  showCalculationList$: Observable<boolean>;
   private subs = new SubSink();
 
   constructor(
@@ -32,7 +32,7 @@ export class ShellComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userStore.dispatch(getSignedInUser());
-
+    this.selectedCalculationType$ = this.appStore.pipe(select(getSelectedCalculation));
     this.subs.sink = this.userStore.pipe(select(getAppUser)).subscribe(user => {
       if (user) {
         this.appStore.dispatch(loadProjects());
@@ -40,13 +40,12 @@ export class ShellComponent implements OnInit, OnDestroy {
     });
     
     this.projects$ = this.appStore.pipe(select(getProjects));
+    this.showCalculationList$ = this.appStore.pipe(select(getCalculationListVisibility));
+    
   }
 
-  showCalculations(): boolean {
-    return this.showCalculationList;
-  }
 
   showAllCalculations(): void {
-    this.showCalculationList = true;
+    this.appStore.dispatch(SetCalculationListVisibility({ shouldShowList: true }));
   }
 }

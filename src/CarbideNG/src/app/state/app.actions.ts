@@ -74,7 +74,7 @@ export const updateProjectFail = createAction(
 
 export const setCurrentCalculation = createAction(
     '[Calculation] Set Current Calculation',
-    props<{id: string}>()
+    props<{name: string}>()
 );
 
 export const clearCurrentCalculation = createAction(
@@ -128,4 +128,9 @@ export const LoadAllCalculationsFail = createAction(
 export const SortCalculations = createAction(
     '[Calculation] Sort',
     props<{sortByProp: 'date' | 'name' | 'validation'}>()
+);
+
+export const SetCalculationListVisibility = createAction(
+    '[Calculation] Toggle',
+    props<{shouldShowList: boolean}>()
 );

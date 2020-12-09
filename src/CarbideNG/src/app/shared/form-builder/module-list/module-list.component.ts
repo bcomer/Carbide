@@ -23,7 +23,6 @@ export class ModuleListComponent implements OnInit, OnDestroy {
   onModuleSelect(moduleName: 'Pipeline Design & Analysis' | 'Horizontal Directional Drilling' | 'Pipeline Crossing' | 'Pipeline Corrosion' | 'Facilities'): void {
     this.showModuleList = false;
     this.moduleType = moduleName;
-
     this.store.dispatch(hideModuleList());
   }
 
