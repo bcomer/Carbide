@@ -20,7 +20,8 @@ export class CalculationListComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.calculations$ = this.store.pipe(select(getCalculations))
+    this.calculations$ = this.store.pipe(select(getCalculations));
+    console.log(this.calculations$);
   }
 
   sortCalculations(sortByProp: 'date' | 'name' | 'validation'): void {

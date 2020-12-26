@@ -7,6 +7,7 @@ import { CalculationService } from '../services/calculation.service'
 import * as AppActions from './app.actions';
 import { Store } from '@ngrx/store';
 import { State } from './app.reducers';
+import { Calculation } from '../models/calculation';
 
 @Injectable()
 export class AppEffects {

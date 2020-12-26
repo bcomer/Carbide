@@ -8,6 +8,7 @@ export interface State {
     projects: Array<Project>,
     error: string | null
     currentCalculationId: string | null,
+    currentCalculation: Calculation;
     calculations: Array<Calculation>
 }
 
@@ -16,6 +17,7 @@ const initialState: State = {
     projects: [],
     error: null,
     currentCalculationId: null,
+    currentCalculation: null,
     calculations: []
 }
 
@@ -117,7 +119,7 @@ function setCurrentCalculationState(state: State, action): State {
 
     return {
         ...state,
-        currentCalculationId: action.id
+        currentCalculation: action.calculation
     }
 }
 
@@ -209,3 +211,4 @@ function setSortCalculationsState(state: State, action): State {
 
     return newState;
 }
+

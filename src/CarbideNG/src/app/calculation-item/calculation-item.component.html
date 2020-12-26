@@ -5,7 +5,7 @@
     <mat-icon class="not-valid-icon">add_circle_outline</mat-icon>   
 </ng-template>
 
-<span class="calculation-name">{{calculation?.name}}</span>
+<span class="calculation-name" (click)='viewCalculation()'>{{calculation?.name}}</span>
 <span class="project-name">{{calculation?.projectName}}</span>
 
 <mat-divider></mat-divider>

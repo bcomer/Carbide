@@ -2,10 +2,12 @@ import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CalculationFunctionsService } from '../Services/calculation-functions.service';
 import { CalculationField } from 'src/app/models/calculation-field';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { State } from 'src/app/state/app.reducers';
 import { createCalculation } from 'src/app/state/app.actions';
 import { Calculation } from 'src/app/models/calculation';
+import { getCurrentCalculation } from 'src/app/state';
+import { tick } from '@angular/core/testing';
 
 
 @Injectable()
@@ -37,10 +39,16 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
     private calculationFunctionsService: CalculationFunctionsService,
     private readonly store: Store<State>
     )
-   { }
+   {}  
 
   ngOnInit() {
-    
+    this.store.pipe(select(getCurrentCalculation)).subscribe(calculation =>{
+      if(calculation && calculation.type == 'Design Pressure - Steel Pipe'){
+        this.designPressureModel = calculation.fields;
+        this.nominalPipeSize = this.designPressureModel.NominalOutsideDiameter;
+        //add function call to calculate on load
+      }
+    });
   }
 
   assignData(value: number, type: string){
@@ -78,7 +86,7 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
   }
   onSave(){
     this.onCalculate();
-    let newCalculation: Calculation = new Calculation(null, null, 'test calc field',  null, this.designPressure, null, null, null, null, true);
+    let newCalculation: Calculation = new Calculation(null, null, 'test calc field',  null, this.designPressureModel, null, null, null, null, true);
     this.store.dispatch(createCalculation({calculation: newCalculation}));
   }
 }

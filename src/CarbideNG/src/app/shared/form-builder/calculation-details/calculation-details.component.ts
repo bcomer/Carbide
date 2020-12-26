@@ -8,7 +8,7 @@ import { CalculationTypes } from '../Models/calculation-types';
 })
 export class CalculationDetailsComponent implements OnInit {
 
-  @Input() calculationType: 'Design Pressure - Steel Pipe' | 'Design Pressure - Other';  
+  @Input() calculationType: string; 
 
   constructor() { }
 

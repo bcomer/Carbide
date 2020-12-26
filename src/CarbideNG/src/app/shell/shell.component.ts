@@ -8,7 +8,8 @@ import { getAppUser } from '../user/state';
 import { SubSink } from 'subsink';
 import { Observable } from 'rxjs';
 import { Project } from '../models/project';
-import { getProjects } from '../state';
+import { getCurrentCalculation, getProjects } from '../state';
+import { Calculation } from '../models/calculation';
 
 @Component({
   selector: 'cbd-shell',
@@ -17,9 +18,11 @@ import { getProjects } from '../state';
 })
 export class ShellComponent implements OnInit, OnDestroy {
   projects$: Observable<Project[]>;
-    
+  calculation$: Observable<Calculation>;
+
   private showCalculationList: boolean = false;
   private subs = new SubSink();
+  private calculationType: string;
 
   constructor(
     private readonly userStore: Store<UserState>,
@@ -40,6 +43,13 @@ export class ShellComponent implements OnInit, OnDestroy {
     });
     
     this.projects$ = this.appStore.pipe(select(getProjects));
+    this.subs.sink = this.appStore.pipe(select(getCurrentCalculation)).subscribe(calculation =>{
+      if(calculation){
+        this.showCalculationList = false;
+        this.calculationType = calculation.type;
+      }
+    });
+    console.log(this.subs);
   }
 
   showCalculations(): boolean {

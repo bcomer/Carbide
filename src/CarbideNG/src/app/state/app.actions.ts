@@ -74,7 +74,7 @@ export const updateProjectFail = createAction(
 
 export const setCurrentCalculation = createAction(
     '[Calculation] Set Current Calculation',
-    props<{id: string}>()
+    props<{calculation: Calculation}>()
 );
 
 export const clearCurrentCalculation = createAction(
