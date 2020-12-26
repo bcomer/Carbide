@@ -26,6 +26,7 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
   designPressureTotal: number;
   dimensionIdentifier: string;
   designPressure: Calculation;  
+  existingCalculation: Calculation;
   designPressureModel:CalculationField =  {
     NominalOutsideDiameter: undefined,
     WallThickness: undefined,
@@ -43,9 +44,11 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
 
   ngOnInit() {
     this.store.pipe(select(getCurrentCalculation)).subscribe(calculation =>{
+
       if(calculation && calculation.type == 'Design Pressure - Steel Pipe'){
         this.designPressureModel = calculation.fields;
         this.nominalPipeSize = this.designPressureModel.NominalOutsideDiameter;
+        this.existingCalculation = calculation;
         //add function call to calculate on load
       }
     });
@@ -86,9 +89,17 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
   }
   onSave(){
     this.onCalculate();
-    let newCalculation: Calculation = new Calculation(null, null, 'test calc field',  null, this.designPressureModel, null, null, null, null, true);
-    this.store.dispatch(createCalculation({calculation: newCalculation}));
+
+    if(!this.existingCalculation){
+      let newCalculation: Calculation = new Calculation(null, null, 'test calc field',  null, this.designPressureModel, null, null, null, null, true);
+      this.store.dispatch(createCalculation({calculation: newCalculation}));
+    }
+    else{
+      this.existingCalculation.fields = this.designPressureModel;
+    }
+   
   }
+
 }
 export class DesignPressure{
 

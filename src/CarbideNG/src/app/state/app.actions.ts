@@ -80,7 +80,10 @@ export const setCurrentCalculation = createAction(
 export const clearCurrentCalculation = createAction(
     '[Calculation] Clear Current Project'
 );
-
+export const updateCalculation = createAction(
+    '[Calculation] Update Calculation',
+    props<{calculation: Calculation}>()
+);
 export const loadCalculations = createAction(
     '[Calculation] Load Calculations',
     props<{id: string}>()

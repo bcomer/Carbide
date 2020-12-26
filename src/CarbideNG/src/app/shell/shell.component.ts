@@ -49,7 +49,6 @@ export class ShellComponent implements OnInit, OnDestroy {
         this.calculationType = calculation.type;
       }
     });
-    console.log(this.subs);
   }
 
   showCalculations(): boolean {
