@@ -1,14 +1,14 @@
 <div class="header">
-    <h1>My Calculations</h1>
+    <span>My Calculations</span>
 
     <button mat-icon-button [matMenuTriggerFor]="calculationsSortMenu">
-        <mat-icon>more_horizontal</mat-icon>
+        <mat-icon>more_horiz</mat-icon>
     </button>
 </div>
 
 <cbd-calculation-item [calculation]="calc" *ngFor="let calc of (calculations$ | async)"></cbd-calculation-item>
 
-<button mat-button (click)="createCalculation()">
+<button class="add-calc" mat-button (click)="createCalculation()">
     <mat-icon>add</mat-icon>
     <span>Add Calculation</span>
 </button>

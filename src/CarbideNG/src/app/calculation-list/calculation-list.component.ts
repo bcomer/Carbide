@@ -5,7 +5,6 @@ import { Calculation } from '../models/calculation';
 import { getCalculations } from '../state';
 import { SortCalculations, setCurrentCalculation, SetCalculationListVisibility } from '../state/app.actions';
 import { State } from '../state/app.reducers';
-import { showModuleList } from '../shared/form-builder/state/form-builder.actions';
 
 @Component({
   selector: 'cbd-calculation-list',

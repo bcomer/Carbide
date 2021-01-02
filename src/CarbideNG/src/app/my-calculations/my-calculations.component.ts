@@ -20,5 +20,4 @@ export class MyCalculationsComponent implements OnInit {
     this.store.dispatch(LoadAllCalculations());
     this.click.emit();
   }
-
 }
