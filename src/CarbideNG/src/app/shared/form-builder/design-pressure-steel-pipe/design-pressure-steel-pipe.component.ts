@@ -91,8 +91,8 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
   onSave(){
     this.onCalculate();
 
-    if(!this.designPressure.id != undefined){
-      this.designPressure = this.designPressureModel;
+    if(!this.designPressure.id == undefined){
+      this.designPressure.fields = this.designPressureModel;
       this.designPressure.isValid = true;
     
       this.store.dispatch(createCalculation({calculation: this.designPressure}));

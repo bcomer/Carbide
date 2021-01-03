@@ -74,8 +74,7 @@ export class CalculationService {
   }
 
    update(entity: Calculation): Observable<void>{
-   debugger;
-   console.log(entity.fields);
+   console.log(entity.name);
    this.fireStore.doc<Calculation>(`${this.key}/${entity.id}`).update({...entity})
    return of ();
   }
