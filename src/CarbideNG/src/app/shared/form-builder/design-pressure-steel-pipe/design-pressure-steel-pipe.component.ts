@@ -48,7 +48,7 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
       if(calculation && calculation.type == 'Design Pressure - Steel Pipe'){
         this.designPressureModel = calculation.fields;
         this.nominalPipeSize = this.designPressureModel.NominalOutsideDiameter;
-        this.existingCalculation = calculation;
+        this.designPressure = calculation;
         //add function call to calculate on load
       }
     });
@@ -84,20 +84,23 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
 
       this.calculationFunctionsService.calculateDesignPressure(this.designPressureModel).subscribe((data: any) => {
       this.designPressureTotal = data.DesignPressureTotal;
+      this.designPressureModel.DesignPressureTotal = data.DesignPressureTotal;
       this.dimensionIdentifier = ' psig';
   })   
   }
   onSave(){
     this.onCalculate();
 
-    if(!this.existingCalculation){
-      let newCalculation: Calculation = new Calculation(null, null, 'test calc field',  null, this.designPressureModel, null, null, null, null, true);
-      this.store.dispatch(createCalculation({calculation: newCalculation}));
+    if(!this.designPressure.id != undefined){
+      this.designPressure = this.designPressureModel;
+      this.designPressure.isValid = true;
+    
+      this.store.dispatch(createCalculation({calculation: this.designPressure}));
     }
     else{
-      this.existingCalculation.fields = this.designPressureModel;
-      //add other fields......
-      this.store.dispatch(updateCalculation({calculation : this.existingCalculation}));
+      this.designPressure.fields = this.designPressureModel;
+      
+      this.store.dispatch(updateCalculation({calculation : this.designPressure}));
     }
    
   }

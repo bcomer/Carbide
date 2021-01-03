@@ -72,13 +72,13 @@ export class AppEffects {
             )
         )
     ));
-
+                //need to ensure I did this correctly.... 
     updateCalculation$ = createEffect(() => this.actions$.pipe(
         ofType(AppActions.updateCalculation),
         withLatestFrom(this.store$),
         mergeMap(actionAndStore =>
             this.calculationSvc.update(actionAndStore[0].calculation).pipe(
-                map(calculation => AppActions.updateCalculationSuccess({calculation: actionAndStore[0]})),
+                map(calculation => AppActions.updateCalculationSuccess({calculation: actionAndStore[0].calculation})),
                 catchError(error => of(AppActions.updateCalculationFail({ error: error.message })))
             )
         )
