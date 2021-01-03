@@ -73,8 +73,10 @@ export class CalculationService {
     return from(this.fireStore.collection<Calculation>(this.key).add({ ...entity }));
   }
 
-  update(entity: Calculation): Observable<Calculation> {
-    return of(entity);
+   update(entity: Calculation): Observable<void>{
+   debugger;
+   console.log(entity.id);
+   return from (this.fireStore.doc<Calculation>(`${this.key}/${entity.id}`).update({fields: entity.fields}));
   }
 
   delete(id: string): Observable<Calculation> {

@@ -4,7 +4,7 @@ import { CalculationFunctionsService } from '../Services/calculation-functions.s
 import { CalculationField } from 'src/app/models/calculation-field';
 import { select, Store } from '@ngrx/store';
 import { State } from 'src/app/state/app.reducers';
-import { createCalculation } from 'src/app/state/app.actions';
+import { createCalculation, updateCalculation } from 'src/app/state/app.actions';
 import { Calculation } from 'src/app/models/calculation';
 import { getCurrentCalculation } from 'src/app/state';
 import { tick } from '@angular/core/testing';
@@ -96,6 +96,8 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
     }
     else{
       this.existingCalculation.fields = this.designPressureModel;
+      //add other fields......
+      this.store.dispatch(updateCalculation({calculation : this.existingCalculation}));
     }
    
   }

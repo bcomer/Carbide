@@ -84,6 +84,14 @@ export const updateCalculation = createAction(
     '[Calculation] Update Calculation',
     props<{calculation: Calculation}>()
 );
+export const updateCalculationSuccess = createAction(
+    '[Calculation] Update Calculation',
+    props<{calculation: Calculation}>()
+);
+export const updateCalculationFail = createAction(
+    '[Calculation] Update Calculation',
+    props<{error: string}>()
+);
 export const loadCalculations = createAction(
     '[Calculation] Load Calculations',
     props<{id: string}>()
