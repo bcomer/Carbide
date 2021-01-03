@@ -140,3 +140,8 @@ export const SortCalculations = createAction(
     '[Calculation] Sort',
     props<{sortByProp: 'date' | 'name' | 'validation'}>()
 );
+
+export const SetCalculationListVisibility = createAction(
+    '[Calculation] Toggle',
+    props<{shouldShowList: boolean}>()
+);

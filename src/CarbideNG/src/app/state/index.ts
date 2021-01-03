@@ -39,3 +39,13 @@ export const getCurrentCalculation = createSelector(
     getAppState,
     state => state.currentCalculation
 );
+
+export const getSelectedCalculation = createSelector(
+    getAppState,
+    state => state.currentCalculationId
+);
+
+export const getCalculationListVisibility = createSelector(
+    getAppState,
+    state => state.showCalculationList
+)

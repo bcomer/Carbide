@@ -10,6 +10,8 @@ export interface State {
     currentCalculationId: string | null,
     currentCalculation: Calculation;
     calculations: Array<Calculation>
+    calculations: Array<Calculation>,
+    showCalculationList: boolean | null
 }
 
 const initialState: State = {
@@ -19,6 +21,8 @@ const initialState: State = {
     currentCalculationId: null,
     currentCalculation: null,
     calculations: []
+    calculations: [],
+    showCalculationList: null
 }
 
 const appReducer = createReducer(
@@ -39,8 +43,8 @@ const appReducer = createReducer(
     on(AppActions.createCalculationFail, setCreateCalculationFailState),
     on(AppActions.LoadAllCalculationsSuccess, setLoadAllCalculationsState),
     on(AppActions.LoadAllCalculationsFail, setLoadAllCalculationsFailState),
-    on(AppActions.SortCalculations, setSortCalculationsState)
-
+    on(AppActions.SortCalculations, setSortCalculationsState),
+    on(AppActions.SetCalculationListVisibility, SetCalculationListVisibilityState)
 );
 
 export function reducer(state: State | undefined, action) {
@@ -201,6 +205,13 @@ function setLoadAllCalculationsFailState(state: State, action): State {
     return {
         ...state,
         error: action.error
+    }
+}
+
+function SetCalculationListVisibilityState(state: State, action): State {
+    return {
+        ...state,
+        showCalculationList: action.shouldShowList
     }
 }
 

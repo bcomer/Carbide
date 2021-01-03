@@ -3,13 +3,14 @@ import { UserState } from '../user/state/user.reducer';
 import { Store, select } from '@ngrx/store';
 import { getSignedInUser } from '../user/state/user.actions';
 import { State } from '../state/app.reducers';
-import { loadProjects } from '../state/app.actions';
+import { LoadAllCalculations, loadProjects, SetCalculationListVisibility } from '../state/app.actions';
 import { getAppUser } from '../user/state';
 import { SubSink } from 'subsink';
 import { Observable } from 'rxjs';
 import { Project } from '../models/project';
 import { getCurrentCalculation, getProjects } from '../state';
 import { Calculation } from '../models/calculation';
+import { getProjects, getSelectedCalculation, getCalculationListVisibility } from '../state';
 
 @Component({
   selector: 'cbd-shell',
@@ -21,6 +22,8 @@ export class ShellComponent implements OnInit, OnDestroy {
   calculation$: Observable<Calculation>;
 
   private showCalculationList: boolean = false;
+  selectedCalculationType$: Observable<string>;
+  showCalculationList$: Observable<boolean>;
   private subs = new SubSink();
   private calculationType: string;
 
@@ -35,11 +38,14 @@ export class ShellComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userStore.dispatch(getSignedInUser());
-
+    this.selectedCalculationType$ = this.appStore.pipe(select(getSelectedCalculation));
     this.subs.sink = this.userStore.pipe(select(getAppUser)).subscribe(user => {
       if (user) {
-        this.appStore.dispatch(loadProjects());
-      }      
+        // set the default state of the app
+        this.appStore.dispatch(LoadAllCalculations());
+        this.appStore.dispatch(SetCalculationListVisibility({ shouldShowList: true }));
+        this.appStore.dispatch(loadProjects());        
+      }
     });
     
     this.projects$ = this.appStore.pipe(select(getProjects));
@@ -49,13 +55,12 @@ export class ShellComponent implements OnInit, OnDestroy {
         this.calculationType = calculation.type;
       }
     });
-  }
-
-  showCalculations(): boolean {
-    return this.showCalculationList;
+  
+    this.showCalculationList$ = this.appStore.pipe(select(getCalculationListVisibility));
+  
   }
 
   showAllCalculations(): void {
-    this.showCalculationList = true;
+    this.appStore.dispatch(SetCalculationListVisibility({ shouldShowList: true }));
   }
 }

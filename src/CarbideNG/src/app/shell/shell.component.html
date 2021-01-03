@@ -2,9 +2,9 @@
 <cbd-user-detail></cbd-user-detail>
 <cbd-my-calculations (click)="showAllCalculations()"></cbd-my-calculations>
 <cbd-project-list [projects]="projects$ | async"></cbd-project-list>
-<ng-template [ngIf]="showCalculations()" [ngIfElse]="calcDetails">
+<ng-template [ngIf]="showCalculationList$ | async" [ngIfElse]="calcDetails">
     <cbd-calculation-list></cbd-calculation-list>
 </ng-template>
 <ng-template #calcDetails>
-    <cbd-calculation-details [calculationType]="calculationType"></cbd-calculation-details>
+    <cbd-calculation-details [calculationType]="selectedCalculationType$ | async"></cbd-calculation-details>
 </ng-template>  

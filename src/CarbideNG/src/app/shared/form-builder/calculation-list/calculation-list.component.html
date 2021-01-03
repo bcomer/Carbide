@@ -1,7 +1,7 @@
 <div [ngSwitch]="moduleType">
     <ng-template [ngSwitchCase]="'Pipeline Design & Analysis'">
         <h1 class="mat-h1">Pipeline Design & Analysis</h1>
-        <cbd-calculation-selector calculationName="Design Pressure - Steel Pipe"></cbd-calculation-selector>
+        <cbd-calculation-selector (click)="onCalculationSelect('Design Pressure - Steel Pipe')" calculationName='Design Pressure - Steel Pipe'></cbd-calculation-selector>
     </ng-template>
     <ng-template ngSwitchDefault>
         <span>Default</span>
