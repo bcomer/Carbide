@@ -40,6 +40,10 @@ export const getCurrentCalculation = createSelector(
     state => state.currentCalculation
 );
 
+export const getCurrentCalculationType = createSelector(
+    getAppState,
+    state => state.currentCalculationType
+);
 export const getSelectedCalculation = createSelector(
     getAppState,
     state => state.currentCalculationId

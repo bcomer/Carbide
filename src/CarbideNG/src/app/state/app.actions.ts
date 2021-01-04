@@ -72,13 +72,20 @@ export const updateProjectFail = createAction(
 
 //calculation actions
 
+export const setCurrentCalculationType = createAction(
+    '[Calculation] Set Current Calculation Type',
+    props<{name: string}>()
+);
+export const clearCurrentCalculationType = createAction(
+    '[Calculation] Clear Current Calculation Type'
+);
 export const setCurrentCalculation = createAction(
     '[Calculation] Set Current Calculation',
     props<{calculation: Calculation}>()
 );
 
 export const clearCurrentCalculation = createAction(
-    '[Calculation] Clear Current Project'
+    '[Calculation] Clear Current Calculation'
 );
 export const updateCalculation = createAction(
     '[Calculation] Update Calculation',

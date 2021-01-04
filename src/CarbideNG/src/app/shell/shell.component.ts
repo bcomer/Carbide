@@ -3,14 +3,14 @@ import { UserState } from '../user/state/user.reducer';
 import { Store, select } from '@ngrx/store';
 import { getSignedInUser } from '../user/state/user.actions';
 import { State } from '../state/app.reducers';
-import { LoadAllCalculations, loadProjects, SetCalculationListVisibility } from '../state/app.actions';
+import { LoadAllCalculations, loadProjects, SetCalculationListVisibility, setCurrentCalculationType } from '../state/app.actions';
 import { getAppUser } from '../user/state';
 import { SubSink } from 'subsink';
 import { Observable } from 'rxjs';
 import { Project } from '../models/project';
-import { getCurrentCalculation, getProjects } from '../state';
+import { getCurrentCalculation, getCurrentCalculationType, getProjects } from '../state';
 import { Calculation } from '../models/calculation';
-import { getProjects, getSelectedCalculation, getCalculationListVisibility } from '../state';
+import { getCalculationListVisibility } from '../state';
 
 @Component({
   selector: 'cbd-shell',
@@ -38,7 +38,7 @@ export class ShellComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userStore.dispatch(getSignedInUser());
-    this.selectedCalculationType$ = this.appStore.pipe(select(getSelectedCalculation));
+    this.selectedCalculationType$ = this.appStore.pipe(select(getCurrentCalculationType));
     this.subs.sink = this.userStore.pipe(select(getAppUser)).subscribe(user => {
       if (user) {
         // set the default state of the app
@@ -49,15 +49,18 @@ export class ShellComponent implements OnInit, OnDestroy {
     });
     
     this.projects$ = this.appStore.pipe(select(getProjects));
+    this.showCalculationList$ = this.appStore.pipe(select(getCalculationListVisibility));
+
     this.subs.sink = this.appStore.pipe(select(getCurrentCalculation)).subscribe(calculation =>{
       if(calculation){
-        this.showCalculationList = false;
-        this.calculationType = calculation.type;
+        console.log('calc')
+        this.appStore.dispatch(SetCalculationListVisibility({ shouldShowList: false }));
+        this.showCalculationList$ = this.appStore.pipe(select(getCalculationListVisibility));
+        this.selectedCalculationType$ = this.appStore.pipe(select(getCurrentCalculationType));
+      
+        console.log(this.selectedCalculationType$)
       }
-    });
-  
-    this.showCalculationList$ = this.appStore.pipe(select(getCalculationListVisibility));
-  
+    });  
   }
 
   showAllCalculations(): void {

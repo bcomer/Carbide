@@ -1,10 +1,10 @@
 <div class="input-container">
     <header>Design Pressure</header>
     <div class="inputs">
-      <mat-form-field>
+      <!-- <mat-form-field>
         <mat-label>Calculation Name</mat-label>
-        <input matInput placeholder="Ex. My Calcuation" [(ngModel)]="designPressure.name">
-      </mat-form-field>
+        <input matInput placeholder="Ex. My Calcuation" [(value)]="designPressure.name">
+      </mat-form-field> -->
     <div>
         <cbd-api5L-nominal-pipe-size-select (selected)="assignData($event, 'nominal')" [(selectedValue)]="designPressureModel.NominalOutsideDiameter">
         </cbd-api5L-nominal-pipe-size-select>

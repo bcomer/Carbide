@@ -28,7 +28,6 @@ export class Api5LWallThicknessComponent implements OnInit {
      this.selectedWallThickness.emit(this.selectedValue);
     }
     getWallThicknessValues(){
-      debugger;
         this.calculationValuesService.getApi5lPipeSizes()
         .find(a => {if (this.nominalPipeSize == a.outsideDiameter) {
             this.selectData = a.wallThicknesses;

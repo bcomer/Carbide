@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State } from '../state';
 import { navigateBackToModuleList, hideModuleList } from '../state/form-builder.actions';
-import { setCurrentCalculation } from 'src/app/state/app.actions';
+import { setCurrentCalculation, setCurrentCalculationType } from 'src/app/state/app.actions';
 
 @Component({
   selector: 'cbd-calculation-list',
@@ -22,7 +22,7 @@ export class CalculationListComponent implements OnInit {
   onCalculationSelect(calculationName: 'Design Pressure - Steel Pipe' | 'Wall Thickness - Steel Pipe' | 'Restrained Pipeline Analysis' | 'Unrestrained Pipeline Analysis' | 'Flume Design - Rational Method' | 'Buoyancy Analysis - Coating Requirements' | 'Buoyancy Analysis - Concrete Weights Spacing'): void {
     this.calculationType = calculationName;
     this.store.dispatch(hideModuleList());
-    this.store.dispatch(setCurrentCalculation({name: calculationName}));
+    this.store.dispatch(setCurrentCalculationType({name: calculationName}));
 
   }
 

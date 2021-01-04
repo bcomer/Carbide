@@ -4,7 +4,7 @@ import { CalculationFunctionsService } from '../Services/calculation-functions.s
 import { CalculationField } from 'src/app/models/calculation-field';
 import { select, Store } from '@ngrx/store';
 import { State } from 'src/app/state/app.reducers';
-import { createCalculation, updateCalculation } from 'src/app/state/app.actions';
+import { clearCurrentCalculation, createCalculation, setCurrentCalculationType, updateCalculation } from 'src/app/state/app.actions';
 import { Calculation } from 'src/app/models/calculation';
 import { getCurrentCalculation } from 'src/app/state';
 import { tick } from '@angular/core/testing';
@@ -53,7 +53,6 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
       }
     });
   }
-
   assignData(value: number, type: string){
   
     switch (type) {
@@ -99,7 +98,6 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
     }
     else{
       this.designPressure.fields = this.designPressureModel;
-      
       this.store.dispatch(updateCalculation({calculation : this.designPressure}));
     }
    

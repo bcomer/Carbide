@@ -10,8 +10,8 @@ export interface State {
     currentCalculationId: string | null,
     currentCalculation: Calculation;
     calculations: Array<Calculation>
-    calculations: Array<Calculation>,
-    showCalculationList: boolean | null
+    showCalculationList: boolean | null,
+    currentCalculationType: string | null
 }
 
 const initialState: State = {
@@ -20,9 +20,9 @@ const initialState: State = {
     error: null,
     currentCalculationId: null,
     currentCalculation: null,
-    calculations: []
     calculations: [],
-    showCalculationList: null
+    showCalculationList: null,
+    currentCalculationType: null
 }
 
 const appReducer = createReducer(
@@ -36,6 +36,7 @@ const appReducer = createReducer(
     on(AppActions.createProjectSuccess, setCreateProjectSuccessState),
     on(AppActions.createProjectFail, setCreateProjectFailState),
     on(AppActions.setCurrentCalculation, setCurrentCalculationState),
+    on(AppActions.setCurrentCalculationType, setCurrentCalculationTypeState),
     on(AppActions.clearCurrentCalculation, setClearCurrentCalculationState),
     on(AppActions.loadCalculationsSuccess, setCalculationLoadedSuccessState),
     on(AppActions.loadCalculationsFail, setCalculationLoadedFailState),
@@ -129,6 +130,22 @@ function setCurrentCalculationState(state: State, action): State {
 }
 
 function setClearCurrentCalculationState(state: State): State {
+
+    return {
+        ...state,
+        currentCalculation: null
+    }
+}
+
+function setCurrentCalculationTypeState(state: State, action): State {
+console.log(action + 'j')
+    return {
+        ...state,
+        currentCalculationType: action.name
+    }
+}
+
+function setClearCurrentCalculationTypeState(state: State): State {
 
     return {
         ...state,
