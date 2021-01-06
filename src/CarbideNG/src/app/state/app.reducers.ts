@@ -138,7 +138,6 @@ function setClearCurrentCalculationState(state: State): State {
 }
 
 function setCurrentCalculationTypeState(state: State, action): State {
-console.log(action + 'j')
     return {
         ...state,
         currentCalculationType: action.name

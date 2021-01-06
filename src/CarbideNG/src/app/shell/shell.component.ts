@@ -53,12 +53,10 @@ export class ShellComponent implements OnInit, OnDestroy {
 
     this.subs.sink = this.appStore.pipe(select(getCurrentCalculation)).subscribe(calculation =>{
       if(calculation){
-        console.log('calc')
         this.appStore.dispatch(SetCalculationListVisibility({ shouldShowList: false }));
         this.showCalculationList$ = this.appStore.pipe(select(getCalculationListVisibility));
         this.selectedCalculationType$ = this.appStore.pipe(select(getCurrentCalculationType));
       
-        console.log(this.selectedCalculationType$)
       }
     });  
   }

@@ -24,8 +24,6 @@ export class CalculationItemComponent implements OnInit {
   viewCalculation(){
     this.store.dispatch(setCurrentCalculation({calculation: this.calculation}));
     this.store.dispatch(setCurrentCalculationType({name: this.calculation.type}));
-    console.log(this.store.pipe(select(getCurrentCalculationType)));
-
   }
 
 }
