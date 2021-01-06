@@ -42,6 +42,8 @@ const appReducer = createReducer(
     on(AppActions.loadCalculationsFail, setCalculationLoadedFailState),
     on(AppActions.createCalculationSuccess, setCreateCalculationSuccessState),
     on(AppActions.createCalculationFail, setCreateCalculationFailState),
+    on(AppActions.updateCalculationSuccess, setUpdateCalculationSuccessState),
+    on(AppActions.updateCalculationFail, setUpdateCalculationFailState),
     on(AppActions.LoadAllCalculationsSuccess, setLoadAllCalculationsState),
     on(AppActions.LoadAllCalculationsFail, setLoadAllCalculationsFailState),
     on(AppActions.SortCalculations, setSortCalculationsState),
@@ -192,20 +194,20 @@ function setCreateCalculationFailState(state: State, action): State {
         error: action.error
     }
 }
-// function setUpdateCalculationSuccessState(state: State, action): State {
-//     return {
-//         ...state,
-//         error: null
-//     }
-// }
+function setUpdateCalculationSuccessState(state: State, action): State {
+    return {
+        ...state,
+        error: null
+    }
+}
 
-// function setUpdateCalculationFailState(state: State, action): State {
+function setUpdateCalculationFailState(state: State, action): State {
 
-//     return {
-//         ...state,
-//         error: action.error
-//     }
-// }
+    return {
+        ...state,
+        error: action.error
+    }
+}
 function setLoadAllCalculationsState(state: State, action): State {
 
     return {

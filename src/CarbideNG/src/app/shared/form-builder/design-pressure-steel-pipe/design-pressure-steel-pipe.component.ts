@@ -8,6 +8,7 @@ import { createCalculation, updateCalculation } from 'src/app/state/app.actions'
 import { Calculation } from 'src/app/models/calculation';
 import { getCurrentCalculation } from 'src/app/state';
 import { tick } from '@angular/core/testing';
+import { FormControl } from '@angular/forms';
 
 
 @Injectable()
@@ -25,8 +26,8 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
   selectedJointFactor: number;
   designPressureTotal: number;
   dimensionIdentifier: string;
-  designPressure: Calculation;  
-  existingCalculation: Calculation;
+  designPressure: Calculation = new Calculation();  
+  calculationNameControl = new FormControl('');
   designPressureModel:CalculationField =  {
     NominalOutsideDiameter: undefined,
     WallThickness: undefined,
@@ -34,6 +35,7 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
     DesignFactorValue: undefined,
     TemperatureDeratingFactor: undefined,
     LongitudinalJointFactor: undefined,
+    DesignPressureTotal: undefined
   }
 
   constructor(
@@ -43,13 +45,12 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
    {}  
 
   ngOnInit() {
+    this.designPressure.fields = this.designPressureModel;
     this.store.pipe(select(getCurrentCalculation)).subscribe(calculation =>{
 
       if(calculation && calculation.type == 'Design Pressure - Steel Pipe'){
-        this.designPressureModel = calculation.fields;
+        this.designPressure.fields = calculation.fields;
         this.nominalPipeSize = this.designPressureModel.NominalOutsideDiameter;
-        this.designPressure = calculation;
-        //add function call to calculate on load
       }
     });
   }
@@ -57,53 +58,56 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
   
     switch (type) {
       case 'nominal':
-        this.designPressureModel.NominalOutsideDiameter = value;
+        this.designPressure.fields.NominalOutsideDiameter = value;
         this.nominalPipeSize = value;
         break;
       case 'wall':
-        this.designPressureModel.WallThickness = value;
+        this.designPressure.fields.WallThickness = value;
         break;
       case 'grade':
-        this.designPressureModel.Grade = value;
+        this.designPressure.fields.Grade = value;
         break;
       case 'temperature':
-        this.designPressureModel.TemperatureDeratingFactor = value;
+        this.designPressure.fields.TemperatureDeratingFactor = value;
         break;
       case 'joint':
-        this.designPressureModel.LongitudinalJointFactor = value;
+        this.designPressure.fields.LongitudinalJointFactor = value;
         break;
       case 'design':
-        this.designPressureModel.DesignFactorValue = value;
+        this.designPressure.fields.DesignFactorValue = value;
         break;
       default:
         break;
     }
   }
-   onCalculate(){
+   onCalculate() {
 
-      this.calculationFunctionsService.calculateDesignPressure(this.designPressureModel).subscribe((data: any) => {
+      this.calculationFunctionsService.calculateDesignPressure(this.designPressure.fields).subscribe((data: any) => {
       this.designPressureTotal = data.DesignPressureTotal;
-      this.designPressureModel.DesignPressureTotal = data.DesignPressureTotal;
+      this.designPressure.fields.DesignPressureTotal = this.designPressureTotal;
+    
       this.dimensionIdentifier = ' psig';
+      return this.designPressureTotal;
+
   })   
   }
-  onSave(){
+    onSave(){
     this.onCalculate();
-
-    if(!this.designPressure.id == undefined){
-      this.designPressure.fields = this.designPressureModel;
+    this.designPressure.name = this.calculationNameControl.value; 
+    if(!this.designPressure.id){
       this.designPressure.isValid = true;
-    
+      this.designPressure.id = null;
+      this.designPressure.parentId = null;
+      this.designPressure.result = null;
+      ///need to look at async functions for calculation result
+      this.designPressure.fields.DesignPressureTotal = !this.designPressure.fields.DesignPressureTotal ? null : this.designPressure.fields.DesignPressureTotal;
+      this.designPressure.type = 'Design Pressure - Steel Pipe';
       this.store.dispatch(createCalculation({calculation: this.designPressure}));
     }
     else{
-      this.designPressure.fields = this.designPressureModel;
       this.store.dispatch(updateCalculation({calculation : this.designPressure}));
     }
    
   }
-
-}
-export class DesignPressure{
 
 }
