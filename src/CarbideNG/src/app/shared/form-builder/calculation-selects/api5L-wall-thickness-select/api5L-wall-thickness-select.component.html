@@ -1,7 +1,7 @@
 <mat-form-field appearance="fill">
     <mat-label>Wall Thickness</mat-label>
-    <mat-select [(ngModel)]="selectValue" (selectionChange)="onSelected(selectValue)">
-        <mat-option *ngFor="let item of selectData" [value]="item.value">
+    <mat-select [(ngModel)]="selectedValue" (selectionChange)="onSelected(selectedValue)">
+        <mat-option [disabled]="nominalPipeSize == undefined" *ngFor="let item of selectData" [value]="item.value">
             {{item.value}}</mat-option>
     </mat-select>
     </mat-form-field>

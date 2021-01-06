@@ -7,6 +7,7 @@ import { CalculationService } from '../services/calculation.service'
 import * as AppActions from './app.actions';
 import { Store } from '@ngrx/store';
 import { State } from './app.reducers';
+import { Calculation } from '../models/calculation';
 
 @Injectable()
 export class AppEffects {
@@ -71,7 +72,17 @@ export class AppEffects {
             )
         )
     ));
-
+                //need to ensure I did this correctly.... 
+    updateCalculation$ = createEffect(() => this.actions$.pipe(
+        ofType(AppActions.updateCalculation),
+        withLatestFrom(this.store$),
+        mergeMap(actionAndStore =>
+            this.calculationSvc.update(actionAndStore[0].calculation).pipe(
+                map(calculation => AppActions.updateCalculationSuccess({calculation: actionAndStore[0].calculation})),
+                catchError(error => of(AppActions.updateCalculationFail({ error: error.message })))
+            )
+        )
+    ));
     loadAlllCalclulations$ = createEffect(() => this.actions$.pipe(
         ofType(AppActions.LoadAllCalculations),
         withLatestFrom(this.store$),

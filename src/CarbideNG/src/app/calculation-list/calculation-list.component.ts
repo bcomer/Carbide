@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Calculation } from '../models/calculation';
 import { getCalculations } from '../state';
-import { SortCalculations, setCurrentCalculation, SetCalculationListVisibility } from '../state/app.actions';
+import { SortCalculations, setCurrentCalculation, SetCalculationListVisibility, setCurrentCalculationType } from '../state/app.actions';
 import { State } from '../state/app.reducers';
 
 @Component({
@@ -28,7 +28,7 @@ export class CalculationListComponent implements OnInit {
   }
   
   createCalculation(): void {
-    this.store.dispatch(setCurrentCalculation({name: null}));
+    this.store.dispatch(setCurrentCalculationType({name: null}));
     this.store.dispatch(SetCalculationListVisibility({shouldShowList: false}));
   }
 }

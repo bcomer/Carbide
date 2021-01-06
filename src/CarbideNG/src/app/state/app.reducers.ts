@@ -8,8 +8,10 @@ export interface State {
     projects: Array<Project>,
     error: string | null
     currentCalculationId: string | null,
-    calculations: Array<Calculation>,
-    showCalculationList: boolean | null
+    currentCalculation: Calculation;
+    calculations: Array<Calculation>
+    showCalculationList: boolean | null,
+    currentCalculationType: string | null
 }
 
 const initialState: State = {
@@ -17,8 +19,10 @@ const initialState: State = {
     projects: [],
     error: null,
     currentCalculationId: null,
+    currentCalculation: null,
     calculations: [],
-    showCalculationList: null
+    showCalculationList: null,
+    currentCalculationType: null
 }
 
 const appReducer = createReducer(
@@ -32,11 +36,14 @@ const appReducer = createReducer(
     on(AppActions.createProjectSuccess, setCreateProjectSuccessState),
     on(AppActions.createProjectFail, setCreateProjectFailState),
     on(AppActions.setCurrentCalculation, setCurrentCalculationState),
+    on(AppActions.setCurrentCalculationType, setCurrentCalculationTypeState),
     on(AppActions.clearCurrentCalculation, setClearCurrentCalculationState),
     on(AppActions.loadCalculationsSuccess, setCalculationLoadedSuccessState),
     on(AppActions.loadCalculationsFail, setCalculationLoadedFailState),
     on(AppActions.createCalculationSuccess, setCreateCalculationSuccessState),
     on(AppActions.createCalculationFail, setCreateCalculationFailState),
+    on(AppActions.updateCalculationSuccess, setUpdateCalculationSuccessState),
+    on(AppActions.updateCalculationFail, setUpdateCalculationFailState),
     on(AppActions.LoadAllCalculationsSuccess, setLoadAllCalculationsState),
     on(AppActions.LoadAllCalculationsFail, setLoadAllCalculationsFailState),
     on(AppActions.SortCalculations, setSortCalculationsState),
@@ -120,11 +127,26 @@ function setCurrentCalculationState(state: State, action): State {
 
     return {
         ...state,
-        currentCalculationId: action.name
+        currentCalculation: action.calculation
     }
 }
 
 function setClearCurrentCalculationState(state: State): State {
+
+    return {
+        ...state,
+        currentCalculation: null
+    }
+}
+
+function setCurrentCalculationTypeState(state: State, action): State {
+    return {
+        ...state,
+        currentCalculationType: action.name
+    }
+}
+
+function setClearCurrentCalculationTypeState(state: State): State {
 
     return {
         ...state,
@@ -172,7 +194,20 @@ function setCreateCalculationFailState(state: State, action): State {
         error: action.error
     }
 }
+function setUpdateCalculationSuccessState(state: State, action): State {
+    return {
+        ...state,
+        error: null
+    }
+}
 
+function setUpdateCalculationFailState(state: State, action): State {
+
+    return {
+        ...state,
+        error: action.error
+    }
+}
 function setLoadAllCalculationsState(state: State, action): State {
 
     return {
@@ -219,3 +254,4 @@ function setSortCalculationsState(state: State, action): State {
 
     return newState;
 }
+

@@ -9,7 +9,7 @@ import { CalculationValuesService } from '../../Services/calculation-values.serv
 
 export class Api5LNominalPipeSizeSelectComponent implements OnInit {
     public selectData: any;
-    public selectedValue: string;
+    @Input() selectedValue: string;
     @Output() selected = new EventEmitter<number>();
 
     constructor(private calculationValuesService: CalculationValuesService){

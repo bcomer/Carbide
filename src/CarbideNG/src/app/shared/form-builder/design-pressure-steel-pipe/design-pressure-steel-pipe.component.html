@@ -1,28 +1,32 @@
 <div class="input-container">
     <header>Design Pressure</header>
     <div class="inputs">
+      <mat-form-field>
+        <mat-label>Calculation Name</mat-label>
+        <input matInput placeholder="Ex. My Calcuation" [(formControl)]="calculationNameControl">
+      </mat-form-field>
     <div>
-        <cbd-api5L-nominal-pipe-size-select (selected)="assignData($event, 'nominal')">
+        <cbd-api5L-nominal-pipe-size-select (selected)="assignData($event, 'nominal')" [(selectedValue)]="designPressure.fields.NominalOutsideDiameter">
         </cbd-api5L-nominal-pipe-size-select>
     </div>
     <div>     
         <cbd-api5L-wall-thickness-select (selectedWallThickness)="assignData($event, 'wall')"
-            [(nominalPipeSize)]="nominalPipeSize"></cbd-api5L-wall-thickness-select>
+            [(nominalPipeSize)]="nominalPipeSize" [(selectedValue)]="designPressure.fields.WallThickness"></cbd-api5L-wall-thickness-select>
     </div>
     <div>      
-        <cbd-api5l-grade-select (selectedGrade)="assignData($event, 'grade')">
+        <cbd-api5l-grade-select (selectedGrade)="assignData($event, 'grade')" [(selectedValue)]="designPressure.fields.Grade">
         </cbd-api5l-grade-select>
     </div>
     <div>     
-        <cbd-api5l-design-factor-select (selectedDesignFactor)="assignData($event, 'design')">
+        <cbd-api5l-design-factor-select (selectedDesignFactor)="assignData($event, 'design')" [(selectedValue)]="designPressure.fields.DesignFactorValue">
         </cbd-api5l-design-factor-select>
     </div>
     <div>     
-        <cbd-api5l-longitudal-joint-factor-select (selectedJointFactor)="assignData($event, 'joint')">
+        <cbd-api5l-longitudal-joint-factor-select (selectedJointFactor)="assignData($event, 'joint')" [(selectedValue)]="designPressure.fields.LongitudinalJointFactor">
         </cbd-api5l-longitudal-joint-factor-select>
     </div>
     <div>  
-        <cbd-api5l-temperature-derating-factor-select (selectedTemperatureFactor)="assignData($event, 'temperature')">
+        <cbd-api5l-temperature-derating-factor-select (selectedTemperatureFactor)="assignData($event, 'temperature')" [(selectedValue)]="designPressure.fields.TemperatureDeratingFactor" >
         </cbd-api5l-temperature-derating-factor-select>
     </div>
     </div>
@@ -30,31 +34,31 @@
     <table style="width:75%; position: relative;">     
         <tr>
           <td>Nominal Pipe Size</td>
-          <td>{{nominalPipeSize || '-'}}</td>
+          <td>{{designPressure?.fields?.NominalOutsideDiameter || '-'}}</td>
         </tr>
         <tr>
             <td>Wall Thickness</td>
-            <td>{{selectedWallThickness || '-'}}</td>
+            <td>{{designPressure?.fields?.WallThickness || '-'}}</td>
           </tr>
           <tr>
             <td>Grade</td>
-            <td>{{selectedGrade ||  '-'}}</td>
+            <td>{{designPressure?.fields?.Grade ||  '-'}}</td>
           </tr>
           <tr>
             <td>Design Factor</td>
-            <td>{{selectedDesignFactor || '-'}}</td>
+            <td>{{designPressure?.fields?.DesignFactorValue || '-'}}</td>
           </tr>
           <tr>
             <td>Longitudinal Joint Factor</td>
-            <td>{{selectedJointFactor || '-'}}</td>
+            <td>{{designPressure?.fields?.LongitudinalJointFactor || '-'}}</td>
           </tr>
           <tr>
             <td>Temperature Derating Factor</td>
-            <td>{{selectedTemperatureFactor || '-'}}</td>
+            <td>{{designPressure?.fields.TemperatureDeratingFactor || '-'}}</td>
           </tr>
           <tr>
             <td class="total-row">Design Pressure Total (psig)</td>
-            <td>{{designPressureTotal || '-'}}</td>
+            <td>{{designPressure?.fields?.DesignPressureTotal || '-'}}</td>
           </tr>
       </table>
       </div>

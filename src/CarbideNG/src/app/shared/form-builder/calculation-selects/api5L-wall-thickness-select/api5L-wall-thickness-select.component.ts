@@ -10,8 +10,8 @@ import { CalculationValuesService } from '../../Services/calculation-values.serv
 
 export class Api5LWallThicknessComponent implements OnInit {
     public selectData: any;
-    public selectValue: any;
-    @Input() nominalPipeSize: any;
+    @Input() selectedValue: number;
+    @Input() nominalPipeSize: number;
     @Output() selectedWallThickness = new EventEmitter<number>();
 
     constructor(private calculationValuesService: CalculationValuesService){
@@ -25,7 +25,7 @@ export class Api5LWallThicknessComponent implements OnInit {
       this.getWallThicknessValues();     
     }
     onSelected(){
-     this.selectedWallThickness.emit(this.selectValue);
+     this.selectedWallThickness.emit(this.selectedValue);
     }
     getWallThicknessValues(){
         this.calculationValuesService.getApi5lPipeSizes()

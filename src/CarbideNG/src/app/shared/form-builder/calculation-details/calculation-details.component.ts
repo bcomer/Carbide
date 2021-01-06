@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CalculationTypes } from '../Models/calculation-types';
-
+import { select, Store } from '@ngrx/store';
+import { State } from 'src/app/state/app.reducers';
+import { clearCurrentCalculation, clearCurrentCalculationType } from 'src/app/state/app.actions';
 @Component({
   selector: 'cbd-calculation-details',
   templateUrl: './calculation-details.component.html',
@@ -8,11 +10,14 @@ import { CalculationTypes } from '../Models/calculation-types';
 })
 export class CalculationDetailsComponent implements OnInit {
 
-  @Input() calculationType: 'Design Pressure - Steel Pipe' | 'Design Pressure - Other';  
+  @Input() calculationType: string; 
 
-  constructor() { }
+  constructor(private readonly store: Store<State>) { }
 
   ngOnInit() {
   }
-
+  ngOnDestroy(): void {
+    this.store.dispatch(clearCurrentCalculation());
+    this.store.dispatch(clearCurrentCalculationType());
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { CalculationValuesService } from '../../Services/calculation-values.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { CalculationValuesService } from '../../Services/calculation-values.serv
 })
 export class Api5lDesignFactorSelectComponent implements OnInit {
   public selectData: any;
-  public selectedValue: any;
+  @Input() selectedValue: any;
   @Output() selectedDesignFactor = new EventEmitter<number>();
   
   constructor(private calculationValuesService: CalculationValuesService) { }

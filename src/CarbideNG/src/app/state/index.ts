@@ -35,7 +35,15 @@ export const getError = createSelector(
     getAppState,
     state => state.error
 );
+export const getCurrentCalculation = createSelector(
+    getAppState,
+    state => state.currentCalculation
+);
 
+export const getCurrentCalculationType = createSelector(
+    getAppState,
+    state => state.currentCalculationType
+);
 export const getSelectedCalculation = createSelector(
     getAppState,
     state => state.currentCalculationId
