@@ -1,7 +1,7 @@
 <ng-template [ngIf]="showModuleList" [ngIfElse]="calculationList">
     <h1 class="mat-h1">Module</h1>
     <cbd-module-selector (click)="onModuleSelect(selector?.name)" *ngFor="let selector of moduleSelectors" [selector]="selector"></cbd-module-selector>
-    <button class="module-cancel" mat-stroked-button>Cancel</button>
+    <button (click)="showCalculationList()" class="module-cancel" mat-stroked-button>Cancel</button>
 </ng-template>
 
 <ng-template #calculationList>

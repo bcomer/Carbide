@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State } from '../state';
 import { navigateBackToModuleList, hideModuleList } from '../state/form-builder.actions';
-import { setCurrentCalculation, setCurrentCalculationType } from 'src/app/state/app.actions';
+import { SetCalculationListVisibility, setCurrentCalculation, setCurrentCalculationType } from 'src/app/state/app.actions';
 
 @Component({
   selector: 'cbd-calculation-list',
@@ -31,7 +31,7 @@ export class CalculationListComponent implements OnInit {
   }
 
   onCancelClicked(): void {
-
+    this.store.dispatch(SetCalculationListVisibility({ shouldShowList: true }));
   }
 
   ngOnInit() {
