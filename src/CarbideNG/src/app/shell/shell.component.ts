@@ -43,7 +43,6 @@ export class ShellComponent implements OnInit, OnDestroy {
       if (user) {
         // set the default state of the app
         this.appStore.dispatch(LoadAllCalculations());
-        this.appStore.dispatch(SetCalculationListVisibility({ shouldShowList: true }));
         this.appStore.dispatch(loadProjects());        
       }
     });

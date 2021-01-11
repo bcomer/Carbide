@@ -10,7 +10,7 @@ export interface State {
     currentCalculationId: string | null,
     currentCalculation: Calculation;
     calculations: Array<Calculation>
-    showCalculationList: boolean | null,
+    showCalculationList: boolean,
     currentCalculationType: string | null
 }
 
@@ -21,7 +21,7 @@ const initialState: State = {
     currentCalculationId: null,
     currentCalculation: null,
     calculations: [],
-    showCalculationList: null,
+    showCalculationList: true,
     currentCalculationType: null
 }
 
