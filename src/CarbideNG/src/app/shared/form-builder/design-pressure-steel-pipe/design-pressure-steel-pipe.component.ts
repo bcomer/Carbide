@@ -49,7 +49,8 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
     this.store.pipe(select(getCurrentCalculation)).subscribe(calculation =>{
 
       if(calculation && calculation.type == 'Design Pressure - Steel Pipe'){
-        this.designPressure.fields = calculation.fields;
+        this.designPressure = calculation;
+        this.calculationNameControl.setValue(calculation.name);
         this.nominalPipeSize = this.designPressureModel.NominalOutsideDiameter;
       }
     });
