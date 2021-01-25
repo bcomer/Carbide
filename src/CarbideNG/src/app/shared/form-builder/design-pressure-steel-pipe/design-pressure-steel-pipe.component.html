@@ -1,11 +1,15 @@
 <div class="input-container">
-    <header>Design Pressure</header>
+    <header>Design Pressure - Steel Pipe</header>
     <div class="inputs">
+      <mat-form-field>
+        <mat-label>Project</mat-label>
+        <input matInput readonly="true" [(value)]="projectName">
+      </mat-form-field>
       <mat-form-field>
         <mat-label>Calculation Name</mat-label>
         <input matInput placeholder="Ex. My Calcuation" [(formControl)]="calculationNameControl">
       </mat-form-field>
-    <div>
+      <div>
         <cbd-api5L-nominal-pipe-size-select (selected)="assignData($event, 'nominal')" [(selectedValue)]="designPressure.fields.NominalOutsideDiameter">
         </cbd-api5L-nominal-pipe-size-select>
     </div>
