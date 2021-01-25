@@ -1,13 +1,11 @@
 import { Component, OnInit, Injectable, Input } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CalculationFunctionsService } from '../Services/calculation-functions.service';
 import { CalculationField } from 'src/app/models/calculation-field';
 import { select, Store } from '@ngrx/store';
 import { State } from 'src/app/state/app.reducers';
-import { createCalculation, updateCalculation } from 'src/app/state/app.actions';
+import { createCalculation, setCurrentProject, updateCalculation } from 'src/app/state/app.actions';
 import { Calculation } from 'src/app/models/calculation';
-import { getCurrentCalculation } from 'src/app/state';
-import { tick } from '@angular/core/testing';
+import { getCurrentCalculation, getCurrentProject } from 'src/app/state';
 import { FormControl } from '@angular/forms';
 
 
@@ -28,6 +26,7 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
   dimensionIdentifier: string;
   designPressure: Calculation = new Calculation();  
   calculationNameControl = new FormControl('');
+  projectName: string = '';
   designPressureModel:CalculationField =  {
     NominalOutsideDiameter: undefined,
     WallThickness: undefined,
@@ -46,14 +45,24 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
 
   ngOnInit() {
     this.designPressure.fields = this.designPressureModel;
+
     this.store.pipe(select(getCurrentCalculation)).subscribe(calculation =>{
 
       if(calculation && calculation.type == 'Design Pressure - Steel Pipe'){
         this.designPressure = calculation;
         this.calculationNameControl.setValue(calculation.name);
-        this.nominalPipeSize = this.designPressureModel.NominalOutsideDiameter;
+        this.nominalPipeSize = this.designPressure.fields.NominalOutsideDiameter;
       }
     });
+
+    //when calc is accessed from "my calculations", do we need to set the project in state? Or can we pass in an id to get the project name?
+    this.designPressure.parentId != null ? this.store.dispatch(setCurrentProject({id: this.designPressure.parentId})): this.designPressure.parentId;
+    
+    this.store.pipe(select(getCurrentProject)).subscribe(project => {
+      if(project && (this.designPressure.parentId == project.id)){
+        this.projectName = project.name;
+      }
+    })
   }
   assignData(value: number, type: string){
   
@@ -81,19 +90,15 @@ export class DesignPressureSteelPipeComponent implements OnInit  {
         break;
     }
   }
-   onCalculate() {
-
-      this.calculationFunctionsService.calculateDesignPressure(this.designPressure.fields).subscribe((data: any) => {
-      this.designPressureTotal = data.DesignPressureTotal;
-      this.designPressure.fields.DesignPressureTotal = this.designPressureTotal;
-    
+   async onCalculate() : Promise<void> {
+    let total  = <CalculationField> await this.calculationFunctionsService.calculateDesignPressure(this.designPressure.fields).toPromise();
+      this.designPressure.fields.DesignPressureTotal = total.DesignPressureTotal;
       this.dimensionIdentifier = ' psig';
-      return this.designPressureTotal;
-
-  })   
+   
   }
-    onSave(){
-    this.onCalculate();
+    async onSave(){
+
+    await this.onCalculate();
     this.designPressure.name = this.calculationNameControl.value; 
     if(!this.designPressure.id){
       this.designPressure.isValid = true;
